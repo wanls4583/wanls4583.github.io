@@ -3,7 +3,7 @@ layout: post
 title: 关于此博客
 key: 10001
 tags: blog
-category: blog
+category: blog about
 date: 2015-10-14 23:15:00 +08:00
 modify_date: 2017-09-16 15:00:00 +08:00
 ---

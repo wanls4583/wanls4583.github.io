@@ -1,6 +1,6 @@
 {
-  "name": "personal-site",
-  "version": "2.0.0",
+  "name": "lisong-site",
+  "version": "1.0.0",
   "description": "My Personal Website, powered by jekyll-TeXt-theme",
   "scripts": {
     "build": "bundle exec jekyll build",
@@ -14,20 +14,12 @@
     "cm-merge": "git commit -m 'chore: merge to Text Theme'",
     "cm-post": "git commit -m 'feat: publish new post'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kitian616/kitian616.github.io.git"
-  },
   "keywords": [
     "jekyll",
     "jekyll-site"
   ],
-  "author": "Tian Qi",
+  "author": "Li Song",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kitian616/issues"
-  },
-  "homepage": "https://github.com/kitian616#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
