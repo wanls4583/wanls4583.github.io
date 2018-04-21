@@ -12,11 +12,11 @@
 #    `--'   `----''--'   '--' `--'
 
 ## Base settings ##
-url: https://tianqi.name #the base hostname & protocol for your site e.g. https://www.someone.com
+url: http://lisong.hn.cn #the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl: /
-title: Qi's Blog
+title: Lisong's Blog
 description: > #this means to ignore newlines until "nav_lists:"
-    Tian Qi's Blog | 田琦的博客
+    Li Song's Blog | 李松的博客
 
 nav_lists:
   - titles:
@@ -33,7 +33,7 @@ paths:
   rss:  /feed.xml
 
 ## GitHub repository (if the site is hosted by GitHub) ##
-repository: kitian616/kitian616.github.io
+repository: wanls4583/wanls4583.github.io
 repository_tree: master
 
 ## Language & timezone ##
@@ -42,28 +42,23 @@ timezone: Asia/Shanghai
 
 ## Author & social ##
 author:
-  name: "Tian Qi"
-  email: kitian616@outlook.com
+  name: "Li Song"
+  email: 409051987@qq.com
   # facebook:  #your Facebook username
-  twitter: kitian616
-  github:  kitian616
-  googleplus: 101827554735084402671
-  weibo: 234695683
-  douban: kitian616
+  # twitter: kitian616
+  github:  wanls4583
+  # googleplus: 101827554735084402671
+  # weibo: 234695683
+  # douban: kitian616
   # linkedin:  #your Linkedin username
 
 ## Comment system (Disqus) ##
 disqus:
-  shortname: kitian616-github-io #the Disqus shortname for the site
+  shortname: wanls4583-github-io #the Disqus shortname for the site
 
 ## Google Analytics ##
-ga_tracking_id: UA-71907556-1 #Google analytics id for the site
+# ga_tracking_id: UA-71907556-1 #Google analytics id for the site
 
-## Reading quantity (LeanCloud) ##
-leancloud:
-  app_id: uAG3OhdcH8H4fxSqXLyBljA7-gzGzoHsz
-  app_key: Mzf5m9skSwYVWVXhGiYMNyXs
-  app_class: ThomasBlog
 
 # mathjax: true
 
