@@ -1,0 +1,138 @@
+---
+author: wanls4583
+comments: true
+date: 2017-11-10 10:41:29+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2017/11/10/webpack%e5%8a%a0%e8%bd%bd%e5%99%a8%e4%b8%8e%e6%8f%92%e4%bb%b6%e5%bc%80%e5%8f%91%e7%ae%80%e5%8d%95%e6%a1%88%e4%be%8b/
+slug: webpack%e5%8a%a0%e8%bd%bd%e5%99%a8%e4%b8%8e%e6%8f%92%e4%bb%b6%e5%bc%80%e5%8f%91%e7%ae%80%e5%8d%95%e6%a1%88%e4%be%8b
+title: webpack加载器与插件开发简单案例
+wordpress_id: 457
+categories:
+- 构建工具
+
+tags:
+- 构造工具
+
+---
+
+>如今前端构建已成为大型项目必不可少的一部分，Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块。而传统的构建工具（gulp，graunt...）是不具备理解依赖的能力的。
+
+## 加载器
+loader（加载器）是webpack运行的关键部分，有了loader就可以加载各种我们想处理的资源了。加载器可以单独使用也可以多个配合使用，当多个loaders被链接的时候，只有最后一个loader能够获取资源文件并且只有第一个loader预期返回一个或者两个值（JavaScript和SourceMap）。其它任何loader返回的值会传到之前的loader中。一个简单的css文件加载器的代码如下：
+
+my-trim-loader：
+```javascript
+//处理换行符
+module.exports = function(source){
+	// return source.replace(/\r\n|\r|\n/g,'');//只是传递给下一个架子器，所以不用module.exports
+	return 'module.exports="'+source.replace(/\r\n|\r|\n/g,'')+'"';//将作为一个单独的依赖输出到最终的文件中
+}
+```
+
+my-style-loader:
+```javascript
+var loaderUtils = require("loader-utils");
+var path = require("path");
+module.exports = function(source){
+	// return 'require('+loaderUtils.stringifyRequest(this,path.resolve(__dirname,'./add-style'))+')("'+source+'");'
+}
+module.exports.pitch = function(request){
+	return `var source = require(${loaderUtils.stringifyRequest(this,'!'+request)});var addStyle = require(${loaderUtils.stringifyRequest(this,path.resolve(__dirname,'./add-style'))});addStyle(source)`
+}
+```
+中间的加载器可以使用默认的方式接受上一个加载器传递过来的处理结果，也可以添加一个pitch方法接收一个request路径，如果pitch方法有返回结果，那么将覆盖默认的返回结果。定义了pitch方法就可以通过require的方式引入上个加载器的处理结果,因为是加载器，所以前面需要加一个‘!’。以request这种方式，那么上一个加载器的处理结果应该作为一个单独的依赖输出到最终的文件中。为了避免产生较长的字符串，这里引入了add-style来处理实际的代码。
+
+add-style:
+```javascript
+module.exports = function(source){
+	var styleReg = /(.+)\{([\s\s]+)\}/;
+	var style = document.createElement('style');
+    var box= document.createTextNode(source); //IE6-8不支持
+    style.type = 'text/css';
+    style.appendChild(box);
+    document.getElementsByTagName('head')[0].appendChild(style);
+}
+```
+
+最后只需要在webpack.config.js里配置下处理规则就可以使用一个简单的css资源加载器了：
+```javascript
+  resolveLoader: {
+    modules: [ "custom_loaders", "node_modules"]//用来定义搜索加载器的路径
+  },
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: "my-style-loader!my-trim-loader" }//处理顺序从右向左
+    ]
+  }
+```
+
+# 插件
+插件向第三方开发者提供了 webpack 引擎中完整的能力。使用阶段式的构建回调，开发者可以引入它们自己的行为到 webpack 构建流程中。
+
+在插件开发中最重要的两个资源就是 compiler 和 compilation 对象。理解它们的角色是扩展 webpack 引擎重要的第一步。
+- compiler对象代表了完整的 webpack 环境配置。这个对象在启动 webpack 时被一次性建立，并在所有可操作的设置中被配置，包括原始配置，加载器和插件。当在 webpack 环境中应用一个插件时，插件将收到一个编译器对象的引用。可以使用它来访问 webpack 的主环境。
+
+- compilation对象代表了一次单一的版本构建和生成资源一个编译对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息。编译对象也提供了很多关键点回调供插件做自定义处理时选择使用。
+
+一个简单的在项目根目录下生成如果页面index.html的插件代码如下：
+
+myHtmlPlugin:
+```javascript
+var fs = require('fs');
+function MyHtmlPlugin(options) {
+  // 根据 options 配置你的插件
+}
+
+MyHtmlPlugin.prototype.apply = function(compiler) {
+  compiler.plugin("emit", function(compilation, callback) {
+    console.log("The compilation is going to emit files...");
+    var context = compiler.context;
+    var html = `
+        
+        
+        
+        
+          
+        
+        `;
+    fs.writeFile(context+'/'+'index.html', html);
+    callback();
+  });
+};
+
+module.exports = MyHtmlPlugin;
+```
+
+加载器和插件的完整配置如下：
+```javascript
+var path = require("path");
+var myHtmlPlugin = require('./custom_modules/my-html-plugin');
+module.exports = {
+  entry: './index.js',
+  output: {
+    path: path.resolve(__dirname, './'),
+    filename: 'index.bundle.js'
+  },
+  resolve: {
+    modules: ["custom_modules", "node_modules"]//定义模块的搜索路径
+  },
+  resolveLoader: {
+    modules: [ "custom_loaders", "node_modules"]//定义加载器的搜索路径
+  },
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: "my-style-loader!my-trim-loader" }
+    ]
+  },
+  plugins: [
+    new myHtmlPlugin()
+  ]
+};
+```
+
+完整的代码：[https://github.com/wanls4583/webpack-loader-plugin-demo](https://github.com/wanls4583/webpack-loader-plugin-demo)
+
+
+
+
+

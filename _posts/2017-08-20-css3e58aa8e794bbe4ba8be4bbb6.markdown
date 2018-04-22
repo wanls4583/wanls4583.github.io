@@ -1,0 +1,144 @@
+---
+author: wanls4583
+comments: true
+date: 2017-08-20 03:59:41+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2017/08/20/css3%e5%8a%a8%e7%94%bb%e4%ba%8b%e4%bb%b6/
+slug: css3%e5%8a%a8%e7%94%bb%e4%ba%8b%e4%bb%b6
+title: css3动画事件
+wordpress_id: 405
+categories:
+- CSS
+
+tags:
+- CSS
+
+---
+
+>css3动画事件包括transitionend事件和animationend事件，transitionend和animationend是w3c标准的写法，而多数浏览器在w3c标准前已经有了对应的私有写法(多数浏览器同时支持私有和标准写法，部分旧版浏览器只支持私有写法)。
+
+当浏览器同时支持标准和私有写法时，如果某个元素同时监听了私有写法事件和标准写法事件，则浏览器将只执行标准写法的回调。当然，也可以只监听标准写法事件或者私有写法事件，前提是你明确知道事件是否被浏览器支持，否则应该做兼容
+
+示例:
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+    #myDIV {
+        width: 100px;
+        height: 100px;
+        background: red;
+        -webkit-transition: width 2s;
+        /* For Safari 3.1 to 6.0 */
+        transition: width 2s;
+    }
+
+    #myDIV:hover {
+        width: 400px;
+    }
+
+    </style>
+</head>
+
+<body>
+    <script>
+    //  Safari 3.1 到 6.0 版本代码
+    document.getElementById("myDIV").addEventListener("webkitTransitionEnd", function(){
+        console.log('webkitTransitionEnd1')
+    });
+    document.getElementById("myDIV").addEventListener("webkitTransitionEnd", function(){
+        console.log('webkitTransitionEnd2')
+    });
+
+    // 标准语法
+    document.getElementById("myDIV").addEventListener("transitionend", function(){
+        console.log('transitionend1')
+    });
+    document.getElementById("myDIV").addEventListener("transitionend", function(){
+        console.log('transitionend2');
+    });
+
+    </script>
+
+</body>
+
+</html>
+```
+
+多数现代webkit浏览器将只打印transitionend1和transitionend2，虽然其也支持webkitTransitionEnd。
+
+兼容性处理：
+```javascript
+(function() {
+    var body = document.body || document.documentElement,
+        style = body.style,
+        transition = "transition",
+        transitionEnd,
+        animationEnd,
+        setStyleAttribute,
+        vendorPrefix;
+
+    transition = transition.charAt(0).toUpperCase() + transition.substr(1);
+
+    vendorPrefix = (function() { //现在的opera也是webkit
+        var i = 0,
+            vendor = ["Moz", "Webkit", "Khtml", "O", "ms"];
+        while (i < vendor.length) {
+            if (typeof style[vendor[i] + transition] === "string") {
+                return vendor[i];
+            }
+            i++;
+        }
+        return false;
+    })();
+
+    transitionEnd = (function() {
+        var transEndEventNames = {
+            WebkitTransition: 'webkitTransitionEnd',
+            MozTransition: 'transitionend',
+            OTransition: 'oTransitionEnd otransitionend',
+            transition: 'transitionend'
+        }
+        for (var name in transEndEventNames) {
+            if (typeof style[name] === "string") {
+                return transEndEventNames[name]
+            }
+        }
+    })();
+
+    animationEnd = (function() {
+        var animEndEventNames = {
+            WebkitAnimation: 'webkitAnimationEnd',
+            animation: 'animationend'
+        }
+        for (var name in animEndEventNames) {
+            if (typeof style[name] === "string") {
+                return animEndEventNames[name]
+            }
+        }
+    })();
+    
+    setStyleAttribute = function(elem, val) {
+        if (Object.prototype.toString.call(val) === "[object Object]") {
+            for (var name in val) {
+                if (/^transition|animation|transform/.test(name)) {
+                    var styleName = name.charAt(0).toUpperCase() + name.substr(1);
+                    elem.style[vendorPrefix + styleName] = val[name];
+                } else {
+                    elem.style[name] = val[name];
+                }
+            }
+        }
+    };
+
+    window.css3Hack = {
+        transitionEnd: transitionEnd,
+        animationEnd: animationEnd,
+        setStyleAttribute: setStyleAttribute
+    }
+})()
+```

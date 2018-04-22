@@ -1,0 +1,124 @@
+---
+author: wanls4583
+comments: true
+date: 2018-02-22 10:08:53+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2018/02/22/object%e7%89%b9%e6%80%a7/
+slug: object%e7%89%b9%e6%80%a7
+title: Object特性
+wordpress_id: 474
+categories:
+- code
+
+tags:
+- code
+
+---
+
+## defineProperty
+```javascript
+var obj = {};
+var tmp = undefined;
+Object.defineProperty(obj,'a',{
+    //该属性是否可枚举(for in,Object.keys)，默认为false
+    enumerable: false,
+    //该属性的特性是否可修改(除writable特性外的其他特性是否可以被修改,
+    //如重新定义enumerable，configurable等属性)，默认为false
+    configurable: false,
+    //该属性是否可读写，默认为false，不能与set或get同时存在
+    // writable: true
+    //属性的值，不能与set或get同时存在
+    // value: 1,
+    //setter
+    set: function(value){
+        console.log('set:' + value);
+        tmp = value;
+    },
+    //getter
+    get: function(value){
+        return 'get:' + tmp;
+    }
+});
+obj.b = 2;
+obj.a = 3;//set:3
+// Object.defineProperty(obj, "a", {enumerable : true});//TypeError
+console.log(Object.keys(obj));//["b"]
+console.log(obj.a);//get:3
+```
+## create
+create类似寄生构造函数
+```javascript
+var p = {a:1};
+var obj = Object.create(p, {//可以在obj上追加属性
+    b: {
+        value: 2, 
+        writable: true,
+        enumerable: true,
+        configurable: true 
+    } 
+});
+console.log(obj.__proto__==p);//true
+console.log(obj.a);//1
+
+//Object.create的简单实现
+function create(p){
+    var F = function(){};
+    F.prototype = p;
+    return new F();
+}
+var obj = create(p);
+console.log(obj.__proto__==p);//true
+console.log(obj.a);//1
+```
+## assign
+Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。如果目标对象中的属性具有相同的键，则属性将被源中的属性覆盖。Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象
+```javascript
+var s1 = {a:'a1',b:2};
+var s2 = {a:'a2',c:3};
+var s3 = {a:'a3',d:4};
+var tmp = {};
+var obj = Object.assign(tmp,s1,s2,s3);
+console.log(obj==tmp);//true
+console.log(obj);//{a: "a3", b: 2, c: 3, d: 4}
+
+//assgin的简单实现
+function assign(){
+    var arg = arguments;
+    var target = arg[0];
+    for(var i=1; i<arg.length; i++){
+        copy(arg[i]);
+    }
+    function copy(obj){
+        for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+                target[key]=obj[key];
+            }
+        }
+    }
+    return target;
+}
+var obj = assign(tmp,s1,s2,s3);
+console.log(obj==tmp);//true
+console.log(obj);//{a: "a3", b: 2, c: 3, d: 4}
+```
+## 枚举
+for in和Object.keys()都可以枚举对象的可枚举属性（enumerable为true），不过Object.keys()只能枚举对象的自身属性，而for in可以枚举原型链上的属性
+```javascript
+var tmp = {a:1};
+var obj = Object.create(tmp,{
+    'b':{
+        enumerable:true,
+        value:2
+    },
+    'c':{
+        enumerable:false,
+        value:3
+    }
+})
+console.log(Object.keys(obj));//["b"]
+tmp = [];
+for(var key in obj){
+    tmp.push(key);
+}
+console.log(tmp);//["a","b"]
+```

@@ -1,0 +1,167 @@
+---
+author: wanls4583
+comments: true
+date: 2017-10-14 13:46:37+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2017/10/14/%e7%a7%bb%e5%8a%a8%e7%ab%af%e9%80%82%e9%85%8d/
+slug: '%e7%a7%bb%e5%8a%a8%e7%ab%af%e9%80%82%e9%85%8d'
+title: 移动端适配
+wordpress_id: 417
+categories:
+- 移动端
+
+tags:
+- 移动端
+
+---
+
+>随着硬件技术的发展，移动端手机的屏幕分辨率越来越多，为了处理屏幕碎片化问题和方便移动端界面的开发，当前两个主流移动端操作系统（Android，IOS）都抽象出了一套屏幕适配方案，本文章主要讲解两套适配方案的原理。
+
+## 移动开发中的一些概念
+
+**屏幕尺寸相关的单位和术语**：
+
+- **pt（point）**：磅，一个标准的物理绝对长度单位，大小为1/72英寸。主要用于印刷与平面设计。1inch = 2.54cm=72pt。
+- **px（pixel）**：物理像素，组成屏幕图像的最小点，一个相对大小单位。同尺寸屏幕中像素越小越多，代表分辨率越高，反之越低。
+- **屏幕尺寸（Screen Size）**：屏幕物理尺寸，指屏幕对角线长度，而不是屏幕宽度或高度。
+- **分辨率（Resolution）**：屏幕拥有像素的总数以及屏幕水平（宽）和垂直（高）方向的像素数量。
+- **ppi（pixels per inch）**：屏幕密度，指每英寸所拥有的像素数/每英寸像素。ppi数值越高，即代表显示屏能够以越高的密度显示图像。显示的密度越高，拟真度就越高。当你拿的手机距离你约25-30厘米，如果手机ppi达到300以上，你的眼睛将无法分辨出像素点。这就是苹果提出的视网膜屏幕。
+- **dpi（dots per inch）**：印刷计数单位，指每英寸所能印刷出来的网点数。衡量打印机打印精度的主要参数之一，值越大，表明打印机的打印精度越高。电脑图片为72dpi 。但印刷图片dpi参数最好是300dpi以上。如果冲洗5x7英寸的照片，dpi是300，照片需达到（5x300）x（7x300）= 1500 x 2100像素。photoshop中的分辨率设置指的其实就是dpi
+
+**换算公式**： 
+
+1pt = (ppi / 72) x px
+
+在物理屏上：ppi=dpi
+
+PPI = √（X^2+Y^2）/ Z
+
+## 安卓开发中的适配方案
+
+为了方便程安卓序员的开发，安卓操作系统将手机屏幕分成了不同的等级。
+
+<img src="http://lisong-blog.gz.bcebos.com/android分辨率.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T11%3A13%3A44Z%2F-1%2Fhost%2Fc9ccef024457fc063d9fc4b4a6ea9be40b3b224970cb7aa1f6f5d8e245c6cbe5" alt="" />
+
+**Andorid手机相关的单位和标准**：
+
+- dip（Device Independent Pixels）：设备独立像素单位。 Android开发虚拟单位。多用于Android示例计数单位。
+- dp：android开发中的布局长度单位，和ios中的pt概念一样，是一个虚拟单位
+- sp：和dp一样，只不过是用来设定字体大小的，sp设定字体大小可以随用户的缩放而改变大小，在每英寸160点的显示器上，当文字大小为100%时，1sp = 1px。
+
+**转换公式**:
+
+dp = (ppi/160) x px
+
+dip = dp
+
+从上图中可以看出，逻辑密度和真实密度是有一定的差距的，设备的真实密度通过某个范围归类到某一个逻辑密度，从而划分成不同的密度等级。
+
+不同等级密度中，1dp所代表的理想物理尺寸是一致的，例如上图的Mdpi中：1dp = 320/160/320 = 1/160inch，XHdpi中：1dp = 720/320/360 = 1/160inch。
+
+由于设备的真实密度与逻辑有一定的差距，所以1dp多代表的物理尺寸会有稍微的区别，不过大体上接近某一个值，公式为：1dp = 设备分辨率/真实密度/逻辑分辨率。
+
+在相同密度等级的设备，虽然1dp所代表的物理像素的个数相等，但由于真实密度有区别，所以相等的像素个数所占据的物理尺寸是有差别的。
+
+## IOS开发中的适配方案
+
+IOS的适配方案和安卓的类似，都是通过虚拟单位结合转换比去实现。
+
+<img src="http://lisong-blog.gz.bcebos.com/ios分辨率.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T11%3A52%3A41Z%2F-1%2Fhost%2F9476a4b10302818e61568782202d9968d10956a4509d0dfa78da4fdaf20b4696" alt="" />
+
+**IOS手机相关的单位和标准**：
+
+- pt：ios中的虚拟单位，类似安卓中的dp
+
+从上图中可以看出，ios中的转换比是以ppi=163的密度来计算的，在ios中，如果屏幕最终渲染的大小和屏幕分辨率的大小一致，那么1pt所代表的物理尺寸=1/163inch。在上图中除了6s，其他设备的1dp均等于1/163英寸。
+
+按照ios的转换比规则，6s的转换比应该 = 401/163 = @2.46x，但是2.46的转换比会给ios程序开发带来不便，所以ios将6s的转换比设置成@3x，通过缩放使屏幕的最终渲染结果等于物理分辨率。理论上缩放比应该是2.46/3=83%，实际上苹果选取了一个接近比例的87%，这样算下来，物理分辨率和虚拟分比率的比例是87%，也就是1920/0.87=2208，1080/0.87=1242，1242/1080刚好等于1.15。
+
+由于6s经过最终渲染是经过缩放的，所以1dp不在等于1/163英寸，而是 = 1080/401/414英寸，略大于1/163。
+
+## WEB开发中的适配方案
+
+在web网页开发中，也有专门用于屏幕适配的viewport标签。css中的px单位也是一个虚拟单位，和物理像素单位不是一个概率。
+
+viewport标签content参数：
+
+- width：用于控制布局viewport的大小
+- initial-scale：用于控制初始度量viewport的大小，计算规则=设备的逻辑分辨率宽/initial-scale
+- min-scale：用于控制最小度量viewport的大小
+- max-scale：用于控制最大度量viewport的大小
+- user-no-scale：禁止用户缩放页面
+
+其中布局viewport可以使用document.body.clientWidth来获取，度量viewport可以使用window.innerWidth来获取，window.outerWidth可以获取到设备的逻辑分辨率宽，此时的px对应于安卓的dp或ios的pt。
+
+移动端页面，如果没有设置viewport标签，默认会有一个980px的布局视口，而默认度量视口没有固定值，只有一个默认最大度量视口，不同设备的默认最大度量视口不一致。
+
+```
+<!DOCTYPE>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding-top: 0;
+		}
+		#d1{
+			width: 1800px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'></div>
+</body>
+<script type="text/javascript">
+</script>
+</html>
+```
+iphone5下最大度量视口为1280px，iphone6下最大度量视口为1600px：
+
+<img src="http://lisong-blog.gz.bcebos.com/移动端适配1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A22%3A27Z%2F-1%2Fhost%2Ff1e8f5f670f06c9fd6310516176332b4ca208cc50bf6dca35bca4e06b0ecd683" alt="" />
+
+<img src="http://lisong-blog.gz.bcebos.com/移动端适配2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A22%3A56Z%2F-1%2Fhost%2F69317ed18822bfccb7dd8743461975dd73fb37ea888f6f6f46f3b61e2e928786" alt="" />
+
+如果度量视口小于布局视口将产生滚动条：
+```
+<!DOCTYPE>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=750,initial-scale=0.8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding-top: 0;
+		}
+		#d1{
+			width: 750px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'></div>
+</body>
+<script type="text/javascript">
+</script>
+</html>
+```
+<img src="http://lisong-blog.gz.bcebos.com/移动端适配3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A39%3A29Z%2F-1%2Fhost%2Fdeca177d883094713c854fed320153915036efb26465ae501ebe85d271e720cc" alt="" />
+
+如果设置的度量视口宽度大于布局视口的宽度，则布局视口会自动设置成度量视口的宽度：
+```
+<meta name="viewport" content="width=750,initial-scale=0.2">
+```
+<img src="http://lisong-blog.gz.bcebos.com/移动端适配4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A43%3A30Z%2F-1%2Fhost%2Fbb3d5342eedab944b1ff9c7f2c99295f9bcd053835e39bde640ce66ee01f21b7" alt="" />
+
+**最后在来说一下一个已经被安卓废弃的viewport属性target-densitydpi**：
+
+target-densitydpi表示目标设备的密度等级，作用是决定css中的1px代表多少物理像素，target-densitydpi 值可以为一个数值或 high-dpi 、 medium-dpi、 low-dpi、 device-dpi 这几个字符串中的一个特别说明的是，当 target-densitydpi=device-dpi 时， css中的1px会等于物理像素中的1px。因为这个属性只有安卓支持（andorid4.0以下的手机不支持viewport的width属性，可以用target-densitydpi代替），并且安卓已经决定要废弃 target-densitydpi 这个属性了，尽量避免使用这个属性。
+
+

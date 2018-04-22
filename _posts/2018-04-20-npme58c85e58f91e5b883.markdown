@@ -1,0 +1,26 @@
+---
+author: wanls4583
+comments: true
+date: 2018-04-20 03:31:58+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2018/04/20/npm%e5%8c%85%e5%8f%91%e5%b8%83/
+slug: npm%e5%8c%85%e5%8f%91%e5%b8%83
+title: npm包发布
+wordpress_id: 518
+categories:
+- 其他
+---
+
+## npm包发布流程
+- 首先你得有一个 自己的 npmjs.com 的账号，该账号需要邮箱验证（命令行登录时需要填写邮箱）
+- npm init生成package.json
+- npm login登录
+- npm publish发布（包名称不能与npm上已有的包同名）
+
+npm在全局变为淘宝的镜像源后，登录和发布包失败
+命令修改如下，可以发布到npmjs
+```
+npm login --registry http://registry.npmjs.org
+npm publish --registry http://registry.npmjs.org
+```
+![](http://lisong-blog.gz.bcebos.com/npm.jpg?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2018-04-20T03%3A26%3A22Z%2F-1%2Fhost%2Ff64659d99f786d4b18e70f5e82f3fa48238eb7d11d97d390739d8b8fe48f8a03)

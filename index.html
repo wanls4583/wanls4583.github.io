@@ -1,27 +1,34 @@
 ---
-title: Lis Song
-excerpt: Li Song | 李松
+layout: default
 ---
-<!DOCTYPE html>
-<html lang="{{ site.lang }}">
-  <head>
-    {%- include head.html -%}
-    <link rel="stylesheet" href="{{ "/assets/css/home.css" | prepend: site.baseurl | replace:'//','/' }}">
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <div class="home" itemscope itemtype="http://schema.org/Person">
-      <div class="main">
-        <div class="content">
-          <div class="my-photo">
-            <img alt="my photo" src="https://wanls4583.github.io/images/head.jpg" />
-          </div>
-          <h1 itemprop="name" class="title-text">{{ site.author.name }}</h1>
-          {% include follow-me.html %}
-          <p><a class="social-link blog" title="Visit my blog." itemprop="sameAs" href="/blog" target="_self">Visit My Blog</a></p>
+
+<div class="main-post-list hidden">
+
+  <ol class="post-list">
+    {% for post in paginator.posts %}
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="{{ post.url }}" title="访问 {{ post.title }}">{{ post.title }}</a></h2>
+      <p class="excerpt">{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;</p>
+      <div class="post-list__meta">        
+        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">
+          <img src="/images/calendar.png" width="20px" /> 
+          {{ post.date | date: "%F"}}</time> 
+        <div class = "tag-img-icon">
+          <img src="/images/tag-icon.svg" width="20px" /> 
         </div>
-    </div>
-    </div>
-    {% include analytics.html %}
-  </body>
-</html>
+        <a href="/tags">
+          <div class = "post-list-icon-mate">
+            <span class="post-list__meta--tags-right">{{ post.tags }}</span>
+          </div>
+          <div class = "post-list-small-mate">
+          <a class="btn-border-small" href={{ post.url }}>阅读全文 » </a>
+          </div>
+      </div>
+      <hr class="post-list__divider" />
+    </li>
+    {% endfor %}
+  </ol>
+
+  {% include pagination.html %}
+
+</div>

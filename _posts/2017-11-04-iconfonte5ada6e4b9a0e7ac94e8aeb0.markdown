@@ -1,0 +1,210 @@
+---
+author: wanls4583
+comments: true
+date: 2017-11-04 07:06:38+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2017/11/04/iconfont%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/
+slug: iconfont%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0
+title: iconfont学习笔记
+wordpress_id: 444
+categories:
+- CSS
+
+tags:
+- CSS
+
+---
+
+>iconfont是近年来前端领域兴起的一种新技术，在这之前，网页图标的展示大多数是用css sprite来实现，css sprite实现的图标在不同尺寸分辨率下有一定的的失真，而iconfont解决了此问题。
+
+## @font-face
+
+要使用iconfont，必须配合@font-face使用。@font-face是CSS3中的一个模块，他主要是把自己定义的Web字体嵌入到你的网页中。
+
+### @font-face的语法规则：
+```
+@font-face {
+      font-family: <YourWebFontName>;
+      src: <source> [<format>][,<source> [<format>]]*;
+      [font-weight: <weight>];
+      [font-style: <style>];
+    }
+```
+### @font-face的属性解释：
+
+- font-family: <YourWebFontName> ：自定义字库名称（一般设置为所引入的字库名），后续样式规则中则通过该名称来引用该字库。
+- src ：设置字体的加载路径和格式，通过逗号分隔多个加载路径和格式
+- srouce ：字体的加载路径，可以是绝对或相对URL。
+- format ：字体的格式，主要用于浏览器识别，一般有以下几种——truetype,opentype,truetype-aat,embedded-opentype,avg等。
+- font-weight 和 font-style 和之前使用的是一致的。 
+
+src属性后还有一个 local(font name) 字段，表示从用户系统中加载字体，失败后才加载webfont。
+```
+src: local(font name), url("font_name.ttf")
+```
+### @font-face的属性解释：
+
+- TrueType格式(.ttf)：
+Windows和Mac上常见的字体格式，是一种原始格式，因此它并没有为网页进行优化处理。
+浏览器支持：IE9+,FireFox3.5+,Chrome4.0+,Safari3+,Opera10+,IOS Mobile Safari4.2+
+- OpenType格式(.otf)：
+以TrueType为基础，也是一种原始格式，但提供更多的功能。
+浏览器支持：FireFox3.5+,Chrome4.0+,Safari3.1+,Opera10.0+,IOS Mobile Safari4.2+
+- Web Open Font格式(.woff)：
+针对网页进行特殊优化，因此是Web字体中最佳格式，它是一个开放的TrueType/OpenType的压缩版，同时支持元数据包的分离。
+浏览器支持：IE9+, FireFox3.5+, Chrome6+, Safari3.6+,Opera11.1+
+- Embedded Open Type格式(.eot):
+IE专用字体格式，可以从TrueType格式创建此格式字体。
+- SVG格式(.svg)
+基于SVG字体渲染的格式。
+浏览器支持：Chrome4+, Safari3.1+, Opera10.0+, IOS Mobile Safari3.2+
+
+<img src="http://lisong-blog.gz.bcebos.com/font_format_1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T06%3A21%3A01Z%2F-1%2Fhost%2F1222ac915ae352fc9484562b5a16c56d95375daddb4f73b168fbf04e294bc92d" alt="" />
+
+### <format>字符串对应值：
+<img src="http://lisong-blog.gz.bcebos.com/font_format_2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T06%3A22%3A15Z%2F-1%2Fhost%2Fa1b7bd0650e797e819788281eeeb894d2d20c29b0cc017ac9d41301064fbe0af" alt="" />
+
+图标字体的尅一使用阿里巴巴的<a href="http://www.iconfont.cn/">iconfont</a>和icomoon，制作推荐使用<a href="https://icomoon.io/app/#/select" rel="noopener" target="_blank">icomoon</a>。图标字体的使用主要有两种方式：html实体（兼容ie6），css伪类（ie8+）。
+
+示例：
+
+style:
+```css
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot');/*ie9 兼容模式*/
+  src:  url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf') format('truetype'),
+    url('fonts/icomoon.woff') format('woff'),
+    url('fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+  content: "\e900";
+}
+```
+注意：?#iefix是用来解决ie6-8下不支持@font-face新规则的bug，ie6-8只支持一种url，通过使用?可以是ie6-8认为之后的都是查询字符串，避免加载失败；ie9 兼容模式主要是为了解决在ie9下，切换到低版本文档模式时防止ie使用woff格式的字体。
+
+html:
+```
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IcoMoon Demo</title>
+    <link rel="stylesheet" href="style.css"></head>
+<body>
+    <!-- 使用css伪类 (ie8+)-->
+    <span class="icon-home"></span><br>
+    <!-- 使用字符实体 (ie6+)-->
+    <span style="font-family: icomoon">&#xe900;</span>
+</body>
+</html>
+```
+注意：在html文件中，字符实体以'$#x'开头，中间是编码，以';'结尾，而在css的content中可以直接\后面跟着字符编码
+
+在ie8下结果：
+<img src="http://lisong-blog.gz.bcebos.com/font_format_4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T07%3A11%3A18Z%2F-1%2Fhost%2F513b8af8447ea19c17b458c1ef1d8dccef8e6a9c353d2ffa401aa1874226049f" alt="" />
+
+在ie7下结果：
+<img src="http://lisong-blog.gz.bcebos.com/font_format_5.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T07%3A11%3A38Z%2F-1%2Fhost%2Fc578e90c1529c0a345e2f5a65d9256820bdd32323baf708c56c9f48c6d9f4733" alt="" />
+
+演示demo：<a href="http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html" rel="noopener" target="_blank">http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html</a>
+
+## 彩色字体图标
+iconfont和icomoon都能生成彩色字体图标，不过两者的实现方式稍有不同，iconfont使用的是svg形式，只支持ie9+。而icomoon使用的依然是字体形式，通过多个字体拼凑成最终的图标，字符实体的形式依然可以支持i6，下面是icomoon多彩字体的示例代码。
+
+html:
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IcoMoon 多彩字体Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 实体形式 -->
+    <span class="icon-basketball">
+    <span class="path1">&#xe900;</span><span class="path2">&#xe901;</span>
+    </span>
+    <br>
+    <!-- 伪类形式 -->
+    <span class="icon-basketball-1">
+    <span class="path1"></span><span class="path2"></span>
+    </span>
+</body>
+</html>
+```
+style:
+```css
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot');
+  src:  url('fonts/icomoon.eot?g1shvp#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf') format('truetype'),
+    url('fonts/icomoon.woff') format('woff'),
+    url('fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 100px;
+}
+.icon-basketball .path1 {
+  color: rgb(255, 172, 82);
+}
+.icon-basketball .path2 {
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-basketball-1 .path1:before {
+  content: "\e900";
+  color: rgb(255, 172, 82);
+}
+.icon-basketball-1 .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+```
+
+icomoon demo示例：<a href="http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html">http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html</a>
+
+iconfont demo示例：<a href="http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html">http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html</a>
+
+## “浏览器模式”和“文档模式”的区别
+
+“浏览器模式”用于切换IE针对该网页的默认文档模式、对不同版本浏览器的条件备注解析、发送给网站服务器的用户代理（User-Agent）字符串的值。网站可以根据浏览器返回的不同用户代理字符串判断浏览器的版本和安装的功能，这样就可以向不同的浏览器返回不同的页面内容。“文档模式”用于指定IE的页面排版引擎（Trident）以哪个版本的方式来解析并渲染网页代码。切换文档模式会导致网页被刷新，但不会更改用户代理字符串中的版本号，也不会从服务器重新下载网页。
+

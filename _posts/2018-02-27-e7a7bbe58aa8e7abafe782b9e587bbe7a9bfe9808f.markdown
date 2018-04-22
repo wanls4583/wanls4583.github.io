@@ -1,0 +1,65 @@
+---
+author: wanls4583
+comments: true
+date: 2018-02-27 12:17:01+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2018/02/27/%e7%a7%bb%e5%8a%a8%e7%ab%af%e7%82%b9%e5%87%bb%e7%a9%bf%e9%80%8f/
+slug: '%e7%a7%bb%e5%8a%a8%e7%ab%af%e7%82%b9%e5%87%bb%e7%a9%bf%e9%80%8f'
+title: 移动端点击穿透
+wordpress_id: 490
+categories:
+- code
+
+tags:
+- code
+
+---
+
+>移动端click事件发生在touchend事件之后，比touchend延迟300ms，之所以这样，是为了捕获双击事件（用于放大屏幕），为了缩小这个延迟，可以用touch事件模拟click，这将造成点击穿透问题。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>点击穿透</title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+		}
+		.div1{
+			width: 100%;
+			height: 100%;
+			background:	#999;
+		}
+		.div2{
+			position: fixed;
+			top:35%;
+			left: 25%;
+			height: 30%;
+			width: 50%;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+	<div class="div2"></div>
+</body>
+<script type="text/javascript" src="zepto.min.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript">
+	$('.div2').tap(function(){
+		console.log('div2 tap');
+		$('.div2').hide();
+	})
+	$('.div1').on('click',function(){
+		console.log('div1 click');
+	})
+</script>
+</html>
+```
+点击红色div2，将触发tap事件，然后继续触发click事件，之所以这样，是因为zepto的tap事件其实就是监听的touchend事件，然后在250ms之后触发tap，而click事件是300ms之后，这样缩小了click的延迟时间。这里在触发tap的时候隐藏掉了div2，300ms后click触发，此时div2已经隐藏了，手指点击的位置变成了div1，因此触发了div1的click事件。
+
+要避免这种事件穿透，有两种方法：
+- js实现，当点击div2的时候，动态的生成一个透明的div层，覆盖在div1上，300ms后删除。
+- css实现，当点击div2的时候，给div1设置css3属性pointer-events：none(这么设置将是div1变成穿透的，所以其上的事件都不会触发)，300ms还原pointer-events：auto。

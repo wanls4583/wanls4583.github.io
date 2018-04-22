@@ -1,0 +1,45 @@
+---
+author: wanls4583
+comments: true
+date: 2018-03-26 14:26:08+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2018/03/26/%e6%9d%a1%e4%bb%b6%e4%b8%8e%e5%be%aa%e7%8e%af/
+slug: '%e6%9d%a1%e4%bb%b6%e4%b8%8e%e5%be%aa%e7%8e%af'
+title: 条件与循环
+wordpress_id: 511
+categories:
+- 廖雪峰python教程学习笔记
+---
+
+## if语句
+```python
+a=99
+if(a>90):
+	print('优秀')
+else:
+    print('一般')
+
+a=100
+if(a>99):
+	print('优秀')
+elif(a>80):
+    print('良')
+else:
+	print('一般')
+```
+
+## 循环
+循环有两种：for...in，while
+```python
+sum = 0
+for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    sum = sum + x
+print(sum)
+```
+
+```python
+sum = 0
+while(sum<100):
+	sum=sum+1
+print(sum)
+```

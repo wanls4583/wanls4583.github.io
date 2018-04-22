@@ -1,0 +1,88 @@
+---
+author: wanls4583
+comments: true
+date: 2018-03-26 13:51:23+00:00
+layout: post
+link: http://lisong.hn.cn/index.php/2018/03/26/%e6%95%b0%e7%bb%84/
+slug: '%e6%95%b0%e7%bb%84'
+title: 数组
+wordpress_id: 509
+categories:
+- 廖雪峰python教程学习笔记
+
+tags:
+- 廖雪峰python教程学习笔记
+
+---
+
+## list:
+Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素。
+
+```python
+>>> a=[1,2,3]
+>>> a
+[1, 2, 3]
+```
+
+insert()
+```python
+>>> a.insert(1,4)
+>>> a
+[1, 4, 2, 3]
+```
+
+pop()
+```python
+>>> a.pop()
+3
+>>> a
+[1, 4, 2]
+>>> a.pop(1)
+4
+>>> a
+[1, 2]
+```
+
+倒数
+```python
+[1, 2]
+>>> a[-1]
+2
+```
+
+## tuple
+另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改
+```python
+>>> b=(1,2,3)
+>>> b
+(1, 2, 3)
+>>> b[1]=2
+Traceback (most recent call last):
+  File "", line 1, in 
+TypeError: 'tuple' object does not support item assignment
+```
+
+对于只有一个元素的tuple，为了避免与表达式()冲突，后面需要加一个‘,’：
+```python
+>>> b=(1,)
+>>> b
+(1,)
+>>> b[0]
+1
+>>> b[1]
+Traceback (most recent call last):
+  File "", line 1, in 
+IndexError: tuple index out of range
+```
+
+list，tuple可以随意组合
+```python
+>>> t = ('a', 'b', ['A', 'B'])
+>>> t[2][0] = 'X'
+>>> t
+('a', 'b', ['X', 'B'])
+```
+
+
+
+
