@@ -403,8 +403,12 @@ img::-moz-selection {
     padding: 2em 0 0 0;
     border-top: 1px solid #DDDDDD;
     font-size: .7em;
-    color: #b3b3b3; }
-
+    color: #b3b3b3; 
+  }
+  .copyright{
+    text-align: center;
+    padding: 0;
+  }
   .footer__copyright {
     display: block;
     margin-bottom: .7em; 

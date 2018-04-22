@@ -14,7 +14,7 @@ tags:
 - 前端框架
 
 ---
-{% raw %}
+
 ## Angular
 angular主要致力于减轻前端人员开发ajax应用程序的痛苦
 
@@ -68,6 +68,7 @@ ng-app=""（默认模块）的情况下，控制器函数为全局函数，嵌�
 
 
 ### ng-bind
+{% raw %}
 ```
 <div ng-controller="firstController">  
             <input type="text" value="" ng-model="name"/>  
@@ -79,6 +80,7 @@ ng-app=""（默认模块）的情况下，控制器函数为全局函数，嵌�
 </div>  
 ```
 ng-bind主要用来解决当angular加载过慢时，angular来不及解析页面，页面会显示{{name}}等表达式
+{% endraw %}
 
 ## 双向数据绑定原理($apply、$digest、$watch)
 ### $watch
@@ -155,6 +157,7 @@ angular并不存在定时脏检测。angular对常用的dom事件，xhr事件等
 - 执行$digest()或$apply()
 
 ## angular模块
+{% raw %}
 ```
 <!DOCTYPE html>  
 <html>  
@@ -182,6 +185,7 @@ function firstController($scope){
 }  
 var a=5;  
 ```
+{% endraw %}
 angular应用有一个默认的模块ng-app=""，可以使用全局的函数作为控制器(但是不能使用全局变量)，上面的输出结果为张三，如果我们指定了模块名称，则控制器会是myApp模块里的firstController，如果myApp模块里没有firstController，则是使用全局的firstController函数作为控制器。
 
 使用模块的优点：可以将不同功能封装在不同的模块中，使用的时候直接依赖进来即可。
@@ -229,6 +233,7 @@ myApp.service('CustomService2',function(){
 - 1.使用作用域链
 - 2.使用自定义服务
 
+{% raw %}
 ```
 <!DOCTYPE html>  
 <html>  
@@ -261,6 +266,8 @@ myApp.service('CustomService2',function(){
 </body>  
 </html>  
 ```
+{% endraw %}
+{% raw %}
 ```javascript
 angular.module('myApp',[])  
   
@@ -294,7 +301,9 @@ $scope.checkName = function(obj){
        return true;  
 }  
 ```
+{% endraw %}
 自定义过滤器
+{% raw %}
 ```
 <div ng-app="myApp">  
     <div ng-controller="firstController">  
@@ -308,6 +317,7 @@ $scope.checkName = function(obj){
     </div>  
 </div>  
 ```
+{% endraw %}
 ```javascript
 var myApp = angular.module('myApp', [], function ($filterProvider, $provide, $controllerProvider) {  
     $provide.service('Data', function () {  
@@ -384,6 +394,7 @@ otherController.$inject = ['$scope'];
 ```
 ## 指令
 ### 渲染指令
+{% raw %}
 ```
 <!DOCTYPE html>  
 <html>  
@@ -432,6 +443,7 @@ otherController.$inject = ['$scope'];
 </body>  
 </html>  
 ```
+{% endraw %}
 ### 事件指令
 ```
 <div ng-app="myApp">  
@@ -457,6 +469,7 @@ var myApp = angular.module('myApp', [])
 })  
 ```
 ### 节点指令
+{% raw %}
 ```
 <!DOCTYPE html>  
 <html>  
@@ -524,6 +537,7 @@ var myApp = angular.module('myApp', [])
 </body>  
 </html>  
 ```
+{% endraw %}
 ```javascript
 var myApp = angular.module('myApp', [])  
   
@@ -582,6 +596,7 @@ restrict 值可以是以下几种：
 <img src="http://img.blog.csdn.net/20170213154800098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
 
 ### templateUrl属性
+{% raw %}
 ```
 <div ng-app="myApp">  
     <script type="text/ng-template" id="customTags2">  
@@ -595,6 +610,8 @@ restrict 值可以是以下几种：
     </div>  
 </div>  
 ```
+{% endraw %}
+{% raw %}
 ```javascript
 var myApp = angular.module('myApp', [])  
   
@@ -618,6 +635,7 @@ var myApp = angular.module('myApp', [])
     $scope.name = '张三';  
 }]);  
 ```
+{% endraw %}
 注意：tempate或者templateUrl里面的内容必须用一个标签包裹起来，不能是''<div>1</div><div>2</div>"或者"123"这种形式
 
 tempateUrl里面可以是url或者是script type="text/ng-template"的id
@@ -703,6 +721,7 @@ link函数负责在模型和视图之间进行同台关联，对于每个指令�
         </div>  
 </div>  
 ```
+{% raw %}
 ```javascript
 var myApp = angular.module('myApp', [])  
     .directive('customTags',function(){  
@@ -786,6 +805,7 @@ var myApp = angular.module('myApp', [])
         ];  
     }]);  
 ```
+{% endraw %}
 <img src="http://img.blog.csdn.net/20170213181455239?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
 ### controller、controllerAs、require属性
 ```
@@ -797,6 +817,7 @@ var myApp = angular.module('myApp', [])
     </div>  
 </div>  
 ```
+{% raw %}
 ```javascript
 var globalScope = null;  
 angular.module('myApp', [])  
@@ -873,6 +894,7 @@ angular.module('myApp', [])
         globalScope = $scope;  
     }]);  
 ```
+{% endraw %}
 <img src="http://img.blog.csdn.net/20170213205044356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
 
 从上面的代码可知：
@@ -888,6 +910,7 @@ require的参数:
 - ?directiveName：表示指令是可选的，如果找不到，不需要抛出异常
 
 ### scope属性
+{% raw %}
 ```
 <div ng-controller="firstController">  
     {{  
@@ -946,6 +969,7 @@ angular.module('myApp', [])
         $scope.title = '张三';  
     }]);  
 ```
+{% endraw %}
 ## 模块里的constant、value、run方法
 ```javascript
 angular.module('myApp',[],['$provide','$controllerProvider',function($provide,$controllerProvider){  
@@ -983,6 +1007,7 @@ angular.module('myApp',[],['$provide','$controllerProvider',function($provide,$c
 }]);  
 ```
 ## 表达验证
+{% raw %}
 ```
 <form name="myForm" action="kittencup.php"  class="container form-horizontal">  
     <div class="form-group" ng-class="{'has-error':myForm.username.$dirty && myForm.username.$invalid}">  
