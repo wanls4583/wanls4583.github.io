@@ -11,7 +11,7 @@ tags:
 
 ---
 
-### Tapable
+## Tapable
 
 > tapable是webpack的事件流核心库，其中webpack4.0之前的版本都是使用Tapable@0版本，从webpack4.0开始使用Tapable@1版本，本篇文章针对的是Tapable@0，所使用的具体版本为Tapable@0.2.8。
 
@@ -167,6 +167,6 @@ window.Tapable = Tapable;
 </html>
 ```
 
-#### 运行结果:
+**运行结果:**
 
 ![](https://wanls4583.github.io/images/posts/构造工具/webpack之tapable@0详解.jpg)
