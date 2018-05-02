@@ -2,11 +2,13 @@
 author: wanls4583
 comments: true
 layout: post
+title: Webpack之tapable@0详解
+categories:
+- 构建工具
+
 tags:
 - 构造工具
 
-categories:
-- 构造工具
 ---
 
 ## Tapable
@@ -165,6 +167,6 @@ window.Tapable = Tapable;
 </html>
 ```
 
-###运行结果:
+### 运行结果:
 
 ![](https://wanls4583.github.io/images/posts/构造工具/webpack之tapable@0详解.jpg)
