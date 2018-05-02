@@ -168,7 +168,8 @@ blockquote {
 }
 blockquote p:last-child {
   margin-bottom: 0; }
-
+blockquote p:first-child {
+  margin-bottom: 15px; }
 ol, ul {
   margin: 0 0 1.3em 2.5em; }
 ol li, ul li {
