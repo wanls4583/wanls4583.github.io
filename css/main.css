@@ -67,12 +67,12 @@ body {
   color: #333;
   -webkit-font-smoothing: antialiased; }
 
-::selection {
+/*::selection {
   background: #27408B; 
-  color: #ffffff}
+  color: #ffffff}*/
 
-::-moz-selection {
-  background: #f39ca4; }
+/*::-moz-selection {
+  background: #f39ca4; }*/
 
 a {
   text-decoration: none;
@@ -294,7 +294,7 @@ td:last-child {
 .pager li>a:focus>span{
   color:#fff;
 }
-::-moz-selection { 
+/*::-moz-selection { 
   color:#fff;
   text-shadow:none;
   background:#a0b3d6;
@@ -303,7 +303,7 @@ td:last-child {
     color:#fff;
     text-shadow:none;
     background:#666666;
-  }
+  }*/
 img::selection {
   color:#fff;
   background:0 0

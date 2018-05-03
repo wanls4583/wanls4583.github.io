@@ -79,3 +79,6 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs-meta {
   color: #75715e;
 }
+pre.highlight{
+  background: #23241f !important;
+}
