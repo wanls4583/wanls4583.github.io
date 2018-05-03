@@ -8,10 +8,10 @@ slug: npm%e5%8c%85%e5%8f%91%e5%b8%83
 title: npm包发布
 wordpress_id: 518
 categories:
-- 廖雪峰python教程学习笔记
+- 其他
 
 tags:
-- 廖雪峰python教程学习笔记
+- 其他
 ---
 
 ## npm包发布流程
