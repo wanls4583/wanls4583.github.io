@@ -9,6 +9,9 @@ title: 条件与循环
 wordpress_id: 511
 categories:
 - 廖雪峰python教程学习笔记
+
+tags:
+- 廖雪峰python教程学习笔记
 ---
 
 ## if语句

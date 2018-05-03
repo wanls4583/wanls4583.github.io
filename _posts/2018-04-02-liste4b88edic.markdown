@@ -9,7 +9,9 @@ title: list与dic
 wordpress_id: 514
 categories:
 - 廖雪峰python教程学习笔记
-- 未分类
+
+tags:
+- 廖雪峰python教程学习笔记
 ---
 
 ## dic
