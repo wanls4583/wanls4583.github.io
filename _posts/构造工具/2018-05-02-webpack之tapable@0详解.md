@@ -10,10 +10,13 @@ tags:
 - 构造工具
 
 ---
+## 插件
+
+webpack4.0之前的插件是一个具有apply方法的对象，webpack在初始化的时候，会调用所有插件的apply方法。插件的apply方法里一般会通过webpack暴露的compileer和complication对象的plugin方法来进行事件的注册，compileer和complication对象都继承于Tapable。关于webpack4.0之前的插件的开发demo[请点这里](http://lisong.online/2017/11/webpack-e5-8a-a0-e8-bd-bd-e5-99-a8-e4-b8-8e-e6-8f-92-e4-bb-b6-e5-bc-80-e5-8f-91-e7-ae-80-e5-8d-95-e6-a1-88-e4-be-8b/)
 
 ## Tapable
 
-> tapable是webpack的事件流核心库，其中webpack4.0之前的版本都是使用Tapable@0版本，从webpack4.0开始使用Tapable@1版本，本篇文章针对的是Tapable@0，所使用的具体版本为Tapable@0.2.8。
+tapable是webpack的事件流核心库，类似于nodejs的EventEmitter，其中webpack4.0之前的版本都是使用Tapable@0版本，从webpack4.0开始使用Tapable@1版本，本篇文章针对的是Tapable@0，所使用的具体版本为Tapable@0.2.8。Tapable使用plugin(类似EventEmitter.on)方法来注册事件，使用applyPlugin\*(类似EventEmitter.emit)来触发事件。
 
 ### 获取Tapable
 
