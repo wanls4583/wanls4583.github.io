@@ -42,11 +42,11 @@ java -jar jenkins.war
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-3.jpg)
 
-点击刚新建的项目，配置源码管理，这里配置成github的地址，这样每次构建时都会pull一次远程的代码到本地，然后再进行构建。认证只需点击add，添加自己的github名称和密码就行了。
+点击刚新建的项目，配置源码管理，这里配置成github的地址，这样每次构建时都会pull一次远程的代码到本地，然后再进行构建。认证只需点击add，添加自己的github名称和密码就行了：
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-4.jpg)
 
-想要监听git的push操作，需要配置构建触发器，这个触发器可以让github有更新时触发Jenkins的构建任务
+想要监听git的push操作，需要配置构建触发器，这个触发器可以让github有更新时触发Jenkins的构建任务：
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-5.jpg)
 
@@ -71,6 +71,8 @@ java -jar jenkins.war
 最后需要在github上配置一个webhook钩子，将其地址配置成我们Jenkins服务器的地址，因为我的Jenkins服务器在本地，所以使用了花生壳动态域名，将其映射到内外的8080端口，这样github更新时才能发送post请求通知到Jenkins。
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-10.jpg)
+
+将动态域名地址配置到github：
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-11.jpg)
 
