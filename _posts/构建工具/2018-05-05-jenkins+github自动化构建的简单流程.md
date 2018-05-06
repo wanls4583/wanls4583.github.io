@@ -54,7 +54,7 @@ java -jar jenkins.war
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-5.jpg)
 
-接下来时配置具体的构建任务，因为只是演示，我这里只是用`git diff --name-only HEAD~ HEAD`命令在控制台输出变化的文件，Windows batch command构建任务可以输入任何在命令行中的命令，执行命令时的目录就是jenkins拉取下来的代码存放的目录。
+接下来时配置具体的构建任务，我这里是用`git diff --name-only HEAD~ HEAD`命令在控制台输出变化的文件，然后进行模块安装和项目编译（只能输入两行，多个命令可以用&&连接），Windows batch command构建任务可以输入任何在命令行中的命令，执行命令时的目录就是我们配置的工作目录(代码存放的地方)。
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-6.png)
 
@@ -92,7 +92,7 @@ secret就是之前添加的token。
 
 命令行的工作目录就是Jenkins拉取下来的源码存储的目录：
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-14.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-14.png)
 
 
 
