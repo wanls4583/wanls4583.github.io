@@ -32,6 +32,10 @@ java -jar jenkins.war
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-1.jpg)
 
+初始化完成后，我们可以自己配置一下Jenkins的工作目录，也就是拉取代码存储的目录，这个配置config.xml在Jenkins.war解压后的目录，在命令行里可以看到，找到config.xml，在里面重新配置workspaceDir:
+
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-0.png)
+
 ### 二、安装github插件并进行配置
 
 在插件管理中切换到可选插件tab页，输入github过滤，在下方的列表中选择`github`插件并进行安装：
@@ -44,7 +48,7 @@ java -jar jenkins.war
 
 点击刚新建的项目，配置源码管理，这里配置成github的地址，这样每次构建时都会pull一次远程的代码到本地，然后再进行构建。认证只需点击add，添加自己的github名称和密码就行了：
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-4.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-4.png)
 
 想要监听git的push操作，需要配置构建触发器，这个触发器可以让github有更新时触发Jenkins的构建任务：
 
@@ -52,7 +56,7 @@ java -jar jenkins.war
 
 接下来时配置具体的构建任务，因为只是演示，我这里只是用`git diff --name-only HEAD~ HEAD`命令在控制台输出变化的文件，Windows batch command构建任务可以输入任何在命令行中的命令，执行命令时的目录就是jenkins拉取下来的代码存放的目录。
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-6.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-6.png)
 
 为了让github有更新时，能够及时发送HTTP请求给Jenkins，需要在全局配置里配置github server，这个配置主要用来进行github与Jenkins的通信验证，验证是基于token的，所以我们需要先在github上生成一个token，打开[token配置链接](https://github.com/settings/tokens) 添加一个就行了，需要注意的是，token的配置中需要添加admin:org权限。
 
@@ -74,17 +78,17 @@ java -jar jenkins.war
 
 将动态域名地址配置到github：
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-11.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-11.png)
 
 secret就是之前添加的token。
 
-做完这些就可以开始测试了，我们使用git添加一个test.txt空文件push到github，这时就可以在Jenkins任务面板里看到有个任务已经构建完成了：
+做完这些就可以开始测试了，我们使用git添加一个test.txt空文件push到github，这时就可以在Jenkins任务面板里看到有个任务正在构建：
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-12.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-12.png)
 
-点击进去，选择控制台信息，可以查看到构建的详细信息：
+构建完成后，点击进去，选择控制台信息，可以查看到构建的详细信息：
 
-![](https://wanls4583.github.io/images/posts/构建工具/jenkins-13.jpg)
+![](https://wanls4583.github.io/images/posts/构建工具/jenkins-13.png)
 
 命令行的工作目录就是Jenkins拉取下来的源码存储的目录：
 
