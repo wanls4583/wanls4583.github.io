@@ -12,8 +12,6 @@ tags:
 
 ---
 
-[TOC]
-
 ## jenkins
 
 jenkins是一个基于java的自动化构建工具，使用它可以为我们解决很多重复的工作，其官网提供了很多插件，根据不同的需求选择相应的插件，可以很大的提高我们的开发或者部署的效率。
@@ -85,7 +83,7 @@ java -jar jenkins.war
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-8.jpg)
 
-随便打开全局配置，添加id为test的Credentials：
+随后打开全局配置，添加id为test的Credentials：
 
 ![](https://wanls4583.github.io/images/posts/构建工具/jenkins-9.jpg)
 
