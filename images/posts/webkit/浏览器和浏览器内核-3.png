@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+
+
+  <head>
+    <title>
+      chromium-webkit-stack.png 在 WebKit2 – 附件
+     – WebKit
+    </title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+          <link rel="search" href="/search" />
+          <link rel="help" href="/wiki/TracGuide" />
+          <link rel="alternate" href="/attachment/wiki/WebKit2/chromium-webkit-stack.png?format=txt" type="image/png; charset=utf-8" title="纯文本" />
+          <link rel="alternate" href="/raw-attachment/wiki/WebKit2/chromium-webkit-stack.png" type="image/png; charset=utf-8" title="原始格式" />
+          <link rel="up" href="/wiki/WebKit2" title="WebKit2" />
+          <link rel="start" href="/wiki" />
+          <link rel="stylesheet" href="/chrome/common/css/trac.css" type="text/css" />
+          <link rel="stylesheet" href="/chrome/common/css/code.css" type="text/css" />
+          <link rel="icon" href="/chrome/common/trac.ico" type="image/x-icon" />
+    <style id="trac-noscript" type="text/css">.trac-noscript { display: none !important }</style>
+      <link type="application/opensearchdescription+xml" rel="search" href="/search/opensearch" title="搜索 WebKit" />
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/jquery.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/babel.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/messages/zh_CN.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/trac.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/search.js"></script>
+    <script type="text/javascript">
+      jQuery("#trac-noscript").remove();
+      jQuery(document).ready(function($) {
+        $(".trac-autofocus").focus();
+        $(".trac-target-new").attr("target", "_blank");
+        if ($.ui) { /* is jquery-ui added? */
+          $(".trac-datepicker:not([readonly])").prop("autocomplete", "off").datepicker();
+          $(".trac-datetimepicker:not([readonly])").prop("autocomplete", "off").datetimepicker();
+          $("#main").addClass("trac-nodatetimehint");
+        }
+        $(".trac-disable").disableSubmit(".trac-disable-determinant");
+        setTimeout(function() { $(".trac-scroll").scrollToTop() }, 1);
+        $(".trac-disable-on-submit").disableOnSubmit();
+      });
+    </script>
+      <script type="text/javascript" src="/chrome/common/js/folding.js"></script>
+      <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          $('#preview table.code').enableCollapsibleColumns($('#preview table.code thead th.content'));
+        });
+      </script>
+  <style type="text/css">
+	a.mail-link .icon {
+		background: none;
+		padding: inherit;
+        }
+	#overview .message ul li, dd.changeset ul li, #info .message ul li {
+		white-space: pre;
+	}
+	#metanav {
+		text-align: right;
+	}
+  </style>
+ </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://www.webkit.org/"><img src="/chrome/site/favicon.png" alt="WebKit Trac" height="64" /></a>
+      </div>
+      <form id="search" action="/search" method="get">
+        <div>
+          <label for="proj-search">搜索:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="搜索" />
+        </div>
+      </form>
+      <div id="metanav">
+    <a href="/prefs" title="个人设置">个人设置</a>
+    <a href="/auth/wprofile" title="Profile">Profile</a>
+    <a href="/auth/wlogout" title="注销">注销</a>
+ </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="/wiki">Wiki</a></li><li><a href="/timeline">时间线</a></li><li><a href="/browser">源码浏览</a></li><li class="last"><a href="/search">搜索</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>上下文导航</h2>
+        <ul>
+          <li class="last first"><a href="/wiki/WebKit2">返回 WebKit2</a></li>
+        </ul>
+        <hr />
+      </div>
+    <div id="content" class="attachment">
+        <h1><a href="/wiki/WebKit2">WebKit2</a>: chromium-webkit-stack.png</h1>
+        <table id="info" summary="描述">
+          <tr>
+            <th scope="col">File chromium-webkit-stack.png, <span title="63526 字节">62.0 KB</span> (added by <span class="trac-author">mjs@apple.com</span>, <a class="timeline" href="/timeline?from=2010-04-09T04%3A26%3A52-07%3A00&amp;precision=second" title="See timeline at 2010-4-9 上午04:26:52">8年 ago</a>)</th>
+          </tr>
+          <tr>
+            <td class="message searchable">
+              
+            </td>
+          </tr>
+        </table>
+        <div id="preview" class="searchable">
+          
+  <div class="image-file"><img src="/raw-attachment/wiki/WebKit2/chromium-webkit-stack.png" alt="chromium-webkit-stack.png" /></div>
+
+        </div>
+    </div>
+    <div id="altlinks">
+      <h3>用其他格式下载:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/attachment/wiki/WebKit2/chromium-webkit-stack.png?format=txt">纯文本</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/raw-attachment/wiki/WebKit2/chromium-webkit-stack.png">原始格式</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">由 <a href="http://www.edgewall.org/">Edgewall Software</a> 的 <a href="/about"><strong>Trac 1.2</strong></a><br />
+        提供动力</p>
+      <p class="right">Hosted by <a href="http://www.apple.com/">Apple</a></p>
+    </div>
+  </body>
+</html>
