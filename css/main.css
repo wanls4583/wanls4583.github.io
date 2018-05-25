@@ -122,6 +122,10 @@ h2 {
   border-top: 1px solid rgb(234,234,234);
 }
 
+.info-back h2{
+  border-style: none;
+}
+
 h2.post-title{
   font-size: 1.5em; 
   font-weight: normal;
