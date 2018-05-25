@@ -117,17 +117,16 @@ h1 {
 h2 {
   font-size: 1.5em; 
   font-weight: bold;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #ccc;
-  /*background:#B9D3EE;*/
-  /*text-align: center;*/
+  padding-top: 32px;
+  margin-bottom: 16px;
+  border-top: 1px solid rgb(234,234,234);
 }
 
 h2.post-title{
   font-size: 1.5em; 
   font-weight: normal;
   border-style: none;
-  padding-bottom: 5px;
+  padding: 0 0 5px;
 }
 
 h3 {
