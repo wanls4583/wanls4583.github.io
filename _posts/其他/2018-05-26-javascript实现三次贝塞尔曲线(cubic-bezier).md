@@ -31,7 +31,7 @@ Bezier curve(贝塞尔曲线)是应用于二维图形应用程序的数学曲线
 
 ### 三阶贝塞尔曲线
 
-**公式：**P<sub>0</sub><sup>3</sup> = (1-t)<sup>3</sup>\*P<sub>0</sub> + 3\*t\*(1-t)<sup>2</sup>\*P<sub>1</sub> + 3\*(1-t)\*t<sup>2</sup>\*P<sub>2</sub> + t<sup>3</sup>\*P_3 ,t∈[0,1]
+**公式：**P<sub>0</sub><sup>3</sup> = (1-t)<sup>3</sup>\*P<sub>0</sub> + 3\*t\*(1-t)<sup>2</sup>\*P<sub>1</sub> + 3\*(1-t)\*t<sup>2</sup>\*P<sub>2</sub> + t<sup>3</sup>\*P<sub>3</sub> ,t∈[0,1]
 
 <br>![](http://wanls4583.github.io/images/posts/其他/贝塞尔-3.gif)<br>
 
@@ -61,7 +61,7 @@ cubic-bezier 通过控制曲线上的四个点（起始点、终止点以及两�
 
 ![](http://wanls4583.github.io/images/posts/其他/贝塞尔-6.png)
 
-## Javascript 实现 cubic-bezier
+## Javascript 画三次贝塞尔曲线
 
 ```html
 <!DOCTYPE html>
@@ -140,6 +140,130 @@ cubic-bezier 通过控制曲线上的四个点（起始点、终止点以及两�
 **结果**
 
 ![](http://wanls4583.github.io/images/posts/其他/贝塞尔-7.png)
+
+## Javascript 实现 cubic-bezier 缓动效果
+
+在 css3 中，如果动画定义了 cubic-bezier，则动画所做的事情就是把 x 轴当做时间比例，根据曲线得到 y 轴对应的值（这个 y 值代表了动画的完成度），并更新到动画对象中去。
+
+即转化为以下问题：如何根据上述公式在已知 x 的情况下如何得到 y。
+
+由上面的公式可知，已知 t 的情况下，可以计算出 x 和 y，因此最终问题转换程如何 在已知 x 的情况下 获得 t，也即解一元三次方程。解三次方程常用方法为牛顿迭代法，如果牛顿迭代发解不出可以用二分法来解。
+
+不过还有更简单的方法，可以将 t 分成1000份，计算每一份所对应的 x,y 并保存到数组，之后只要根据 x 找到数组中最接的 x，即可直接获得 y。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cubic-bezier</title>
+	<style type="text/css">
+		.div{
+			width: 700px;
+			height: 100px;
+			margin-bottom: 10px;
+		}
+		.div .bar{
+			width: 100px;
+			height: 100px;
+			background: red;
+			transform: translateZ(0);
+			transition: transform 3s;
+			transition-timing-function: cubic-bezier(.42,0,.58,1);
+			opacity: 0;
+		}
+		.bar.ani{
+			opacity: 1;
+			transform: translate3d(600px,0,0);
+		}
+	</style>
+</head>
+<body>
+	<div class="div"><div class="bar"></div></div>
+	<canvas width="700" height="100" id="canvas"></canvas>
+	<script type="text/javascript">
+		//贝塞尔公式
+		function bsr(t,p1,p2){
+			var p0 = 0, p3 = 1;//起点为0，终点为1
+			//3阶贝塞尔曲线公式
+			var result = p0*Math.pow((1-t),3) + 3*p1*t*Math.pow((1-t),2) + 3*p2*(1-t)*Math.pow(t,2) + p3*Math.pow(t,3);
+			return result;
+		}
+
+		var scaleArr = [];
+		//计算并保存贝塞尔曲线坐标
+		function caculate(){
+			for(var i=0; i<=1; i+=0.001){
+				var xScale = bsr(i,.42,.58);
+				var yScale = bsr(i,0,1);
+				var obj = {
+					xScale: xScale,
+					yScale: yScale
+				};
+				scaleArr.push(obj);
+			}
+		}
+
+		//根据x坐标获取y坐标
+		function solve(xScale){
+			var diff = 1;
+			var result = 0;
+			for(var i=0; i<1000; i++){
+				var _x = scaleArr[i].xScale;
+				var _diff = Math.abs(_x-xScale);
+				if(_diff < diff){
+					diff = _diff;
+					result = scaleArr[i].yScale;
+				}
+			}
+			return result;
+		}
+
+		function draw(x1,y1,x2,y2,duration){
+			var startTime=Date.now();
+
+			var ctx = document.querySelector('#canvas').getContext('2d');
+
+			var diff = duration/1000;
+
+			var start = Date.now();
+
+			_draw(); //canvas动画
+
+			document.querySelector('.bar').className = 'bar ani'; //css3动画
+
+			function _draw(){
+				requestAnimationFrame(function(){
+					var xScale = (Date.now()-start)/duration; //x轴时间变量，xScale∈[0,1]
+					if(xScale > 1){
+						return;
+					}
+
+					var yScale = solve(xScale); //动画完成度
+					var x = (yScale*(x2-x1)+x1)>>0; //x轴动画完
+					var y = (yScale*(y2-y1)+y1)>>0; //y轴动画
+
+					ctx.clearRect(0,0,800,300);
+					ctx.fillRect(x,y,100,100); //画矩形
+
+					_draw();
+				})
+			}
+		}
+
+		caculate();
+		setTimeout(function(){
+			draw(0,0,600,0,3000); //画矩形
+		},60)
+	</script>
+</body>
+</html>
+```
+
+**结果**
+
+![](http://wanls4583.github.io/images/posts/其他/贝塞尔-8.gif)
+
+从结果可以看出，只要贝塞尔参数相同，用 javascript 可以实现和 css3 相同的效果。
 
 参考：
 
