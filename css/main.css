@@ -12,6 +12,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font: inherit;
   vertical-align: baseline; }
 
+sub{
+  vertical-align: sub;
+  font-size: 0.5em;
+}
+
+sup{
+  display: inline-block;
+  vertical-align: super;
+  font-size: 0.5em;
+  margin-left: -0.3em;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }

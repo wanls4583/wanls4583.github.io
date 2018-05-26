@@ -19,29 +19,25 @@ Bezier curve(贝塞尔曲线)是应用于二维图形应用程序的数学曲线
 
 ### 一阶贝塞尔曲线
 
-**公式：P<sup>1</sup><sub>0</sub> = (1-t)\*P<sub>1</sub> + t\*P<sub>1</sub> ,t∈[0,1]**
+**公式：**P<sub>0</sub><sup>1</sup> = (1-t)\*P<sub>1</sub> + t\*P<sub>1</sub> ,t∈[0,1]
 
-
-![](http://wanls4583.github.io/images/posts/其他/贝塞尔-1.gif)
+<br>![](http://wanls4583.github.io/images/posts/其他/贝塞尔-1.gif)
 
 ### 二阶贝塞尔曲线
 
-**公式：P<sup>2</sup><sub>0</sub> = (1-t)<sup>2</sup>\*P<sub>0</sub> + 2\*t\*(1-t)\*P<sub>1</sub> + t<sup>2</sup>\*P<sub>2</sub> ,t∈[0,1]**
+**公式：**P<sub>0</sub><sup>2</sup> = (1-t)<sup>2</sup>\*P<sub>0</sub> + 2\*t\*(1-t)\*P<sub>1</sub> + t<sup>2</sup>\*P<sub>2</sub> ,t∈[0,1]
 
-
-![](http://wanls4583.github.io/images/posts/其他/贝塞尔-2.gif)
+<br>![](http://wanls4583.github.io/images/posts/其他/贝塞尔-2.gif)
 
 ### 三阶贝塞尔曲线
 
-**公式：P<sup>3</sup><sub>0</sub> = (1-t)<sup>3</sup>\*P<sub>0</sub> + 3\*t\*(1-t)<sup>2</sup>\*P<sub>1</sub> + 3\*(1-t)\*t<sup>2</sup>\*P<sub>2</sub> + t<sup>3</sup>\*P_3 ,t∈[0,1]**
+**公式：**P<sub>0</sub><sup>3</sup> = (1-t)<sup>3</sup>\*P<sub>0</sub> + 3\*t\*(1-t)<sup>2</sup>\*P<sub>1</sub> + 3\*(1-t)\*t<sup>2</sup>\*P<sub>2</sub> + t<sup>3</sup>\*P_3 ,t∈[0,1]
 
-
-![](http://wanls4583.github.io/images/posts/其他/贝塞尔-3.gif)
+<br>![](http://wanls4583.github.io/images/posts/其他/贝塞尔-3.gif)
 
 ### 通用公式
 
-
-![](http://wanls4583.github.io/images/posts/其他/贝塞尔-4.gif)
+<br>![](http://wanls4583.github.io/images/posts/其他/贝塞尔-4.gif)
 
 ## css3动画速度控制 cubic-bezier (x1,y1,x2,y2)
 
