@@ -1,0 +1,60 @@
+---
+author: wanls4583
+comments: true
+date: 2018-02-25 07:03:51+00:00
+layout: post
+title: js深拷贝
+wordpress_id: 481
+categories:
+- code
+
+tags:
+- code
+
+---
+
+```javascript
+var obj = {a:1};
+var obj1 = {
+	b:2,
+	c:function(){
+		return 3;
+	},
+	d:obj,
+	e:[1,2,3],
+	f:null,
+	g:undefined
+}
+function copy_1(obj){
+	var newObj = null;
+	if(typeof obj === 'object' || typeof obj === 'array'){
+		if(typeof obj === 'object'){
+			newObj = {};
+		}else{
+			newObj = [];
+		}
+	}
+	function _copy(target,obj){
+		for(var key in obj){
+			if(typeof obj[key] === 'object' && obj[key]){
+				if(obj[key] instanceof Array){
+					target[key] = [];
+				}else{
+					target[key] = {};
+				}
+				_copy(target[key],obj[key]);
+			}else{
+				target[key] = obj[key];
+			}
+		}
+	}
+	_copy(newObj,obj);
+	return newObj;
+}
+//使用JSON实现拷贝，将会忽略function和undefined
+function copy_2(obj){
+	return JSON.parse(JSON.stringify(obj));
+}
+console.log(copy_1(obj1));
+console.log(copy_2(obj1));
+```

@@ -1,0 +1,115 @@
+---
+author: wanls4583
+comments: true
+date: 2017-07-22 07:27:47+00:00
+layout: post
+title: git常用命令
+wordpress_id: 360
+categories:
+- 其他
+
+tags:
+- 其他
+
+---
+
+>git是一个分布式的版本管理系统，没有服务端和客户端的概率，不过在团队协作中，通常会选一台客户端作为服务器，方便成员之间的push与pull
+
+## git的结构。
+git分为工作区，暂存区，版本库：
+
+![](http://lisong-blog.gz.bcebos.com/git-0.jpg?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T08%3A10%3A35Z%2F-1%2Fhost%2F69de46a299c5baaf597a138a9deb596bff10cfdd0e87390aede40696e7b7e3ac)
+
+工作区有一个隐藏目录.Git，这个不算工作区，而是git的版本库。其中有一个index的文件，其记录了暂存区的索引。
+
+注意：所有被跟踪的文件在暂存区都有相应的索引，当index中没有要提交的索引时，其和当前分支的历史记录所有得索引是一致的。分支只能操作被暂存区跟踪(track)了的文件。
+
+## 撤销操作
+### git checkout -- [dir|file]
+git checkout 后面跟-- 可以将暂存区内的内容恢复到工作区，从而撤销工作区的修改
+
+### git chekout commitid -- [dir|file]
+也可以将某个提交恢复到工作区和暂存区，从而撤销工作区的修改，并且add到暂存区
+
+### git reset commitid -- [dir|file]
+将某个提交恢复到暂存区，工作区不变：
+
+![](http://lisong-blog.gz.bcebos.com/git-1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T08%3A12%3A15Z%2F-1%2Fhost%2Fa322a01f72397ce5d1d56646cabfcf44d55a1e513d2f5475d5e27eb6d5ba035c)
+
+### git revert commitid
+git revert 可以撤销某个提交的操作，并且生成一个新的commit:
+
+![](http://lisong-blog.gz.bcebos.com/git-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T08%3A34%3A47Z%2F-1%2Fhost%2Fa325623033bbaf6c7dee280686723c13d49cad25d08eb8e85bda0510f641e4f7)
+
+红色部分为当前分支最新的内容，蓝色部分为需要撤销的那个commit之前的内容
+
+![](http://lisong-blog.gz.bcebos.com/git-3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T08%3A32%3A29Z%2F-1%2Fhost%2Fb04d3b3f429e930d55ca72f8d7158f63c983329f6402c692e9d4128d32f8473a)
+
+注意：需要revert的那个commitid之后如果对同一个文件有过修改才会产生冲突
+
+## 回退操作
+### git reset --mixed commitid(--mixed是git reset commit的默认参数)
+将某个提交恢复到暂存区，HEAD指向commitid
+
+### git reset --hard commitid
+将某个提交恢复到暂存区和工作区，HEAD指向commitid
+
+### git reset --soft commitid
+HEAD指向commitid，工作区和暂存区不变
+
+## 分支切换操作
+### git branch branchname 
+在当前最新提交下新建分支，不会切换到新分支
+
+### git branch -d|-D branchname 
+-d删除已经merge过的分支，-D强制可以删除未merge的分支
+
+### git checkout commitid
+commitid指向的是一个提交，该命令可以将工作区和暂存区切换到某一个具体提交或者某一个分支，当切换到某一个具体提交时,将进入datached HEAD状态，此时可以在该提交下新建新的分支：
+
+![](http://lisong-blog.gz.bcebos.com/git-4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T08%3A52%3A37Z%2F-1%2Fhost%2Fcd4d86e2734971c076553f919c36cb40781a93dbf5c65a83d9a24487f08c8868)
+
+### git checkout -b branchname
+在当前最新提交下新建分支，并切换到新分支
+
+### git checkout -b branchname commitid
+该命令相当于git checkout commitid和git checkout -b branchname的组合
+
+## 分支合并操作
+### git merge commitid
+![](http://lisong-blog.gz.bcebos.com/git-5.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A18%3A57Z%2F-1%2Fhost%2F27e50b7f34eaa9418f94cb8c0c72d1d7a57a74023c212d986b8cd8f545ae364e)
+
+![](http://lisong-blog.gz.bcebos.com/git-6.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A19%3A36Z%2F-1%2Fhost%2F38694ca9c798983f71394f4707824a13e5c2ae358017adbf051af18a808c3b4c)
+
+git merge 会产生一个新的提交：
+
+![](http://lisong-blog.gz.bcebos.com/git-7.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A34%3A47Z%2F-1%2Fhost%2F00056c8f3cdc912ce1f9bfe6691b670b9baee348314304bd65437ff40f5f6926)
+
+### git rebase commitid
+![](http://lisong-blog.gz.bcebos.com/git-8.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A43%3A19Z%2F-1%2Fhost%2F370a5a781d44df0ba2bb5a6d897f86725b90fc6dce55d60cbdd3cc4a1b12147f)
+
+执行git rebase master（以master HEAD为基础，在其上添加dev的修改）
+
+![](http://lisong-blog.gz.bcebos.com/git-9.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A47%3A38Z%2F-1%2Fhost%2Fb9cc0be7473685fa67d480696b974f6a5723d939a9c38ecbf4c944d89fbeec68)
+
+解决完第一个冲突后add到暂存区
+
+![](http://lisong-blog.gz.bcebos.com/git-10.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A49%3A58Z%2F-1%2Fhost%2F1712837ec9aa91f3f787acbaa6bc09aaa30164e66ae7e33b3b2404e46736274e)
+
+git rebase --continue继续解决下一个冲突（总共有两个冲突）
+
+![](http://lisong-blog.gz.bcebos.com/git-11.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A52%3A40Z%2F-1%2Fhost%2F6c55e6d373d7229657a15acc3302e0f5b136578fa112c91f66c8528ec56a0b28)
+
+![](http://lisong-blog.gz.bcebos.com/git-12.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T09%3A56%3A09Z%2F-1%2Fhost%2F7cba09c6e40d3d82110d6bd9f869685321890a0aac511b54e7e4aadd21b1911e)
+
+![](http://lisong-blog.gz.bcebos.com/git-13.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T10%3A01%3A57Z%2F-1%2Fhost%2F6d09591865df43dc511b61f2bcc74dc44aaf4fdfbe1d8d499548edcc14ace38d)
+
+git rebase 不会产生新的历史记录：
+
+![](http://lisong-blog.gz.bcebos.com/git-14.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-07-22T10%3A13%3A33Z%2F-1%2Fhost%2F36df9a6475e81771ad300ab86870d9fad60ca2bf1a64accdf79bbbc07c638de4)
+
+其中，cf2484和e17071分别是654454和4b3c42将修改添加到master HEAD后的结果
+
+## 修改commit注释
+### git commit --amend
+该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。

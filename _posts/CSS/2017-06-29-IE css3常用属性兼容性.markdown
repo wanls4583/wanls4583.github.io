@@ -1,0 +1,34 @@
+---
+author: wanls4583
+comments: true
+date: 2017-06-29 08:22:41+00:00
+layout: post
+title: IE css3常用属性兼容性
+wordpress_id: 214
+categories:
+- CSS
+
+tags:
+- CSS
+
+---
+
+IE css3常用属性兼容性:
+
+- min-width,min-height,max-width,max-height：ie7+
+- vw, vh, vmin：ie9+(ie不支持vmax)
+- box-sizing：ie8+
+- @media：ie9+
+- rem：ie9+
+
+vw：相对于视口的宽度。视口被均分为100单位的vw
+```css
+h1 {
+	font-size: 8vw;
+}
+```
+vh：相对于视口的高度。视口被均分为100单位的vh
+
+vmax：相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax
+
+vmin：相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin

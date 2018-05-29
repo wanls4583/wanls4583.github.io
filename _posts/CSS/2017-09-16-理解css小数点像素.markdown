@@ -1,0 +1,113 @@
+---
+author: wanls4583
+comments: true
+date: 2017-09-16 07:55:14+00:00
+layout: post
+title: 理解css小数点像素
+wordpress_id: 413
+categories:
+- CSS
+
+tags:
+- CSS
+
+---
+
+>css中不存在真正的小数点像素，不同的浏览器对小数点有不同的解析，现代浏览器大多数会使用四舍五入以及相邻元素互补的方式去处理。解析与处理只是针对渲染级别，其真正的值在其DOM树中并没有改变，所以别去相信浏览器调试器所展示的小数点值。
+
+## 四舍五入：
+大多数浏览器渲染页面的时候，如果遇到小数点像素，将会四舍五入成整数，然后再去真正的渲染，而旧版ie只是简单的去除后面的小数。
+
+示例：
+```
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style type="text/css">
+		.div1{
+			width: 300px;
+			height: 200px;
+			background: red;
+			overflow: auto;
+		}
+		.div2{
+			float: left;
+			width: 299.5px;
+			height: 100px;
+			background: #999;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<div class="div2"></div>
+	</div>
+</body>
+</html>
+```
+结果:
+<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A18%3A10Z%2F-1%2Fhost%2F50ed558d5ad7421428d58bb27a216275fb609ea99a8fda2bf96bb8b6e004df38" alt="" />
+可以看出，299.5px和外部容器一样宽，说明299.5被渲染成了300px。
+
+## 相邻元素互补：
+示例：
+```
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style type="text/css">
+		.div1{
+			width: 300px;
+			height: 200px;
+			background: red;
+			overflow: auto;
+		}
+		.div2{
+			float: left;
+			width: 99.3px;
+			height: 100px;
+			background: #999;
+		}
+		.div3{
+			float: left;
+			width: 99.4px;
+			height: 100px;
+			background: #666;
+		}
+		.div4{
+			float: left;
+			width: 100.8px;
+			height: 100px;
+			background: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+	</div>
+</body>
+</html>
+```
+结果：
+<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A26%3A00Z%2F-1%2Fhost%2F261d4d587463e3ad089f0ccec49fffef2720311cabccf56ef4344fc658106d78" alt="" />
+该图是火狐浏览器里运行的结果，从图中可以看出，三个div的渲染总宽度为300，但是这和上面的四舍五入法是有出入，因为99.3->99,99.4->99,100.8->100，最终结果应该是99+99+101=299。这就涉及到浏览器处理小数点像素的一些规则，具体对应到该示例的步骤如下：
+
+1.div2宽度99.3px渲染成99px，多出0.3px留给右边相邻的元素;
+
+2.div3宽度99.4px+0.3px=99.7px，向右边相邻元素（如果有）借0.3px，99.7px+0.3px=100px，最终div3的渲染像素为100px;
+
+3.div4宽度100.8px-0.3px=100.5px，向右边相邻元素借0.5px，因为右边已经没有相邻元素，直接四舍五入100.5px->101px;
+
+所以，最终结果是99px+100px+101px=300px，正好符合上面的结果。
+
+然而在某些浏览器中最后一个元素的四舍五入会有一点不同，其必须满6才进10，而不是满5进10，例如以下截图是在360浏览器下的结果：
+<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A48%3A37Z%2F-1%2Fhost%2F33bd740695534d9c93b081dd61d44e86843f5798499aa824341dce3f2a43afc4" alt="" />
+因为最后一个元素div4处理后的像素为100.5px，0.5不满6，所以舍如，最终为100px，最终结果为99px+100px+100px=299px。
+
+如果将div4的宽度设置成100.9px，情况就变成预期结果了：
+<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A52%3A20Z%2F-1%2Fhost%2Ffc9616e321bb90bc348f2ee61ef8dfa8dab55a5bc3def50d072c04c0e25e7f0e" alt="" />
