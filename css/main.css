@@ -1471,7 +1471,7 @@ nav a {
     min-width: 225px;
     padding: 40px 10px 10px;
     background: #f9f9f9;
-    line-height: 2;
+    line-height: 1.5;
     border: 1px solid rgba(0,0,0,0.1);
     font-size: 1em;
 }
@@ -1485,10 +1485,6 @@ nav a {
 .toc_wrap a:hover {
     text-decoration: underline;
     color: #333;
-}
-
-.toc_wrap .show_toc_btn {
-    display: none;
 }
 
 .toc_wrap.hide .toc_root {
@@ -1518,7 +1514,8 @@ nav a {
     right: 10px;
 }
 
-.show_toc_btn {
+.toc_wrap .show_toc_btn {
+  display: none;
     padding: 10px;
     margin-bottom: 20px;
     background: #f9f9f9;
