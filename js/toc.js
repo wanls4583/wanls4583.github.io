@@ -86,6 +86,10 @@ class Toc{
 		this.getAllH();
 		this.createItemChain(this.childH,0);
 
+		if(!this.childH.length){
+			return;
+		}
+		
 		let tocWrap = document.createElement('div');
 		tocWrap.setAttribute("class", "toc_wrap");
 		tocWrap.setAttribute("id", "toc_wrap");
@@ -93,8 +97,6 @@ class Toc{
 		tocWrap.innerHTML = '<div class="toc_root" id="toc"><a class="hide_toc_btn">[hide]</a></div><a class="show_toc_btn">[显示目录]</a>';
 
 		this.insertDom.parentNode.insertBefore(tocWrap,this.insertDom);
-
-		_createToc(document.getElementById('toc'),this.childH,1,'');
 
 		tocWrap.getElementsByClassName('hide_toc_btn')[0].addEventListener('click',function(){
 			tocWrap.className = tocWrap.className+' hide';
@@ -104,6 +106,7 @@ class Toc{
 			tocWrap.className = 'toc_wrap';
 		});
 
+		_createToc(document.getElementById('toc'),this.childH,1,'');
 		/**
 		 * 递推创建dom
 		 * @param  {DOM} dom     [父元素]
