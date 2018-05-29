@@ -2,7 +2,18 @@
 <script type="text/javascript" src="/js/main.js"></script>
 
 <script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	if(document.getElementById('post')){
+		new Toc({
+			wrapperId: 'post',
+			insertId: 'post',
+			showSerial: true
+		}).createToc();
+	}
+</script>
+
 <!-- <link rel="stylesheet" type="text/css" href="/css/mivhak.css">
 <script type="text/javascript" src="https://cdn.bootcss.com/ace/1.2.6/ace.js?ver=1.2.6"></script>
 <script type="text/javascript">
