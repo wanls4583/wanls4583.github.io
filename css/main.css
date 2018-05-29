@@ -1510,7 +1510,7 @@ nav a {
 
 .toc_wrap .hide_toc_btn {
     position: absolute;
-    top: 0;
+    top: 4px;
     right: 10px;
 }
 
