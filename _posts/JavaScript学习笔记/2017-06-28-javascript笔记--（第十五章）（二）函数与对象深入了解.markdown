@@ -96,10 +96,10 @@ JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSO
 ```
 Function、Object、Prototype、__proto__内存关系图
 
-<img src="http://www.blogjava.net/images/blogjava_net/heavensay/web-front/8199006.png" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（二）函数与对象深入了解-1.png" alt="" />
 
 堆区图说明：
-<img src="http://www.blogjava.net/images/blogjava_net/heavensay/web-front/35166462.png" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（二）函数与对象深入了解-2.png" alt="" />
 
 Function.prototype函数对象图内部表示prototype属性的红色虚框，只是为了说明这个属性不存在。
 

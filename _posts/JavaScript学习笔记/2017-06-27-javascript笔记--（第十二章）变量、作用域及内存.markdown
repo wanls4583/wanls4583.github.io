@@ -15,7 +15,7 @@ tags:
 
 ## 基本类型和引用类型的存储
 
-<img src="http://img.blog.csdn.net/20170203165640241?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-27-javascript笔记--（第十二章）变量、作用域及内存-1.jpg" alt="" />
 
 ## 复制变量值
 
@@ -28,7 +28,7 @@ tags:
 	var box2 = box;			//在栈内存再生成一个box2 'Lee'
 </script>
 ```
-<img src="http://img.blog.csdn.net/20170203170320886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-27-javascript笔记--（第十二章）变量、作用域及内存-2.jpg" alt="" />
 
 ### 引用类型的变量复制：
 ```
@@ -38,7 +38,7 @@ tags:
 	var box2 = box;					//把引用地址赋值给box2
 </script>
 ```
-<img src="http://img.blog.csdn.net/20170203170424371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-27-javascript笔记--（第十二章）变量、作用域及内存-3.jpg" alt="" />
 
 ## 检测类型
 虽然typeof运算符在检查基本数据类型的时候非常好用，但检测引用类型的时候，它就不是那么好用了。通常，我们并不想知道它是不是对象，而是想知道它到底是什么类型的对象。因为数组也是object，null也是Object等等。这时我们可以采用instanceof运算符来查看。

@@ -76,7 +76,7 @@ stringify()方法接受三个参数，第一个是必须的，其他两个可选
 </script>
 ```
 运行结果
-<img src="http://img.blog.csdn.net/20170209161240632?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第二十三章）JSON-1.jpg" alt="" />
 
 函数不能删除键值对，只能修改，并且不能返回null或者空字符串
 
@@ -102,7 +102,7 @@ stringify()方法接受三个参数，第一个是必须的，其他两个可选
 </script>
 ```
 运行结果
-<img src="http://img.blog.csdn.net/20170209162209660?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第二十三章）JSON-2.jpg" alt="" />
 
 如果对象里已经有了toJSON函数，则第二个参数是无效的
 

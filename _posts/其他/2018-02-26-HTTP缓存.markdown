@@ -14,7 +14,7 @@ tags:
 ---
 
 ## http请求过程
-![](http://lisong-blog.gz.bcebos.com/http%E7%BC%93%E5%AD%98.jpg?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2018-02-26T05%3A57%3A43Z%2F-1%2Fhost%2F99d8c98e05788b3adc46385f6570b4301086e23bae2e08a5001bc2bf86f12457)
+![](https://wanls4583.github.io/images/posts/其他/2018-02-26-HTTP缓存-1.jpg)
 
 http缓存分为强制缓存和对比缓存。强制缓存相关的字段有Expires，Cache-Control；对比缓存相关的字段有Last-Modified/If-Modified-Since，Etag/If-None-Match。对比缓存只有在强制缓存失效后才会去与服务器进行交互，如果验证通过（资源未被修改），则返回304，否则返回最新的资源（200）。
 
@@ -23,7 +23,7 @@ http缓存分为强制缓存和对比缓存。强制缓存相关的字段有Expi
 
 ## Cache-Control
 用于定义所有的缓存机制都必须遵循的缓存指示，Cache-Control优先级高于Expires。
-![](http://lisong-blog.gz.bcebos.com/http%E7%BC%93%E5%AD%98-1.jpg?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2018-02-26T06%3A53%3A03Z%2F-1%2Fhost%2F04e574f288832b0ebb33e624504482fa9170a2e4b705f34f86ed24dfe364d4dd)
+![](https://wanls4583.github.io/images/posts/其他/2018-02-26-HTTP缓存-2.jpg)
 no-cache每次请求都会触发对比缓存的交互，no-store每次请求服务器都会返回最新的资源。
 
 ## Last-Modified/If-Modified-Since
@@ -33,5 +33,5 @@ Last-Modified是由服务器端返回的一个http头，代表了该资源最后
 Etag头代表了该资源的唯一标识，每次资源被修改，Etag也会更改。Etag的作用和Last-Modified的作用一样，也是用来判断资源是否被修改，当强制缓存失效后，再次请求资源时，浏览器会带上If-None-Match，其值为上次服务器返回的Etag。不过Last-Modified只能精确到秒，如果在同一秒里对资源进行了两次修改，服务器通过If-Modified-Since是不能判断出资源已经被再次修改了，所以才有了Etag。另外，Etag的优先级高于Last-Modified。
 
 ## 用户操作对缓存的影响
-![](http://lisong-blog.gz.bcebos.com/http%E7%BC%93%E5%AD%98-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2018-02-26T06%3A42%3A59Z%2F-1%2Fhost%2F67ca5a4f458e7df04cee4765916bffc3a7192b877138ab927789f383e9d90d64)
+![](https://wanls4583.github.io/images/posts/其他/2018-02-26-HTTP缓存-3.png)
 这个图是网上总结的，不过通过实际验证发现F5/刷新后，Cache-Control/Expires依然有效。Ctrl+F5时，浏览器请求头会带上Cache-Control字段，值为no-cache。

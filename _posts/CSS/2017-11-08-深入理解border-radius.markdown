@@ -39,7 +39,7 @@ tags:
 </body>
 </html>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/border-radius-1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-08T09%3A51%3A30Z%2F-1%2Fhost%2F7ae9bc3c98c136091c1359ad9253557c2c421aedfe6a861d4b25fd1252d96e9e" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-08-深入理解border-radius-1.png" alt="" />
 
 改变radius的值：
 ```html
@@ -55,7 +55,7 @@ tags:
     }
 </style>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/border-radius-1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-08T09%3A51%3A30Z%2F-1%2Fhost%2F7ae9bc3c98c136091c1359ad9253557c2c421aedfe6a861d4b25fd1252d96e9e" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-08-深入理解border-radius-2.png" alt="" />
 可以看出两段代码的效果都是一样，因为300px已经超过了元素的outerHeight和outerWidth，所以自动变成了200px。
 
 ## 等比例特性
@@ -78,7 +78,7 @@ border-radius定义的某个角的垂直半径和水平半径的比例是不会�
     }
 </style>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/border-radius-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-08T09%3A52%3A10Z%2F-1%2Fhost%2F1524f2db2ca40fdf1fcf1be75f742fc15d38a675da539d5b944390a4e3115d95" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-08-深入理解border-radius-3.png" alt="" />
 根据最大值特性，垂直半径400px已经超出了元素的outerHeight，所以应该会变为元素的最大高度200px，此时由于等比例特性200/400=1/2，所以水平半径=200px*1/2=100px，所以border-radius:200px 0 0 0/400px 0 0 0其实对应于border-radius:100px 0 0 0/200px 0 0 0。
 ```html
 <style> 
@@ -93,7 +93,7 @@ border-radius定义的某个角的垂直半径和水平半径的比例是不会�
     }
 </style>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/border-radius-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-08T09%3A52%3A10Z%2F-1%2Fhost%2F1524f2db2ca40fdf1fcf1be75f742fc15d38a675da539d5b944390a4e3115d95" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-08-深入理解border-radius-4.png" alt="" />
 从结果上也可以看出border-radius:200px 0 0 0/400px 0 0 0和border-radius:100px 0 0 0/200px 0 0 0的效果是一样的。
 
 注意：当border-radius指定的某个角的水平半径和垂直半径都超过元素尺寸的时候，同样遵循这个两个特性。
@@ -133,5 +133,5 @@ border-radius定义的某个角的垂直半径和水平半径的比例是不会�
 </body>
 </html>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/border-radius-3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-08T09%3A54%3A29Z%2F-1%2Fhost%2Fcbeaf2eca230f2d70b60cecf2dcd27f5eafccaa85de093f5ec43022b10d9f5b7" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-08-深入理解border-radius-5.png" alt="" />
 因为300+100已经超出了元素的outerWidth(200)和outerHeight(200)，所以按照等比例（3/1）缩小成了150和50，从上图也可看出效果。

@@ -57,10 +57,10 @@ IE专用字体格式，可以从TrueType格式创建此格式字体。
 基于SVG字体渲染的格式。
 浏览器支持：Chrome4+, Safari3.1+, Opera10.0+, IOS Mobile Safari3.2+
 
-<img src="http://lisong-blog.gz.bcebos.com/font_format_1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T06%3A21%3A01Z%2F-1%2Fhost%2F1222ac915ae352fc9484562b5a16c56d95375daddb4f73b168fbf04e294bc92d" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-1.png" alt="" />
 
 ### <format>字符串对应值：
-<img src="http://lisong-blog.gz.bcebos.com/font_format_2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T06%3A22%3A15Z%2F-1%2Fhost%2Fa1b7bd0650e797e819788281eeeb894d2d20c29b0cc017ac9d41301064fbe0af" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-2.png" alt="" />
 
 图标字体的尅一使用阿里巴巴的<a href="http://www.iconfont.cn/">iconfont</a>和icomoon，制作推荐使用<a href="https://icomoon.io/app/#/select" rel="noopener" target="_blank">icomoon</a>。图标字体的使用主要有两种方式：html实体（兼容ie6），css伪类（ie8+）。
 
@@ -119,10 +119,10 @@ html:
 注意：在html文件中，字符实体以'$#x'开头，中间是编码，以';'结尾，而在css的content中可以直接\后面跟着字符编码
 
 在ie8下结果：
-<img src="http://lisong-blog.gz.bcebos.com/font_format_4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T07%3A11%3A18Z%2F-1%2Fhost%2F513b8af8447ea19c17b458c1ef1d8dccef8e6a9c353d2ffa401aa1874226049f" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-3.png" alt="" />
 
 在ie7下结果：
-<img src="http://lisong-blog.gz.bcebos.com/font_format_5.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-11-04T07%3A11%3A38Z%2F-1%2Fhost%2Fc578e90c1529c0a345e2f5a65d9256820bdd32323baf708c56c9f48c6d9f4733" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-4.png" alt="" />
 
 演示demo：<a href="http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html" rel="noopener" target="_blank">http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html</a>
 

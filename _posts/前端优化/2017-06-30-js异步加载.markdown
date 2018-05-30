@@ -51,12 +51,12 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
 </html>  
 ```
 IE8下的测试结果：*
-<img src="http://img.blog.csdn.net/20170119173040358?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-1.jpg" alt="" />
 
 通过输出的日志可以看到，文档会先解析页面，等页面解析完成后才去执行defer属性标记的脚步内容，最后再触发window的onload（页面的文档结构和图片都加载完成后触发）事件，注意：IE8不支持DOMContentLoad(页面文档结构解析完成)事件。
 
 360浏览器测试结果：
-<img src="http://img.blog.csdn.net/20170119173149281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-2.jpg" alt="" />
 
 可以看到，360浏览器并不支持defer属性，注意：DOMContentLoad事件先于onload事件。
 
@@ -82,7 +82,7 @@ test.js:
 console.log('out:1');
 ```
 测试结果：
-<img src="http://orzq3wu0k.bkt.clouddn.com/blog/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/js%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD/1.png" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-3.png" alt="" />
 
 ## async
 
@@ -136,7 +136,7 @@ console.log("有async属性的脚本内容");
 console.log(document.getElementsByTagName("p")[0].innerHTML);  
 ```
 tomcat下用360浏览器测试结果：
-<img src="http://img.blog.csdn.net/20170119215657381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-4.jpg" alt="" />
 
 注意图中红线框中的内容，设置网络延迟500ms以便测试，此时test.js的下载和运行耗时总共为676，因为我们在用js动态创建p标签时设置了延时为600ms，当test.js执行时，p标签已经动态生成了，所以可以获取到p标签，但是当我们用js动态创建p标签设置延时为700ms（大于test.js的下载和运行耗时）
 ```
@@ -152,12 +152,12 @@ tomcat下用360浏览器测试结果：
 </body> 
 ``` 
 其结果如下：
-<img src="http://img.blog.csdn.net/20170119220800333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-5.jpg" alt="" />
 
 此时，test.js运行时是获取不到动态生成的p标签的，因为其下载和运行耗时为663ms，小于我们设置的延时700ms。async属性标记的外部脚本在DOMContentLoaded事件之后onLoad事件之前执行。
 
 以下是一张图（引用自https://segmentfault.com/q/1010000000640869）
-<img src="http://img.blog.csdn.net/20170119221920708?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-6.jpg" alt="" />
 
 蓝色线代表网络读取，红色线代表执行时间，这俩都是针对脚本的；绿色线代表 HTML 解析。
 
@@ -228,7 +228,7 @@ console.log("js加载的脚本内容");
 console.log(document.getElementsByTagName("p")[0].innerHTML);  
 ```
 360浏览器测试结果：
-<img src="http://img.blog.csdn.net/20170119224144119?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-7.jpg" alt="" />
 
 把延迟改成700ms:
 ```
@@ -244,6 +244,6 @@ console.log(document.getElementsByTagName("p")[0].innerHTML);
 </body> 
 ``` 
 测试结果：
-<img src="http://img.blog.csdn.net/20170119224528886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端优化/2017-06-30-js异步加载-8.jpg" alt="" />
 
 通过这个例子可以看出，用js动态创建script的方式来加载js脚本，其效果和async属性是一样的。

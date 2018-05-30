@@ -47,10 +47,10 @@ var a = require('./somepackage')
 console.log(a.name); 
 ``` 
 注意：包名称前面需要加"./"
-![](http://img.blog.csdn.net/20170126224410471?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-1.jpg)
 
 在命令行下运行：
-![](http://img.blog.csdn.net/20170126224511035?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-2.jpg)
 
 ## 2.引入同目录下node_modules目录下的包（根据文件夹名称）
 node_require\node_modules\somepackage\index.js：
@@ -63,10 +63,10 @@ var a = require('somepackage')
 console.log(a.name);  
 ```
 注意：这里直接写的包文件夹名称
-![](http://img.blog.csdn.net/20170126225307046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-3.jpg)
 
 在命令行下运行：
-![](http://img.blog.csdn.net/20170126225353656?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-4.jpg)
 
 3.引入全局包
 
@@ -84,10 +84,10 @@ node_require\getModule3.js：
 var a = require('somepackage')  
 console.log(a.name);  
 ```
-![](http://img.blog.csdn.net/20170126230713096?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-5.jpg)
 
 运行命令行：
-![](http://img.blog.csdn.net/20170126230610063?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-6.jpg)
 
 此时，如果本地目录下也有somepackage包：
 
@@ -96,10 +96,10 @@ node_require\node_modules\somepackage\index.js：
 var a = {name:'this is index.js'};  
 module.exports=a  
 ```
-![](http://img.blog.csdn.net/20170126231119523?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-7.jpg)
 
 运行命令行：
-![](http://img.blog.csdn.net/20170126231210508?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-8.jpg)
 
 可以看到，会优先使用本地包
 
@@ -117,8 +117,8 @@ node_require\getModule4.js：
 require('somepackage')  
 console.log(a);  
 ```
-![](http://img.blog.csdn.net/20170127140656608?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-9.jpg)
 
 运行命令行：
-![](http://img.blog.csdn.net/20170127141015657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/nodejs/2017-06-30-nodejs之require函数-10.jpg)
 

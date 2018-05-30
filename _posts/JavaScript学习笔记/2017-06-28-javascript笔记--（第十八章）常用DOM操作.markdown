@@ -402,7 +402,7 @@ scrollIntoView(alignWithTop)  函数用来滚动浏览器窗口或容器元素�
 </script>
 </html>
 ```
-<img src="http://img.blog.csdn.net/20170206225804652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十八章）常用DOM操作-1.jpg" alt="" />
 
 ### innerHTML属性
 ```
@@ -440,7 +440,7 @@ outerText在取值的时候和innerText一样，但是赋值方法相当危险�
 </script>
 </html>
 ```
-<img src="http://img.blog.csdn.net/20170206231657189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十八章）常用DOM操作-2.jpg" alt="" />
 
 ### outerHTML属性
 outerHTML属性在取值和innerHTML一致，但和outerText也一样，很危险，赋值的之后会将元素抹去。

@@ -23,13 +23,13 @@ MVC核心概念：把管理数据的代码（model）、应用逻辑代码（con
 
 ### 单向数据绑定
 很多传统的模板系统数据绑定都是单向的，如下图：
-<img src="http://img.blog.csdn.net/20170212005021819?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端框架/2017-07-03-Angularjs学习笔记-1.jpg" alt="" />
 
 它们将模板和数据合并起来加入到视图中去，如图表中所示。合并完成之后，从图中的流向可以看出，任何对数据模型或者相关内容的改变都不会自动反映到视图中去。而且用户对视图的任何改变也不会自动同步到数据模型中来。这意味着，开发者需要编写代码来保持视图与模板、模板与视图的同步，无疑增加了开发的工作量。
 
 ### 双向数据绑定
 angularjs里的数据绑定模式为MVVM，即双向数据绑定，如下图：
-<img src="http://img.blog.csdn.net/20170212005234588?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端框架/2017-07-03-Angularjs学习笔记-2.jpg" alt="" />
 
 双向数据绑定允许你把应用中的模型看成单一数据源。而视图始终是数据模型的一种展现形式。当模型改变时，视图就能反映这种改变，反之亦然。数据模型(model)与视图(view)组件的自动同步。
 
@@ -591,7 +591,7 @@ restrict 值可以是以下几种：
 设置为M是在页面是没有效果，也不会替换，但是会运行compile方法
 
 设置replace为true和false的区别：
-<img src="http://img.blog.csdn.net/20170213154800098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端框架/2017-07-03-Angularjs学习笔记-3.jpg" alt="" />
 
 ### templateUrl属性
 {% raw %}
@@ -804,7 +804,7 @@ var myApp = angular.module('myApp', [])
     }]);  
 ```
 {% endraw %}
-<img src="http://img.blog.csdn.net/20170213181455239?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端框架/2017-07-03-Angularjs学习笔记-4.jpg" alt="" />
 ### controller、controllerAs、require属性
 ```
 <div ng-app="myApp">  
@@ -893,7 +893,7 @@ angular.module('myApp', [])
     }]);  
 ```
 {% endraw %}
-<img src="http://img.blog.csdn.net/20170213205044356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/前端框架/2017-07-03-Angularjs学习笔记-5.jpg" alt="" />
 
 从上面的代码可知：
 

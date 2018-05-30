@@ -118,17 +118,17 @@ function run() {				//通过外面调用，保证引用地址一致
 </script>
 ```
 运行结果：
-<img src="http://img.blog.csdn.net/20170204183515632?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="null" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-1.jpg" alt="null" />
 
 原型对象中的constructor是一个函数，代表构造函数本身
 
 为了更进一步了解构造函数的声明方式和原型模式的声明方式，我们通过图示来了解一下：
 
 构造函数模式：
-<img src="http://img.blog.csdn.net/20170204155237837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-2.jpg" alt="" />
 
 原型模式：
-<img src="http://img.blog.csdn.net/20170204155259743?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-3.jpg" alt="" />
 
 在原型模式声明中，多了两个属性，这两个属性都是创建对象时自动生成的。__proto__属性是实例指向原型对象的一个指针。
 ```
@@ -146,7 +146,7 @@ function run() {				//通过外面调用，保证引用地址一致
 </script>
 ```
 在浏览器里查看打印的结果：
-<img src="http://img.blog.csdn.net/20170204161423613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-4.jpg" alt="" />
 
 可以看到，Box实例对象的__proto__属性指向的Box构造函数的原型对象，原型对象里的constructor是原型本身，Box构造函数的原型对象默认是继承自Object。
 ```
@@ -162,7 +162,7 @@ function run() {				//通过外面调用，保证引用地址一致
 </script>
 ```
 查看输出结果：
-<img src="http://img.blog.csdn.net/20170204164307065?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-5.jpg" alt="" />
 
 从结果可以看出，Number的原型对象重写了toString和valueOf方法，原型对象继承自Object
 
@@ -221,7 +221,7 @@ in操作符：属性是否存在于实例或者原型中。
 </script>
 ```
 运行结果：
-<img src="http://img.blog.csdn.net/20170204193531023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-6.jpg" alt="" />
 
 从结果可以看出，用字面量创建的原型对象，其constructor属性会指向Object的构造函数，而不会指向Box的构造函数
 

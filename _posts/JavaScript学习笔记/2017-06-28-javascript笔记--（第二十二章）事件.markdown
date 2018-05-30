@@ -35,7 +35,7 @@ currentTarget始终是监听事件者，而target是事件的真正发出者
 </script>
 </html>
 ```
-<img src="http://img.blog.csdn.net/20170208165604451?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第二十二章）事件-1.jpg" alt="" />
 
 蓝色框表示点击蓝色区域时的输出，红色框表示点击红色区域时的输出。
 
@@ -44,7 +44,7 @@ currentTarget始终是监听事件者，而target是事件的真正发出者
 
 事件冒泡，是从里往外逐个触发。事件捕获，是从外往里逐个触发。那么现代的浏览器默认情况下都是冒泡模型，而捕获模式则是早期的Netscape默认情况。而现在的浏览器要使用DOM2级模型的事件绑定机制才能手动定义事件流模式。
 
-<img src="http://img.blog.csdn.net/20170208163220264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第二十二章）事件-2.jpg" alt="" />
 
 在阻止冒泡的过程中，W3C和IE采用的不同的方法，那么我们必须做一下兼容。
 ```

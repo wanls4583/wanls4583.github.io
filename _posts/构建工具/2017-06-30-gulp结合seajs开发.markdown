@@ -82,18 +82,18 @@ sea.html：
 </body>  
 </html>  
 ```
-<img src="http://img.blog.csdn.net/20170125222417652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gulp结合seajs开发-1.jpg" alt="" />
 
 在命令行下运行npm install安装package.json里的所有依赖，安装完后多了个node_modules文件夹
-<img src="http://img.blog.csdn.net/20170125222832557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gulp结合seajs开发-2.jpg" alt="" />
 
 最后在命令行下执行gulp命令
-<img src="http://img.blog.csdn.net/20170125222953988?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gulp结合seajs开发-3.jpg" alt="" />
 
 此时，将会在gulp目录下生成我们想要的文件（合并压缩后的main.js）
-<img src="http://img.blog.csdn.net/20170125223144365?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gulp结合seajs开发-4.jpg" alt="" />
 
 运行sea.html测试结果：
-<img src="http://img.blog.csdn.net/20170123002222097?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gulp结合seajs开发-5.jpg" alt="" />
 
 可以看到，成功合并了文件。

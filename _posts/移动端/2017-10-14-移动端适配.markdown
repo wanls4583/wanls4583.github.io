@@ -38,7 +38,7 @@ PPI = √（X^2+Y^2）/ Z
 
 为了方便程安卓序员的开发，安卓操作系统将手机屏幕分成了不同的等级。
 
-<img src="http://lisong-blog.gz.bcebos.com/android分辨率.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T11%3A13%3A44Z%2F-1%2Fhost%2Fc9ccef024457fc063d9fc4b4a6ea9be40b3b224970cb7aa1f6f5d8e245c6cbe5" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-1.png" alt="" />
 
 **Andorid手机相关的单位和标准**：
 
@@ -64,7 +64,7 @@ dip = dp
 
 IOS的适配方案和安卓的类似，都是通过虚拟单位结合转换比去实现。
 
-<img src="http://lisong-blog.gz.bcebos.com/ios分辨率.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T11%3A52%3A41Z%2F-1%2Fhost%2F9476a4b10302818e61568782202d9968d10956a4509d0dfa78da4fdaf20b4696" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-2.png" alt="" />
 
 **IOS手机相关的单位和标准**：
 
@@ -119,9 +119,9 @@ viewport标签content参数：
 ```
 iphone5下最大度量视口为1280px，iphone6下最大度量视口为1600px：
 
-<img src="http://lisong-blog.gz.bcebos.com/移动端适配1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A22%3A27Z%2F-1%2Fhost%2Ff1e8f5f670f06c9fd6310516176332b4ca208cc50bf6dca35bca4e06b0ecd683" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-3.png" alt="" />
 
-<img src="http://lisong-blog.gz.bcebos.com/移动端适配2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A22%3A56Z%2F-1%2Fhost%2F69317ed18822bfccb7dd8743461975dd73fb37ea888f6f6f46f3b61e2e928786" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-4.png" alt="" />
 
 如果度量视口小于布局视口将产生滚动条：
 ```
@@ -150,13 +150,13 @@ iphone5下最大度量视口为1280px，iphone6下最大度量视口为1600px：
 </script>
 </html>
 ```
-<img src="http://lisong-blog.gz.bcebos.com/移动端适配3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A39%3A29Z%2F-1%2Fhost%2Fdeca177d883094713c854fed320153915036efb26465ae501ebe85d271e720cc" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-5.png" alt="" />
 
 如果设置的度量视口宽度大于布局视口的宽度，则布局视口会自动设置成度量视口的宽度：
 ```
 <meta name="viewport" content="width=750,initial-scale=0.2">
 ```
-<img src="http://lisong-blog.gz.bcebos.com/移动端适配4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-10-14T13%3A43%3A30Z%2F-1%2Fhost%2Fbb3d5342eedab944b1ff9c7f2c99295f9bcd053835e39bde640ce66ee01f21b7" alt="" />
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-6.png" alt="" />
 
 **最后在来说一下一个已经被安卓废弃的viewport属性target-densitydpi**：
 

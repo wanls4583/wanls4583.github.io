@@ -86,7 +86,7 @@ define(function(require,exports,module){
 });
 ```
 测试结果:
-<img src="http://img.blog.csdn.net/20170120225212082?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-1.jpg" alt="" />
 
 ### requireJs示例1
 req1.html：
@@ -109,7 +109,7 @@ define(function(require,exports,module){
 });
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170120225840413?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-2.jpg" alt="" />
 
 <font style='background:#eee'>总结1：seaJs加载入口模块是通过sea.use()函数来加载的，requireJs是通过data-main属性来加载的</font>
 
@@ -147,7 +147,7 @@ define(function(require,exports,module){
 })
 ```
 测试结果:
-<img src="http://img.blog.csdn.net/20170120232110314?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-3.jpg" alt="" />
 
 如果定义模块时一定要把require参数改变，则需要使用异步加载require.async()：
 
@@ -163,7 +163,7 @@ define(function(require1,exports,module){
 });
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170120232805380?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-4.jpg" alt="" />
 
 此时，require加载为异步的，test.js在main.js执行完之后才执行。
 
@@ -183,7 +183,7 @@ define(function(require,exports,module){
 })
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170120233747904?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-5.jpg" alt="" />
 
 此时，不会在扫描回调函数中的require字符串来加载模块
 
@@ -216,7 +216,7 @@ define(function(require,exports,module){
 })
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170121004758979?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-6.jpg" alt="" />
 
 如果定义模块时一定要把require参数改变，则需要使用异步加载require([],function(){})：
 ```javascript
@@ -230,7 +230,7 @@ define(function(require1,exports,module){//不会再扫描require字符串进行
 });
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170121010133438?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-7.jpg" alt="" />
 
 如果定义模块时声明了函数依赖，如：
 main.js：
@@ -242,7 +242,7 @@ define("",["test.js"],function(test){//不会再扫描require字符串进行预�
 });
 ```
 测试结果：
-<img src="http://img.blog.csdn.net/20170121010625263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/模块化/2017-06-29-requirejs与seajs的比较-8.jpg" alt="" />
 
 此时不可以在回调函数里用require再加载未声明的模块，因为没有进行require字符串扫描进行预加载
 

@@ -18,7 +18,7 @@ BOM也叫浏览器对象模型，它提供了很多对象，用于访问浏览�
 
 ## window对象
 BOM的核心对象是window，它表示浏览器的一个实例。window对象处于JavaScript结构的最顶层，对于每个打开的窗口，系统都会自动为其定义 window 对象。
-<img src="http://img.blog.csdn.net/20170206130714202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十七章）BOM-1.jpg" alt="" />
 
 ## 新建窗口
 open() 方法用于打开一个新的浏览器窗口或查找一个已命名的窗口。
@@ -61,7 +61,7 @@ IE、Safari、Opera和Chrome都提供了screenLeft和screenTop属性，分别用
 	console.log(window.screenY);
 </script>
 ```
-<img src="http://img.blog.csdn.net/20170206134332439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十七章）BOM-2.jpg" alt="" />
 
 注意：screenX，screenY是以红色区域的左上角为基准，其相对于屏幕左上角的距离
 
@@ -85,7 +85,7 @@ innerWidth和innerHeight，返回浏览器窗口本身的尺寸；outerWidth和o
 </body>
 </html>
 ```
-<img src="http://img.blog.csdn.net/20170206140508464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十七章）BOM-3.jpg" alt="" />
 
 
 红色区域代表了innerWidth和innerHeight，蓝色区域代表了outerWidth和outerHeight
@@ -121,7 +121,7 @@ IE没有提供当前浏览器窗口尺寸的属性；不过，在后面的DOM课
 </body>
 </html>
 ```
-<img src="http://img.blog.csdn.net/20170206141538532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十七章）BOM-4.jpg" alt="" />
 红色区域代表了document.documentElement.clientWidth和document.documentElement.clientHeight，可以看到，document.documentElement.clientWidth和document.documentElement.clientHeight获取的值和innerWidth和innerHeight是一样的
 
 ## 定时器

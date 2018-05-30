@@ -38,7 +38,7 @@ package.json:
 npm install  
 ```
 此时将在nodejs目录下生成一个文件夹node_modules，里面包含了我们需要用的所有依赖
-<img src="http://img.blog.csdn.net/20170122234613328?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-1.jpg" alt="" />
 
 3.在nodejs目录下新建我们的测试页面
 
@@ -84,7 +84,7 @@ define(function(require,exports,module){
     console.log("执行a.js");  
 })  
 ```
-<img src="http://img.blog.csdn.net/20170122235432998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-2.jpg" alt="" />
 
 5.把seajs框架文件sea.js拷贝到nodejs目录下，在nodejs目录下新建我们的grunt任务配置文件Gruntfile.js
 
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
 };  
 ```
 6.打开命令行，进入nodejs目录，运行grunt命令
-<img src="http://img.blog.csdn.net/20170123001656000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-3.jpg" alt="" />
 
 此时将会在nodejs目录下生成合并后的main.js，该文件即我们最终需要的文件
 
@@ -157,14 +157,14 @@ main.js：
 ```javascript
 define("main",["test"],function(a,b,c){a("test.js"),console.log("执行main.js")}),define("test",["a"],function(a,b,c){a("a.js"),console.log("执行test.js")}),define("a",[],function(a,b,c){console.log("执行a.js")});  
 ```
-<img src="http://img.blog.csdn.net/20170123001939065?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-4.jpg" alt="" />
 
 如果只运行transport任务:
 ```javascript
 grunt.registerTask('default', ['transport'/*,'concat','uglify','copy','clean'*/]);  
 ```
 则将只提取js模块的id和依赖
-<img src="http://img.blog.csdn.net/20170123003605620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-5.jpg" alt="" />
 
 提取后的文件：
 
@@ -189,7 +189,7 @@ define("a", [], function(require, exports, module) {
 });  
 ```
 7.运行sea.html进行测试，结果如下：
-<img src="http://img.blog.csdn.net/20170123002222097?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" />
+<img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-6.jpg" alt="" />
 
 可以看到，成功合并了文件。
 

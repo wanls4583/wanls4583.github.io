@@ -47,7 +47,7 @@ tags:
 </html>
 ```
 结果:
-<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-1.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A18%3A10Z%2F-1%2Fhost%2F50ed558d5ad7421428d58bb27a216275fb609ea99a8fda2bf96bb8b6e004df38" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-09-16-理解css小数点像素-1.png" alt="" />
 可以看出，299.5px和外部容器一样宽，说明299.5被渲染成了300px。
 
 ## 相邻元素互补：
@@ -94,7 +94,7 @@ tags:
 </html>
 ```
 结果：
-<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-2.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A26%3A00Z%2F-1%2Fhost%2F261d4d587463e3ad089f0ccec49fffef2720311cabccf56ef4344fc658106d78" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-09-16-理解css小数点像素-2.png" alt="" />
 该图是火狐浏览器里运行的结果，从图中可以看出，三个div的渲染总宽度为300，但是这和上面的四舍五入法是有出入，因为99.3->99,99.4->99,100.8->100，最终结果应该是99+99+101=299。这就涉及到浏览器处理小数点像素的一些规则，具体对应到该示例的步骤如下：
 
 1.div2宽度99.3px渲染成99px，多出0.3px留给右边相邻的元素;
@@ -106,8 +106,8 @@ tags:
 所以，最终结果是99px+100px+101px=300px，正好符合上面的结果。
 
 然而在某些浏览器中最后一个元素的四舍五入会有一点不同，其必须满6才进10，而不是满5进10，例如以下截图是在360浏览器下的结果：
-<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-3.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A48%3A37Z%2F-1%2Fhost%2F33bd740695534d9c93b081dd61d44e86843f5798499aa824341dce3f2a43afc4" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-09-16-理解css小数点像素-3.png" alt="" />
 因为最后一个元素div4处理后的像素为100.5px，0.5不满6，所以舍如，最终为100px，最终结果为99px+100px+100px=299px。
 
 如果将div4的宽度设置成100.9px，情况就变成预期结果了：
-<img src="http://lisong-blog.gz.bcebos.com/%E7%90%86%E8%A7%A3css%E5%B0%8F%E6%95%B0%E7%82%B9%E5%83%8F%E7%B4%A0-4.png?authorization=bce-auth-v1%2F99d20c83bd45422eb6ca5fe083097f9c%2F2017-09-16T07%3A52%3A20Z%2F-1%2Fhost%2Ffc9616e321bb90bc348f2ee61ef8dfa8dab55a5bc3def50d072c04c0e25e7f0e" alt="" />
+<img src="https://wanls4583.github.io/images/posts/CSS/2017-09-16-理解css小数点像素-4.png" alt="" />

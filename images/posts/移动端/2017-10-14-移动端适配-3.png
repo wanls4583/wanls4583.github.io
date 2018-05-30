@@ -1,0 +1,1 @@
+{"code":"SignatureDoesNotMatch","message":"The request signature we calculated does not match the signature you provided. Check your Secret Access Key and signing method. Consult the service documentation for details.","requestId":"d6c65471-68da-4244-8414-560c430e5de5"}
