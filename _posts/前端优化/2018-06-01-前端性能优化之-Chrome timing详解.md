@@ -57,13 +57,11 @@ tags:
 
 [示例代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/chrome-timing)
 
+为了方便测试，以下所有的测试都是在 Fast 3G 网络模拟下进行的。
+
 **结果**（Chrome（版本 63.0.3239.84（正式版本） （32 位）））
 
 ![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-2.png)
-
-**结果**（Chrome（版本 67.0.3396.62（正式版本） （32 位）））
-
-![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-3.png)
 
 图中的色条所代表的时段对应为：
 
@@ -75,7 +73,13 @@ tags:
 从图中可以分析出如下结论：
 
 - 对于同等优先级的资源，当并行下载超过6个以后，后面的请求将被阻塞（Stalled），图中的 test.js、7.png 资源就是这种情况。
-- 对于低优先级的资源（图片），如果当前有一个高优先级的资源（JavaScript、CSS）请求还没有完成，则最多允许一个（不同浏览器或者相同浏览器的不同版本允许的规则可能不一样）低优先级的资源和高优先级的资源并行加载。图中只 1.png 和 test.js 并行下载，其他图片此时都在队列里派对（Queueing）。
+- 对于低优先级的资源（图片），如果当前有一个高优先级的资源（JavaScript、CSS）请求还没有完成，则最多允许一个（不同浏览器或者相同浏览器的不同版本允许的规则可能不一样，例如版本为 63.0.3239.84 的 Chrome 浏览器是一个，而版本为 67.0.3396.62 的 Chrome 浏览器是两个）低优先级的资源和高优先级的资源并行加载。图中只有 1.png 和 test.js 并行下载，其他图片此时都在队列里派对（Queueing）。
+
+**结果**（Chrome（版本 67.0.3396.62（正式版本） （32 位）））
+
+![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-3.png)
+
+版本为 67.0.3396.62 的 Chrome 浏览器最多允许两个低优先级的资源和高优先级的资源并行加载。
 
 此时，如果将 JavaScript 资源放到最后
 
@@ -111,10 +115,8 @@ tags:
 
 ![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-4.png)
 
-**结果**（Chrome（版本 67.0.3396.62（正式版本） （32 位）））
+**结果**（Chrome（版本 63.0.3239.84（正式版本） （32 位）））
 
 ![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-5.png)
 
-可以看到，对于Chrome（版本 63.0.3239.84），除了入队顺序（Queued at）有所改变外，其他结果和之前的结果一致，这也说明了，Chrome 浏览器首先会扫描这个 HTML 文档的资源，再决定资源的网络请求顺序。
-
-而对于版本 67.0.3396.62，则是最多允许5个图片资源同 JavaScript 资源一起并行加载。
+可以看到，如果将 JavaScript（高优先级）资源放到最后，则最多允许5个图片（低优先级）资源同 JavaScript（高优先级）资源一起并行加载。
