@@ -9,6 +9,7 @@ categories:
 
 tags:
 - 前端优化
+---
 
 ![](http://wanls4583.github.io/images/posts/前端优化/chrome-timing-1.png)
 
