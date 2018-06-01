@@ -13,8 +13,8 @@ categories:
 
 >&emsp;&emsp;js引擎是单线程的，可是浏览器却可以是多线程的，js引擎只是浏览器的一个线程而已。定时器计，网络请求，浏览器渲染等等...，都是由不同的线程去完成的。
 
-![这里写图片描述](http://img.blog.csdn.net/20170620203032843?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-![这里写图片描述](http://img.blog.csdn.net/20170620203559566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://wanls4583.github.io/images/posts/其他/2017-06-20-js异步-setTimeout-1.jpg)
+![这里写图片描述](https://wanls4583.github.io/images/posts/其他/2017-06-20-js异步-setTimeout-2.jpg)
 
 &emsp;&emsp;js引擎单线程执行的，它是基于事件驱动的语言.它的执行顺序是遵循一个叫做事件队列的机制。从图中我们可以看出,浏览器有各种各样的线程,比如事件触发器，网络请求,定时器等等.线程的联系都是基于事件的。js引擎处理到与其他线程相关的代码,就会分发给其他线程，他们处理完之后,需要js引擎计算时就是在事件队列里面添加一个任务。 这个过程中，js并不会阻塞代码等待其他线程执行完毕，而且其他线程执行完毕后添加事件任务告诉js引擎执行相关操作。这就是js的异步编程模型。
 
@@ -58,7 +58,7 @@ categories:
 </html>
 ```
 结果：
-![这里写图片描述](http://img.blog.csdn.net/20170620203857528?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://wanls4583.github.io/images/posts/其他/2017-06-20-js异步-setTimeout-3.jpg)
 
 此时如果将sleep中的参数改小一点：
 ```html
@@ -69,7 +69,7 @@ setTimeout(function(){
 sleep(90);
 testNext();
 ```
-![这里写图片描述](http://img.blog.csdn.net/20170620204256722?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://wanls4583.github.io/images/posts/其他/2017-06-20-js异步-setTimeout-4.jpg)
 
 &emsp;&emsp;可以看到第一个定时器我们指定延时是100，第二个定时器指定的延时是0，但是通过设置循环的执行时间，可以改变他们两个的执行顺序（实际上是改变浏览器把他们加入到队列的顺序）。因为定时器setTimeout是由浏览器定时器模块来调度的，和js单线程是无关的，可以认为定时器模块有一个统一的时间，js执行setTimeout函数的时候，会传递延时参数和回调函数以及其他参数给定时器模块。浏览器定时器模块统一管理这些定时器。这些定时器开始的时间也即setTimeout执行时浏览器定时器模块的时间，当某个定时器的时间到了，浏览器定时器模块就会在任务列表末尾插入一个任务来执行相应的回调函数。
 
