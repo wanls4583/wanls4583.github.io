@@ -84,6 +84,6 @@ div.highlight{
 }
 pre.highlight{
   background: #23241f !important;
-  width: 100%;
+  width: 100% !important;
   box-sizing: border-box;
 }
