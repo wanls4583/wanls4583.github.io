@@ -55,7 +55,7 @@ tags:
 </html>
 ```
 
-[示例代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/chrome-timing)
+[示例代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/chrome-timing)
 
 为了方便测试，以下所有的测试都是在 Fast 3G 网络模拟下进行的。
 
