@@ -187,7 +187,7 @@ while (!mExiting)
 
 **testPro 结果：**
 
-![](http://wanls4583.github.io/images/posts/前端优化/event-loop-1.png)
+![](http://wanls4583.github.io/images/posts/前端优化/event-loop-2.png)
 
 
 > Whether a top-level browsing context would benefit from having its rendering updated depends on various factors, such as the update frequency. For example, if the browser is attempting to achieve a 60Hz refresh rate, then these steps are only necessary every 60th of a second (about 16.7ms). If the browser finds that a top-level browsing context is not able to sustain this rate, it might drop to a more sustainable 30Hz for that set of Documents, rather than occasionally dropping frames. (This specification does not mandate any particular model for when to update the rendering.) Similarly, if a top-level browsing context is in the background, the user agent might decide to drop that page to a much slower 4Hz, or even less.<br><br>
