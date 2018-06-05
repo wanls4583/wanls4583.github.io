@@ -174,7 +174,7 @@ while (!mExiting)
 ```
 
 操作：
-- 打卡页面后，切换到调试工具 Performance 选项卡，点击 record 按钮开始记录页面事件活动
+- 打开页面后，切换到调试工具 Performance 选项卡，点击 record 按钮开始记录页面事件活动
 - 在控制台输入 testST() 运行函数
 
 **testST 结果：**
