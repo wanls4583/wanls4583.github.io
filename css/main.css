@@ -87,7 +87,8 @@ body {
 
 a {
   text-decoration: none;
-  color: #00688B; 
+  color: #00688B;
+  word-break: break-all;
 
 }
 p a {
