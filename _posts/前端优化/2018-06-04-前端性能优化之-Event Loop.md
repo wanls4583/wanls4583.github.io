@@ -76,10 +76,10 @@ while (!mExiting)
 
 为了避免混淆，假设是从最近的一次页面更新完成后开始执行主循环的。
 
-1. 首先，检查宏任务队列是否有任务，如果不为空，则取出最早加入队列的一个任务（宏任务里的任务都是按添加的时间点，按序执行的），并且主线程将切换到 JavaScript 线程执行任务。此时，主线程将停止事件循环，直到 JavaScript 线程执行完成所有同步代码，执行完成后，跳至步骤2。在这个过程中，可能会产生新的宏任务和微任务，它们会分别被加到相应的队列里，等待主线程取出它们去执行。如果在执行任务的期间使用 JavaScript 更改了样式或者DOM元素，使页面需要 reflow/repaint，则浏览器会将这些更改添加到更新队列。如果宏任务队列为空，则跳至步骤2。<br>
-2. 检查微任务队列是否为空，如果不为空，则取出最早加入队列的一个任务执行（任务的执行顺序同宏任务队列），其后的执行和步骤 1 一致，只不这里会循环的执行完队列里所有的微任务，执行期间产生的微任务会加入到微任务队列，并且会在本次主循环中都执行完。<br>
+1. 首先，检查宏任务队列是否有任务，如果不为空，则取出最早加入队列的一个任务（宏任务里的任务都是按添加的时间点，按序执行的），并且主线程将切换到 JavaScript 线程执行任务。此时，主线程将停止事件循环，直到 JavaScript 线程执行完成所有同步代码，执行完成后，跳至步骤2。在这个过程中，可能会产生新的宏任务和微任务，它们会分别被加到相应的队列里，等待主线程取出它们去执行。如果在执行任务的期间使用 JavaScript 更改了样式或者DOM元素，使页面需要 reflow/repaint，则浏览器会将这些更改添加到更新队列。如果宏任务队列为空，则跳至步骤2。<br><br>
+2. 检查微任务队列是否为空，如果不为空，则取出最早加入队列的一个任务执行（任务的执行顺序同宏任务队列），其后的执行和步骤 1 一致，只不这里会循环的执行完队列里所有的微任务，执行期间产生的微任务会加入到微任务队列，并且会在本次主循环中都执行完。<br><br>
 3. 检查页面是否需要更新，这里检查机制并不是简单的检查更新队列是否为空，浏览器还会考虑到屏幕刷新频率等因素（以下的引用有说明），标准中没有定义具体的规则。比如说，以大于 60HZ 的频率更新页面是没有必要的，因为 30HZ-60HZ 的更新频率在肉眼看来已经很流畅了。如果确定需要更新，则主线程切换到渲染线程，此时，主线程将停止事件循环，直到页面渲染完成。
-在执行具体的更新操作操作之前，浏览器会依次触发下面的事件：<br>
+在执行具体的更新操作操作之前，浏览器会依次触发下面的事件：<br><br>
 	- dispatch pending UI events
     - resize event
     - scroll event
@@ -177,13 +177,18 @@ while (!mExiting)
 - 打卡页面后，切换到调试工具 Performance 选项卡，点击 record 按钮开始记录页面事件活动
 - 在控制台输入 testST() 运行函数
 
-**结果：**
+**testST 结果：**
 
 ![](http://wanls4583.github.io/images/posts/前端优化/event-loop-1.png)
 
 从结果中可以看到，同时执行 requesAnimationFrame 和 scroll，在更新时会先触发 scroll 事件，然后再触发 animationFrame 事件。由于在 scroll 回调里暂停了 200ms，这两个任务执行完成之前，队列里还有一个 timer 任务待执行，但是，主线程在执行完由 render 过程触发的任务后会立即开始执行更新操作，所以 timer 任务里的样式更改，需要在下一个 render 过程才会被页面跟新。
 
 如果运行 testPro()，结果则不是这样了。这里将 setTimout 换成了 promise， 由于 requesAnimationFrame 和 scroll 也是宏任务，所以在执行完回调后，会检查微任务队列并执行所有任务，所以里面的样式更改会在本次 render 过程里被更新到页面。
+
+**testPro 结果：**
+
+![](http://wanls4583.github.io/images/posts/前端优化/event-loop-1.png)
+
 
 > Whether a top-level browsing context would benefit from having its rendering updated depends on various factors, such as the update frequency. For example, if the browser is attempting to achieve a 60Hz refresh rate, then these steps are only necessary every 60th of a second (about 16.7ms). If the browser finds that a top-level browsing context is not able to sustain this rate, it might drop to a more sustainable 30Hz for that set of Documents, rather than occasionally dropping frames. (This specification does not mandate any particular model for when to update the rendering.) Similarly, if a top-level browsing context is in the background, the user agent might decide to drop that page to a much slower 4Hz, or even less.<br><br>
 *——— [https://html.spec.whatwg.org/multipage/webappapis.html#event-loop](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop)*
