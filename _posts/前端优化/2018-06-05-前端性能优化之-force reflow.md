@@ -152,38 +152,38 @@ tags:
 ```
 [测试代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/force-reflow)
 
-**`testScr(true)` 结果：** 
+<br>**`testScr(true)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-1.png)
 
-**`testScr(false)` 结果：** 
+<br>**`testScr(false)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-2.png)
 
 由上面的两个结果可知，如果 render 树只是普通样式发生了更改，执行 scroll 相关方法后（`window.scrollBy(0,0)` 不会滚动页面），只会触发同步 `Recalculate Style`；而如果 render 树的布局发生改变，则会触发同步 `Recalculate Style` 和 `layout`。
 
-**`testCStyle(2,'height',true)` 结果：** 
+<br>**`testCStyle(2,'height',true)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-3.png)
 
-** `testCStyle(1,'backgroundColor',true)` 结果：** 
+<br>**`testCStyle(1,'backgroundColor',true)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-4.png)
 
 上面两图结果说明，用 getComputedStyle 获取元素样式对象后，如果 render 树的布局有更改，此时使用样式对象获取某个元素（div1的布局并为影响到div2）的布局相关的属性，会触发同步 `Recalculate Style` 和 `layout`；而使用样式对象获取该样式对象**相关联的元素**的布局无关样式属性，只会触发同步 `Recalculate Style`。
 
-**`testCStyle(2,'backgroundColor',true)` 结果：** 
+<br>**`testCStyle(2,'backgroundColor',true)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-5.png)
 
 该结果表明用 getComputedStyle 获取元素样式对象后，此时使用样式对象获取与该样式对象**无关联的元素**的布局无关样式属性，即使 render 树的布局有更改，也不会触发同步 `Recalculate Style` 或者 `layout`。
 
-**`testCStyle(1,'height',false)` 结果：** 
+<br>**`testCStyle(1,'height',false)` 运行结果：** 
 
 ![](http://wanls4583.github.io/images/posts/前端优化/force-reflow-6.png)
 
 该结果表明用单独的 getComputedStyle 操作并不会触发同步操作，此时必须使用该方法返回的样式对象去真正获取某些属性时候才可能会触发同步 `Recalculate Style` 或者 `layout`。
 
-参考：
+<br>**参考：**
 
 [https://gist.github.com/paulirish/5d52fb081b3570c81e3a](https://gist.github.com/paulirish/5d52fb081b3570c81e3a)
