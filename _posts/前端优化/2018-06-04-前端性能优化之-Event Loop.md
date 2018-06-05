@@ -40,7 +40,7 @@ while (!mExiting)
     NS_ProcessNextEvent(thread);
 ```
 
-### 浏览器事件循环的运行机制：
+## 浏览器事件循环的运行机制
 
 事件循环中存在这两种任务队列：task queue（宏任务队列，网上也有人叫macrtask queue），microtask queue（微任务队列）。其实还有一个 render queue（更新队列），这个队列用来存储所有的更新操作。
 
@@ -49,7 +49,9 @@ while (!mExiting)
 
 而对于宏任务队列，又可根据任务来源分为两种队列，用户交互相关的任务源的事件存储在一个队列（这个队列的优先级高，主要是为了快速响应交互），其他任务源的事件存储在另一个队列。主线程会给优先级高的队列更多的执行单元。
 
-虽然这只是个例子，但通过后面的验证可以表明，浏览器里确实可能存在两个宏任务队列。
+这是 whatwg 说明可能出现的情况，也就是说浏览器里可能存在两个宏任务队列（浏览器具体如何实现，要视浏览器厂商而定）。
+
+### 更新过程
 
 > An event loop must continually run through the following steps for as long as it exists:
 - Let oldestTask be the oldest task on one of the event loop's task queues, if any, ignoring, in the case of a browsing context event loop, tasks whose associated Documents are not fully active. The user agent may pick any task queue. If there is no task to select, then jump to the microtasks step below.
@@ -68,7 +70,7 @@ while (!mExiting)
 - 执行完宏任务后，执行microtasks任务检查点
 - 更新页面
 
-**以下流程图是对以上定义的详细描述：**
+### 更新详细流程
 
 ![](http://on-img.com/chart_image/5b13d368e4b07596cf3b2b5c.png)
 
@@ -91,9 +93,97 @@ while (!mExiting)
 - Continuous - mousewheel, wheel, mousemove, pointermove, touchmove.<br><br>
 *——— [https://github.com/atotic/event-loop](https://github.com/atotic/event-loop)*
 
-如果页面有注册这些事件的函数，则会生成一个宏任务放进高优先级级的宏任务队里，当这个队列的任务执行完成后，最后才是真正的更新操作。如果在执行任务的期间使用 JavaScript 更改了样式或者DOM元素，使页面需要 reflow/repaint，则浏览器会将这些更改添加到更新队列，并在本轮更新中更新。
+如果页面有注册这些事件的函数，则会生成一个宏任务放进宏任务队里，并返回事件循环。当由这一步触发的事件任务经过事件循环都执行完成后，最后才是真正的更新操作。如果在执行任务的期间使用 JavaScript 更改了样式或者DOM元素，使页面需要 reflow/repaint，则浏览器会将这些更改添加到更新队列，并在本轮更新中更新。
 
-这些事件是依次触发的，Chrome正常，不过有些浏览器会与标准不一致[测试](https://wanls4583.github.io/code/event-loop/test2)。
+这些事件是依次触发的，Chrome正常，不过有些浏览器会与标准不一致[测试](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/前端优化/event-loop/dispatch-order)。
+
+#### 更新流程验证
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body,html{
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .d1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .d2{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1"></div>
+    <div class="d2"></div>
+    <script type="text/javascript">
+
+        function testST(){
+            requestAnimationFrame(function(){
+                document.querySelector('.d1').style.width = '200px';
+                console.log('RAF');
+            });
+            window.addEventListener('scroll', function() {
+                document.querySelector('.d1').style.width = '400px';
+                setTimeout(function(){
+                    document.querySelector('.d1').style.backgroundColor = 'green';
+                    console.log('timeout');
+                },0);
+                console.log('scroll');
+                sleep(200);
+            });
+            window.scrollBy(0,10);
+        }
+
+        function testPro(){
+            requestAnimationFrame(function(){
+                document.querySelector('.d1').style.width = '200px';
+                console.log('RAF');
+            });
+            window.addEventListener('scroll', function() {
+                document.querySelector('.d1').style.width = '400px';
+                Promise.resolve().then(function(){
+                    document.querySelector('.d1').style.backgroundColor = 'green';
+                    console.log('promise');
+                });
+                console.log('scroll');
+                sleep(200);
+            });
+            window.scrollBy(0,10);
+        }
+
+        function sleep(t){
+            let start = Date.now();
+            while(true){
+                if(Date.now() - start >= t){
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
+操作：
+- 打卡页面后，切换到调试工具 Performance 选项卡，点击 record 按钮开始记录页面事件活动
+- 在控制台输入 testST() 运行函数
+
+**结果：**
+
+![](http://wanls4583.github.io/images/posts/前端优化/event-loop-1.png)
+
+从结果中可以看到，同时执行 requesAnimationFrame 和 scroll，在更新时会先触发 scroll 事件，然后再触发 animationFrame 事件。由于在 scroll 回调里暂停了 200ms，这两个任务执行完成之前，队列里还有一个 timer 任务待执行，但是，主线程在执行完由 render 过程触发的任务后会立即开始执行更新操作，所以 timer 任务里的样式更改，需要在下一个 render 过程才会被页面跟新。
+
+如果运行 testPro()，结果则不是这样了。这里将 setTimout 换成了 promise， 由于 requesAnimationFrame 和 scroll 也是宏任务，所以在执行完回调后，会检查微任务队列并执行所有任务，所以里面的样式更改会在本次 render 过程里被更新到页面。
 
 > Whether a top-level browsing context would benefit from having its rendering updated depends on various factors, such as the update frequency. For example, if the browser is attempting to achieve a 60Hz refresh rate, then these steps are only necessary every 60th of a second (about 16.7ms). If the browser finds that a top-level browsing context is not able to sustain this rate, it might drop to a more sustainable 30Hz for that set of Documents, rather than occasionally dropping frames. (This specification does not mandate any particular model for when to update the rendering.) Similarly, if a top-level browsing context is in the background, the user agent might decide to drop that page to a much slower 4Hz, or even less.<br><br>
 *——— [https://html.spec.whatwg.org/multipage/webappapis.html#event-loop](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop)*
@@ -102,3 +192,5 @@ while (!mExiting)
 *——— [https://github.com/atotic/event-loop](https://github.com/atotic/event-loop)*
 
 浏览器在执行完微任务后检查是否有必要更新页面，它会以垂直同期的方式更新页面，这里的垂直同期指的是，浏览器可能会根据屏幕的刷新频率来更新页面，多数时候，屏幕的更新频率是 60HZ（一秒钟60次），也即浏览器只要以约 16.7ms 的间隔更新页面就可以实现流畅的画面，在 16.7ms 内的更新检查将会返回 false。
+
+

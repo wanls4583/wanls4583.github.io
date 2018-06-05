@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="shell.css">
+    <title>event-loop test</title>
+</head>
+<body style="height: 2000px;">
+
+<div style="overflow:hidden">
+    <div id="slider"></div>
+</div>
+<div id="mutator"></div>
+<script>
+'use strict';
+
+var RESULTS = [];
+var TIMED_RESULTS = [];
+
+function addResultToDocument(msg, type) {
+    var el = document.createElement('div');
+    if (type)
+        el.classList.add(type);
+    el.classList.add('result');
+    el.innerText = msg;
+    document.body.appendChild(el);
+}
+
+function reportError(msg) {
+    addResultToDocument(msg, 'error');
+}
+
+let startTime = 0;
+function log(/*...args*/) {
+    var line = "";
+    for (var i=0; i<arguments.length; i++)
+        line += (i != 0 ? ' ' : '') + arguments[i];
+    if (startTime == 0)
+        startTime = performance.now();
+    var tick = Math.round((performance.now()-startTime)*100)/100;
+    console.log(tick + ' ' + line);
+    RESULTS.push(line);
+    TIMED_RESULTS.push( { event: line, time: tick});
+}
+
+function assertOrder(r1, r2, msg) {
+    var i1 = RESULTS.indexOf(r1);
+    var i2 = RESULTS.indexOf(r2);
+    if (i1 == -1)
+        reportError(r1 + " not found");
+    if (i2 == -1)
+        reportError(r2 + " not found");
+    if (i2 <= i1)
+        reportError('"' + r1 + '" before "' + r2 + '": ' + msg);
+}
+
+function endTest() {
+// Promise/rAF asserts
+    assertOrder("script end", "promise A", "promise handlers executed after script");
+    assertOrder("promise A", "promise B", "promise handlers in order");
+
+    assertOrder("rAF A", "rAF B", "rAF in order");
+
+    assertOrder("promise A", "rAF A", "rAF after promise handlers");
+
+    assertOrder("promise A", "timeout A", "timeout after promise handlers");
+    assertOrder("rAF A promise", "rAF B", "promise handler immediately after rAF");
+
+    var p1 = RESULTS.indexOf('promise B'), p0 = RESULTS.indexOf('promise A');
+    if ((p1 - p0) > 2)
+        reportError("Microtasks queue not executed all at once, distance is " + (p1 - p0) );
+
+    assertOrder("promise A", "mutate", "mutate microtask after promise A")
+    assertOrder("mutate", "promise B", "mutate happens before promise B resolves");
+
+// render events
+    assertOrder("matchMedia", "resize", "matchMedia before resize");
+    assertOrder("resize", "scroll", "resize before scroll");
+    assertOrder("scroll", "rAF A", "scroll before rAF");
+    assertOrder("animationstart", "rAF A", "css animation starts before rAF");
+    assertOrder("resize", "animationstart", "css animation starts before rAF");
+
+  //  addResultToDocument("rAF and timeout order is unspecified", "warn");
+    if (!document.querySelector('.error'))
+        addResultToDocument('tests passed');
+
+    document.querySelector('#slider').classList.remove('animate');
+    addResultToDocument('output in console');
+}
+
+
+function startTest() {
+    RESULTS = [];
+    log("script start");
+    var oldResults = document.querySelectorAll('.result');
+    for (var i=0; i<oldResults.length; i++)
+        oldResults[i].parentNode.removeChild(oldResults[i]);
+    // for (var el of document.querySelectorAll('.result'))
+    //     el.parentNode.removeChild(el);
+
+// rAF
+
+    window.requestAnimationFrame( function() {
+        log("rAF A");
+        if (window.ResizeObserver) {
+            var ro = new ResizeObserver(function(entries) {
+                log("ResizeObserver raf");
+            });
+            ro.observe(document.querySelector('#mutator'));
+        }
+
+        new Promise( function(fulfill, reject) {
+            fulfill();
+        })
+        .then( function() {
+            log("rAF A promise");
+        });
+    });
+
+    window.requestAnimationFrame( function() {
+        log("rAF B");
+    });
+
+// timeouts
+
+    window.setTimeout(function() { log('timeout A');}, 0);
+
+    window.setTimeout(function() { log('timeout B');}, 0);
+
+// Promises
+    Promise.resolve()
+    .then(function() {
+        log("promise A");
+        return new Promise( function(fulfill) {
+            fulfill();
+        });
+    })
+    .then(function() {
+        log("promise B");
+    });
+
+// CSS Animation
+    document.querySelector('#slider').classList.remove('animate');
+    document.querySelector('#slider').classList.add('animate');
+
+// Scrolling
+
+    window.scrollBy(0,10);
+
+// Resize
+    try {
+        window.parent.document.querySelector('iframe').width = "450px";
+    }
+    catch(ex) {
+        console.error('resize not tested, not an iframe');
+    }
+
+// ResizeObserver
+    if (window.ResizeObserver) {
+        var ro = new ResizeObserver(function(entries) {
+            log("ResizeObserver script");
+        });
+        ro.observe(document.querySelector('#mutator'));
+    }
+
+// Mutations
+    document.querySelector('#mutator').appendChild(
+        document.createElement('div')
+    );
+
+// Test end
+    window.setTimeout(function() { endTest(); }, 500);
+
+    log("script end");
+
+}
+
+// Listeners
+
+window.addEventListener('resize', function() {
+    log('resize');
+});
+
+window.addEventListener('scroll', function() {
+    log('scroll');
+});
+
+window.matchMedia("(min-width: 400px)").addListener( function() {
+    log('matchMedia');
+});
+
+document.querySelector('#slider').addEventListener('animationstart', function() {
+    log('animationstart');
+});
+
+var mutObs = new MutationObserver( function(entries) {
+    log('mutate');
+});
+
+mutObs.observe(document.querySelector('#mutator'),
+    { childList: true, attributes: true });
+
+window.addEventListener('message', function(ev) {
+    switch(ev.data) {
+        case 'startTest':
+            window.requestAnimationFrame(startTest);
+            break;
+        default:
+            break;
+    }
+});
+
+</script>
+</body>
+</html>

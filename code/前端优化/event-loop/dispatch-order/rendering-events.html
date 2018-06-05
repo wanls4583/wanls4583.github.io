@@ -1,0 +1,511 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <title>event-loop rendering events</title>
+  <style>
+  .question {
+    font-style: italic;
+  }
+  table {
+    font-family: sans-serif;
+  }
+  .scriptstart {
+    background-color: #DDD;
+  }
+  .scriptend {
+    background-color: #AAA;
+  }
+  .promisea {
+    background-color: rgba(0,0,255, 0.1);
+  }
+  .mutate {
+    background-color: rgba(0,0,255, 0.2);
+  }
+  .promiseb {
+    background-color: rgba(0,0,255, 0.3);
+  }
+  .timeouta {
+    background-color: rgba(255,255,0,0.1);
+  }
+  .timeoutb {
+    background-color: rgba(255,255,0,0.2);
+  }
+  .resize {
+    background-color: rgba(0,255,0,0.1);
+  }
+  .scroll {
+    background-color: rgba(0,255,0,0.2);
+  }
+  .matchmedia {
+    background-color: rgba(0,255,0,0.3);
+  }
+  .animationstart {
+    background-color: rgba(0,255,0,0.4);
+  }
+  .rafa {
+    background-color: rgba(255,255,0,0.3);
+  }
+  .rafapromise {
+    color: rgba(0,0,255, 0.7);
+    background-color: rgba(255,255,0,0.4);
+  }
+  .rafb {
+    background-color: rgba(255,255,0,0.5);
+  }
+  </style>
+</head>
+<h2>A dive into event loop specification</h2>
+
+<p>Event loop
+<a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">specification</a>
+has two main parts:</p>
+<ul>
+  <li>first part deals with task dispatch:
+    <ul>
+      <li>pick a task,
+      <li>execute it
+      <li>perform a microtask checkpoint
+    </ul>
+  <li>second part specifies what happens if rendering update is needed:
+    <ul>
+      <li>execute many pre-rendering steps:
+        <ol>
+          <li>resize
+          <li>scroll
+          <li>media query
+          <li>CSS animations
+          <li>fullscreen
+          <li>animation frame callbacks
+          <li>intersection observer
+        </ol>
+      <li>then paint
+    </ul>
+</ul>
+<p>
+
+<h2>Existing browser conformance to the spec</h2>
+<p>Conformance was tested with a <a href="shell.html">test page</a> that triggers a number of events at once, and records the order in which
+they are executed. Fullscreen events were not tested.</p>
+<p>Here are the results.</p>
+<ol>
+  <li>Microtasks are <span class="promisea">purple</span>.
+  <li><span class="timeouta">Timeout</span> task is used as an indicator for the first part of the event loop.
+  <li><span class="rafa">rAF</span> callback is used as an indicator to the end of the event loop.
+</ol>
+
+<table id="testTable">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script>
+(function() {
+
+  var classMap = [
+    { p: /script start/, c: "scriptstart"},
+    { p: /script end/, c: "scriptend"},
+    { p: /promise A/, c: "promisea"},
+    { p: /mutate/, c: "mutate"},
+    { p: /promise B/, c: "promiseb"},
+    { p: /timeout A/, c: "timeouta"},
+    { p: /timeout B/, c: "timeoutb"},
+    { p: /scroll/, c: "scroll"},
+    { p: /matchMedia/, c: "matchmedia"},
+    { p: /resize/, c: "resize"},
+    { p: /animationstart/, c: "animationstart"},
+    { p: /rAF A$/, c: "rafa"},
+    { p: /rAF A promise$/, c: "rafapromise"},
+    { p: /rAF B$/, c: "rafb"},
+  ];
+  function getClassName(str) {
+    for (var m of classMap) {
+      if (str.match(m.p))
+        return m.c;
+    }
+    console.error("baad");
+    return "";
+  }
+
+  function fillResults(browser, results) {
+    var table = document.querySelector("#testTable");
+    var title = document.createElement('td');
+    title.innerText = browser;
+    table.querySelector('thead').querySelector('tr').appendChild(title);
+    var tbody = table.querySelector('tbody');
+    for (var i=0; i<results.length; ++i) {
+      var td = document.createElement('td');
+      td.classList.add(getClassName(results[i]));
+      td.innerText = results[i];
+      if (i >= tbody.children.length)
+        tbody.appendChild(document.createElement('tr'));
+      tbody.children[i].appendChild(td);
+    }
+  };
+  fillResults("Standard", [
+    "script start",
+    "script end",
+    "promise A",
+    "mutate",
+    "promise B",
+    "timeout A",
+    "timeout B",
+    "resize",
+    "scroll",
+    "matchMedia",
+    "animationstart",
+    "rAF A",
+    "rAF A promise",
+    "rAF B"
+  ]);
+ fillResults("Chrome", [
+    "0.0 script start",
+    "1.2 script end",
+    "1.41 promise A",
+    "1.67 mutate",
+    "2 promise B",
+    "10.73 timeout A",
+    "10.91 timeout B",
+    "13.54 scroll",
+    "13.83 matchMedia",
+    "13.99 resize",
+    "14.2 animationstart",
+    "14.38 rAF A",
+    "14.58 rAF A promise",
+    "14.74 rAF B"
+  ]);
+
+  fillResults("Safari", [
+    "0.0 script start",
+    "12.15 script end",
+    "12.46 promise A",
+    "13.63 mutate",
+    "13.75 timeout A",
+    "13.91 timeout B",
+    "14.86 scroll",
+    "14.9 promise B",
+    "15.19 matchMedia",
+    "17.08 animationstart",
+    "17.23 resize",
+    "29.31 rAF A",
+    "29.48 rAF A promise",
+    "29.53 rAF B",
+  ]);
+  fillResults("Edge", [
+    "0 script start",
+    "1.99 script end",
+    "2.31 promise A",
+    "2.51 mutate",
+    "2.6 promise B",
+    "2.8 timeout A",
+    "2.97 timeout B",
+    "3.21 animationstart",
+    "16.15 scroll",
+    "18.01 rAF A",
+    "18.35 rAF A promise",
+    "18.58 rAF B",
+    "18.84 matchMedia",
+    "19.08 resize",
+  ]);
+  fillResults("Firefox", [
+    "0 script start",
+    "1.25 animationstart",
+    "2.25 script end",
+    "3.06 mutate",
+    "3.98 scroll",
+    "5.05 matchMedia",
+    "5.56 resize",
+    "11.71 promise A",
+    "12.17 promise B",
+    "12.5 timeout A",
+    "13.2 timeout B",
+    "15.75 rAF A",
+    "16.18 rAF B",
+    "18.96 rAF A promise",
+  ]);
+})();
+</script>
+
+<h2>Predictabilty</h2>
+<p>The test shows that predictability is poor.
+This is not surprising.
+Event loop is one of the oldest parts of browser code, and was specified
+after implementation.
+The discrepancies are:</p>
+
+<h3>1. Promises</h3>
+<p>2 browsers diverge from the spec: Safari divergence is minor, <a href="https://bugs.webkit.org/show_bug.cgi?id=160857">bug</a> has been filed. Firefox is <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1193394">aware</a> of the problems, and working on it.</p>
+
+<h3>2. Event predictability</h3>
+<p>There are two ways in which event ordering is broken:</p>
+
+<h4>2.1 Events are fired outside of the event loop</h4>
+<p>Confirming this is tricky. "Start of the loop" cannot be observed directly. Timeout task is used as an approximation for loop start. If browser implements timeouts
+independently of the event loop, this approximation might not hold.
+This might be what's throwing off Firefox results.</p>
+<p>2 browsers diverge from the spec here:</p>
+<p>Edge fires <code>matchMedia</code> and <code>resize</code> outside of the event loop.</p>
+<p>Firefox fires all events outside of the event loop. </p>
+
+<p class="question">What should be done about this? Are Firefox results accurate?</p>
+
+<h4>2.2 Event ordering</h4>
+<p>Every browser does it a little differently, and none of them completely follow the spec.</p>
+<p class="question">either: Should we all fix our ordering to match the spec?</p>
+<p class="question">or: Should the spec be fixed instead?</p>
+<p class="question">What are the reasons for the current ordering in the spec?</p>
+
+<h2>Other issues</h2>
+
+<h3>Specification maintenability</h3>
+<p>Every specification that needs a slot in the paint cycle must add another line to event loop spec.
+</p>
+<p>This is fragile. Currently, "run CSS animations and send events", and
+"run the fullscreen rendering steps" references are missing links. External
+spec has changed, but event loop was not updated.</p>
+<p>We can rewrite the specification. Instead of it being a list of steps, it can become an ordered task queue.</p>
+<p class="question">Should we rewrite existing paint spec as an ordered task queue?</p>
+<p>If we do, there are few design questions</p>
+<p class="question">Task registration is tricky. External specs will have to specify task registration.</p>
+<p class="question">Sort order: tasks still need to be sorted. This sort order must be centralized, global?</p>
+
+<h3>Throttling other events</h3>
+<p>Other events might benefit from throttling. ex: mousemove, pointermove, xhr progress.</p>
+<p>Existing spec does not define any mechanism for throttled events. Touch events
+are currently throttled ad-hoc (Edge, Safari, Chrome for Android?).</p>
+<p>Should we do it, and how we do event throttling has been
+<a href="https://github.com/w3c/pointerevents/issues/9">discussed</a>, but it is not
+settled. The main issue is what to do about dropped events. Leading proposal is
+to keep dropped events available as <a href="https://github.com/w3c/pointerevents/issues/22">getCoalescedEvents</a>
+<p class="question">Throttling is already being implemented. Are there things we can agree on we could spec?</p>
+</p>
+
+<h3>Event suppression</h3>
+<p>We should be aware that spec allows suppression of rendering steps for hidden windows.</p>
+<p>This might cause trouble if we move non-suppresable events into rendering slot.</p>
+
+<h2>Related work</h2>
+<p><a href="http://bit.ly/rendering-pipeline">Rendering Processing Model</a>:
+Rendering pipeline is intertwined with the event loop. Also discusses ordering
+of style/layout updates.</p>
+
+<p>Task Scheduling for w3ctag: <a href="https://github.com/w3ctag/spec-reviews/issues/72">w3ctag</a></p>
+
+<p><a href="https://docs.google.com/document/d/1aM9AqyYuceRHOmsJZXFKcgi_D4jvFAymYvI36OEwIpI/edit">rAF aligned input events</a> in <a https://www.chromestatus.com/features/4892570664566784">chrome</a></p>
+<h2>Existing spec</h2>
+<pre>
+
+
+
+
+Existing spec:
+### What does existing spec do?
+
+5) Run the resize steps
+
+If doc’s viewport has had its width or height changed (e.g. as a result of the user resizing the browser window, or changing the page zoom scale factor, or an iframe element’s dimensions are changed) since the last time these steps were run, fire an event named resize at the Window object associated with doc.
+
+6) Run the scroll steps
+For each item target in doc’s pending scroll event targets, in the order they were added to the list, run these substeps:
+
+If target is a Document, fire an event named scroll that bubbles at target.
+Otherwise, fire an event named scroll at target.
+Empty doc’s pending scroll event targets.
+Fires an event, first target gets notified first
+
+7) Evaluate media queries and report changes
+
+For each MediaQueryList object target that has doc as its document, in the order they were created, oldest first, run these substeps:
+
+If target’s matches state has changed since the last time these steps were run, dispatch a new event to target using the MediaQueryList interface, with its type attribute initialized to change, its isTrusted attribute initialized to true, its media attribute initialized to target’s media, and its matches attribute initialized to target’s matches state.
+
+8) run CSS animations and send events
+
+Not specified.
+
+9)  run the fullscreen rendering steps
+
+Not specified.
+
+10) run the animation frame callbacks
+
+For each entry in callbacks, in order: invoke the callback, passing now as the only argument, and if an exception is thrown, report the exception.
+
+11) run the update intersection observations steps
+
+Let observer list be a list of all IntersectionObservers whose root is in the DOM tree of document.
+For each observer in observer list:
+
+12) Paint
+
+## Predictablility OKRs
+Concrete standards proposal and tests for event loop behavior
+https://github.com/atotic/event-loop
+Specify that some events fire just before rAF
+Engage other vendors in discussion about which events should be defined to be coupled to rAF, and to what extent their order should be defined Write interop tests for rAF-coupled events
+
+##Existing event loop spec##
+  <p>An <span>event loop</span> must continually run through the following steps for as long as it
+  exists:</p>
+
+  <ol>
+
+   <!-- lots of places in the spec refer to "step 1" -->
+
+   <li id="step1">
+
+    <p>Select the oldest <span data-x="concept-task">task</span> on one of the <span>event
+    loop</span>'s <span data-x="task queue">task queues</span>, if any, ignoring, in the case of a
+    <span>browsing context</span> <span>event loop</span>, tasks whose associated
+    <code>Document</code>s are not <span>fully active</span>. The user agent may pick any <span>task
+    queue</span>. If there is no task to select, then jump to the <i>microtasks</i> step below.</p>
+
+   </li>
+
+   <!-- note: reference to 'previous step' below -->
+
+   <li><p>Set the <span>event loop</span>'s <span>currently running task</span> to the <span
+   data-x="concept-task">task</span> selected in the previous step.</p></li>
+
+   <li><p><i>Run</i>: Run the selected <span data-x="concept-task">task</span>.</p></li>
+
+   <li><p>Set the <span>event loop</span>'s <span>currently running task</span> back to
+   null.</p></li>
+
+   <li><p>Remove the task that was run in the <i>run</i> step above from its <span>task
+   queue</span>.</p></li>
+
+   <li><p><i>Microtasks</i>: <span>Perform a microtask checkpoint</span>.</p></li>
+
+   <li>
+
+    <p><i>Update the rendering</i>: If this <span>event loop</span> is a <span>browsing
+    context</span> <span>event loop</span> (as opposed to a <a href="#workers">worker</a>
+    <span>event loop</span>), then run the following substeps.</p>
+
+    <ol>
+
+     <li><p>Let <var>now</var> be the value that would be returned by the <code>Performance</code>
+     object's <code data-x="dom-Performance-now">now()</code> method. <ref spec=HRT></p>
+
+     <li>
+
+      <p>Let <var>docs</var> be the list of <code>Document</code> objects associated with the
+      <span>event loop</span> in question, sorted arbitrarily except that the following conditions
+      must be met:</p>
+
+      <ul>
+
+       <li><p>Any <code>Document</code> <var>B</var> that is <span>nested through</span> a
+       <code>Document</code> <var>A</var> must be listed after <var>A</var> in the list.</p></li>
+
+       <li><p>If there are two documents <var>A</var> and <var>B</var> whose <span
+       data-x="concept-document-bc">browsing contexts</span> are both <span data-x="nested browsing
+       context">nested browsing contexts</span> and their <span data-x="browsing context
+       container">browsing context containers</span> are both elements in the same
+       <code>Document</code> <var>C</var>, then the order of <var>A</var> and <var>B</var> in the
+       list must match the relative <span>tree order</span> of their respective <span
+       data-x="browsing context container">browsing context containers</span> in
+       <var>C</var>.</p></li>
+
+      </ul>
+
+      <p>In the steps below that iterate over <var>docs</var>, each <code>Document</code> must be
+      processed in the order it is found in the list.</p>
+
+     </li>
+
+     <li>
+
+      <p>If there are <span data-x="top-level browsing context">top-level browsing contexts</span>
+      <var>B</var> that the user agent believes would not benefit from having their rendering
+      updated at this time, then remove from <var>docs</var> all <code>Document</code> objects whose
+      <span data-x="concept-document-bc">browsing context</span>'s <span>top-level browsing
+      context</span> is in <var>B</var>.</p>
+
+      <div class="note">
+       <p>Whether a <span>top-level browsing context</span> would benefit from having its rendering
+       updated depends on various factors, such as the update frequency. For example, if the browser
+       is attempting to achieve a 60Hz refresh rate, then these steps are only necessary every 60th
+       of a second (about 16.7ms). If the browser finds that a <span>top-level browsing
+       context</span> is not able to sustain this rate, it might drop to a more sustainable 30Hz for
+       that set of <code>Document</code>s, rather than occasionally dropping frames. (This
+       specification does not mandate any particular model for when to update the rendering.)
+       Similarly, if a <span>top-level browsing context</span> is in the background, the user agent
+       might decide to drop that page to a much slower 4Hz, or even less.</p>
+
+       <p>Another example of why a browser might skip updating the rendering is to ensure certain
+       <span data-x="concept-task">tasks</span> are executed immediately after each other, with only
+       <span data-x="perform a microtask checkpoint">microtask checkpoints</span> interleaved (and
+       without, e.g., <span data-x="run the animation frame callbacks">animation frame
+       callbacks</span> interleaved). For example, a user agent might wish to coalesce timer
+       callbacks together, with no intermediate rendering updates.</p>
+      </div>
+
+     </li>
+
+     <li>
+
+      <p>If there are a <span data-x="nested browsing context">nested browsing contexts</span>
+      <var>B</var> that the user agent believes would not benefit from having their rendering
+      updated at this time, then remove from <var>docs</var> all <code>Document</code> objects whose
+      <span data-x="concept-document-bc">browsing context</span> is in <var>B</var>.</p>
+
+      <p class="note">As with <span data-x="top-level browsing context">top-level browsing
+      contexts</span>, a variety of factors can influence whether it is profitable for a browser to
+      update the rendering of <span data-x="nested browsing context">nested browsing
+      contexts</span>. For example, a user agent might wish to spend less resources rendering
+      third-party content, especially if it is not currently visible to the user or if resources are
+      constrained. In such cases, the browser could decide to update the rendering for such content
+      infrequently or never.</p>
+
+     </li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <span>run the resize
+     steps</span> for that <code>Document</code>, passing in <var>now</var> as the timestamp. <ref
+     spec="CSSOMVIEW"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <span>run the scroll
+     steps</span> for that <code>Document</code>, passing in <var>now</var> as the timestamp. <ref
+     spec="CSSOMVIEW"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <span>evaluate media queries
+     and report changes</span> for that <code>Document</code>, passing in <var>now</var> as the timestamp. <ref
+     spec="CSSOMVIEW"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <dfn>run CSS animations and send
+     events</dfn> for that <code>Document</code>, passing in <var>now</var> as the timestamp. <ref
+     spec="CSSANIMATIONS"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <dfn>run the fullscreen rendering
+     steps</dfn> for that <code>Document</code>, passing in <var>now</var> as the timestamp. <ref
+     spec="FULLSCREEN"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <span>run the animation frame
+     callbacks</span> for that <code>Document</code>, passing in <var>now</var> as the
+     timestamp.</p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, <span>run the update
+     intersection observations steps</span> for that <code>Document</code>, passing in <var>now</var> as the
+     timestamp. <ref spec="INTERSECTIONOBSERVER"/></p></li>
+
+     <li><p>For each <span>fully active</span> <code>Document</code> in <var>docs</var>, update the
+     rendering or user interface of that <code>Document</code> and its <span
+     data-x="concept-document-bc">browsing context</span> to reflect the current state.</p></li>
+
+    </ol>
+
+   </li>
+
+   <li><p>If this is a <a href="#workers">worker</a> <span>event loop</span> (i.e. one running for a
+   <code>WorkerGlobalScope</code>), but there are no <span data-x="concept-task">tasks</span> in the
+   <span>event loop</span>'s <span data-x="task queue">task queues</span> and the
+   <code>WorkerGlobalScope</code> object's <span
+   data-x="dom-WorkerGlobalScope-closing">closing</span> flag is true, then destroy the <span>event
+   loop</span>, aborting these steps, resuming the <span>run a worker</span> steps described in the
+   <a href="#workers">Web workers</a> section below.</p></li>
+
+   <li><p>Return to the <a href="#step1">first step</a> of the <span>event loop</span>.</p></li>
+</pre>
