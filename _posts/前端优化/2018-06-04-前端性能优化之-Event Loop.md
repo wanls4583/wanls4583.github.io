@@ -177,7 +177,7 @@ while (!mExiting)
 - 打开页面后，切换到调试工具 Performance 选项卡，点击 record 按钮开始记录页面事件活动
 - 在控制台输入 testST() 运行函数
 
-**testST 结果：**
+**`testST()` 结果：**
 
 ![](http://wanls4583.github.io/images/posts/前端优化/event-loop-1.png)
 
@@ -185,7 +185,7 @@ while (!mExiting)
 
 如果运行 testPro()，结果则不是这样了。这里将 setTimout 换成了 promise， 由于 requesAnimationFrame 和 scroll 也是宏任务，所以在执行完回调后，会检查微任务队列并执行所有任务，所以里面的样式更改会在本次 render 过程里被更新到页面。
 
-**testPro 结果：**
+**`testPro()` 结果：**
 
 ![](http://wanls4583.github.io/images/posts/前端优化/event-loop-2.png)
 

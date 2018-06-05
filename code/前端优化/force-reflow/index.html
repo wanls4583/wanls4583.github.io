@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>reflow-test</title>
+	<style type="text/css">
+		.d1{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		.d2{
+			width: 110px;
+			height: 110px;
+			background: blue;
+		}
+		.outer{
+			height: 400px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="d1"></div>
+	</div>
+	<div class="d2"></div>
+	<script type="text/javascript">
+		var div1 = document.querySelector('.d1');
+		var div2 = document.querySelector('.d2');
+
+		function testScr(flag){
+			if(flag){
+				div1.style.width = '200px';
+			}else{
+				div1.style.backgroundColor = 'blue';
+			}
+			window.scrollBy(0,0);
+		}
+
+		function testCStyle(divNum,prop,ifGet){
+			var div = null;
+			switch(divNum){
+				case 1: div = div1;break;
+				case 2: div = div2;break;
+			}
+			div1.style.width = '200px';
+			var style = getComputedStyle(div);
+			if(ifGet){
+				style[prop];
+			}
+		}
+	</script>
+</body>
+</html>
