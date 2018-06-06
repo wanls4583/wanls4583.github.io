@@ -384,6 +384,7 @@ img::-moz-selection {
     border-left: 3px solid #458B74; 
     margin: 0;
     margin-right: 10px;
+    padding-left: 10px;
     font-size: .9em;
     background-color: #FFF;
     text-indent: 20px;
@@ -891,11 +892,11 @@ img::-moz-selection {
   }
 
   .post-list__post-title {
-   margin-top: 5px;
+    margin-top: 5px;
     margin-bottom: .2em;
     font-size: 1.5em;
     line-height: 1.3em;
-    padding-left: 10px;
+    padding-left: 10px !important;
   }
   .post-list__post-title a {
    color: #333333; 
