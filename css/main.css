@@ -205,8 +205,11 @@ blockquote p:last-child {
   margin-bottom: 0; }
 blockquote p:first-child {
   margin-bottom: 15px; }
-ol, ul {
+ul {
   margin: 0 0 1.3em 2.5em; }
+ol{
+  margin: 0 0 1.3em 1em; 
+}
 ol li, ul li {
   margin: 0 0 .2em 0;
   line-height: 1.6em; }
