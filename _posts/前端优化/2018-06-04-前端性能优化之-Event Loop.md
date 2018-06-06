@@ -33,7 +33,7 @@ Worker event loops are simpler: each worker has one event loop, and the worker p
 The browser main thread is an event loop. It's an infinite loop that keeps the process alive. It waits for events (like layout and paint events) and processes them. <br><br>
 *——— [https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#Event_loop](https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#Event_loop)*
 
-浏览器的渲染引擎是一个单线程，网页渲染相关的操作基本上都在这个线程里完成（当然，这个单线程会会调用其他线程来协同工作），在 FireFox 和 Safari 浏览器里，这个单线程就是浏览器的主线，而在 Chrome 浏览器里，这个单线程就是渲染进程的主线程（之所以会这样，是因为 Blink 内核的多进程模型和 Webkit2 内核不一样，具体可参考[Webkit构架和模块](https://wanls4583.github.io/2018/05/webkit学习笔记-(3\)Webkit构架和模块/)）。主线程是一个事件循环，以下是 FireFox 中关于主事件循环的代码：
+浏览器的渲染引擎是一个单线程，网页渲染相关的操作基本上都在这个线程里完成（当然，这个单线程会会调用其他线程来协同工作），在 FireFox 和 Safari 浏览器里，这个单线程就是浏览器的主线，而在 Chrome 浏览器里，这个单线程就是渲染进程的主线程（之所以会这样，是因为 Blink 内核的多进程模型和 Webkit2 内核不一样，具体可参考[Webkit构架和模块](https://wanls4583.github.io/2018/05/webkit学习笔记-(3)Webkit构架和模块/)）。主线程是一个事件循环，以下是 FireFox 中关于主事件循环的代码：
 
 ```javascript
 while (!mExiting)
