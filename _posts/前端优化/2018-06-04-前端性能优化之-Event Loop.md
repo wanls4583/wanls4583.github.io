@@ -33,7 +33,7 @@ Worker event loops are simpler: each worker has one event loop, and the worker p
 The browser main thread is an event loop. It's an infinite loop that keeps the process alive. It waits for events (like layout and paint events) and processes them. <br><br>
 *——— [https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#Event_loop](https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#Event_loop)*
 
-浏览器的渲染引擎是一个单线程，网页渲染相关的操作基本上都在这个线程里完成（当然，这个单线程会会调用其他线程来协同工作），在 FireFox 和 Safari 浏览器里，这个单线程就是浏览器的主线，而在 Chrome 浏览器里，这个单线程就是渲染进程的主线程（之所以会这样，是因为 Blink 内核的多进程模型和 Webkit2 内核不一样，具体可参考[](https://wanls4583.github.io/2018/05/webkit学习笔记-\(3\)Webkit构架和模块/)）。主线程是一个事件循环，以下是 FireFox 中关于主事件循环的代码：
+浏览器的渲染引擎是一个单线程，网页渲染相关的操作基本上都在这个线程里完成（当然，这个单线程会会调用其他线程来协同工作），在 FireFox 和 Safari 浏览器里，这个单线程就是浏览器的主线，而在 Chrome 浏览器里，这个单线程就是渲染进程的主线程（之所以会这样，是因为 Blink 内核的多进程模型和 Webkit2 内核不一样，具体可参考[Webkit构架和模块](https://wanls4583.github.io/2018/05/webkit学习笔记-\(3\)Webkit构架和模块/)）。主线程是一个事件循环，以下是 FireFox 中关于主事件循环的代码：
 
 ```javascript
 while (!mExiting)
@@ -95,7 +95,7 @@ while (!mExiting)
 
 如果页面有注册这些事件的函数，则会生成一个宏任务放进宏任务队里，并返回事件循环。当由这一步触发的事件任务经过事件循环都执行完成后，最后才是真正的更新操作。如果在执行任务的期间使用 JavaScript 更改了样式或者DOM元素，使页面需要 reflow/repaint，则浏览器会将这些更改添加到更新队列，并在本轮更新中更新。
 
-这些事件是依次触发的，Chrome正常，不过有些浏览器会与标准不一致[测试](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/前端优化/event-loop/dispatch-order)。
+这些事件是依次触发的，Chrome正常，不过有些浏览器会与标准不一致[(测试)](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/前端优化/event-loop/dispatch-order)。
 
 #### 更新流程验证
 
