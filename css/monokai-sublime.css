@@ -80,7 +80,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   color: #75715e;
 }
 div.highlight{
-  padding-left: 15px;
+  /*padding-left: 15px;*/
 }
 pre.highlight{
   background: #23241f !important;
