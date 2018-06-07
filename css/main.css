@@ -653,6 +653,15 @@ hr {
 .post-meta {
     margin: 0;
     color: #c7c7c7;
+    line-height: 20px;
+}
+
+.post-meta img{
+    vertical-align: top;
+}
+
+.post-meta .post-meta__date{
+    vertical-align: top;
 }
 
 .post-meta__date span {
@@ -1150,6 +1159,14 @@ i {
     margin-top: 3px;
     color: #c7c7c7;
     float: left;
+}
+
+.post-list__meta--date img{
+    vertical-align: top;
+}
+
+.post-list__meta--date span{
+    vertical-align: top
 }
 
 .post-list__meta--tags {
