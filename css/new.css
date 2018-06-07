@@ -1,0 +1,78 @@
+.tag_page_wrap ul,.tag_page_wrap li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+/*标签列表-begin*/
+li.tag_item{
+	display: inline-block;
+    height: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    line-height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+.tag_item a{
+	color: #75b17d
+}
+.tag_item:hover a{
+	color: #fff;
+}
+.tag_item:hover{
+	background: #75b17d;
+}
+/*标签列表-end*/
+
+/*文章列表-begin*/
+ul.post_title_list_box{
+	margin-top: 30px;
+}
+li.post_title_list_wrap{
+	position: relative;
+	padding-top: 40px;
+}
+.tag_title{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 40px 30px 0 0;
+	width: 30%;
+	border-right: 2px solid #75b17d;
+	text-align: right;
+	box-sizing: border-box;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #75b17d;
+}
+.tag_title span{
+	display: inline-block;
+	text-align: left;
+}
+.tag_title img{
+	height: 1.2em;
+	position: absolute;
+	top: 44px;
+	right: 5px;
+}
+ul.post_title_list{
+	width: 70%;
+	margin-left: 30%;
+	padding-left: 50px;
+}
+.post_title a{
+	line-height: 2em;
+	color: #75b17d;
+}
+.post_title a:hover{
+	color: #333;
+}
