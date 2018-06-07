@@ -1078,6 +1078,7 @@ i {
 }
 
 .post-list li {
+    width: 100%;
     margin: 0 0 2.2em 0;
     float: left;
 
