@@ -4,26 +4,22 @@ title:
 header: 根据快速导航到相应的文章
 group: navigation
 ---
-<article class="tag_page_wrap">
-	<ul class="tag_list_box">
-		{% for tag in site.tags %} 
-		<li class="tag_item"><a href="#{{ tag[0] }}-ref">{{ tag[0] }}</a></li>
-		{% endfor %}
-	</ul>
+{% include JB/setup %}
 
-	<ul class="post_title_list_box">
-		{% for tag in site.tags %} 
-			<li class="post_title_list_wrap" id="{{ tag[0] }}-ref">
-				<h3 class="tag_title"><span>{{tag[0]}}</span><img src="/images/tag-icon.png"/></h3>
-				<ul class="post_title_list">
-					{% for post in tag[1] %} 
-						<li class="post_title"><a href="{{post.url}}">{{post.title}}</a></li>
-					{% endfor %}
-				</ul>
-			</li>
-		{% endfor %}
-	</ul>
-</article>
+<ul class="tag_box inline">
+  {% assign tags_list = site.tags %}  
+  {% include JB/tags_list %}
+</ul>
+
+<div class = "card">
+{% for tag in site.tags %} 
+
+  <h3 class="dir" id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+  <ul>
+    {% assign pages_list = tag[1] %}  
+    {% include JB/pages_list %}
+  </ul>
 
 
-
+{% endfor %}
+</div>
