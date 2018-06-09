@@ -2,7 +2,7 @@
 permalink:    pretty
 name:         blog Name  
 description:  李松的个人博客
-url:          http://blog.lisong.hn.cn  
+# url:          http://blog.lisong.hn.cn  
 # Assets
 #
 # We specify the directory for Jekyll so we can use @imports.
