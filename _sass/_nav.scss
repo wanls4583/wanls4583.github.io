@@ -1,4 +1,8 @@
 .nav{
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	left: 0;
 	width: 100%;
 	#chk{
 		display: none;
@@ -67,8 +71,6 @@
 
 @media #{$medium}{
 	.nav{
-		position: fixed;
-		z-index: 99;
 		top: 30px;
 		left: 30px;
 		width: #{$menu_width}px;
