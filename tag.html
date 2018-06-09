@@ -22,7 +22,10 @@ layout: page
 						<h3><span>{{tag[0]}}</span></h3>
 						<ul class="post_title_list">
 							{% for post in tag[1] %} 
-							<li><a class="post_title" href="{{post.url}}">{{post.title}}</a></li>
+							<li>
+								<a class="post_title" href="{{post.url}}">{{post.title}}</a>
+								<span class="time">&nbsp;&nbsp;{{ post.date | date: "%B %d, %Y"}}</span>
+							</li>
 							{% endfor %}
 						</ul>
 					</div>
