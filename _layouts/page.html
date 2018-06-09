@@ -1,17 +1,27 @@
----
-layout: default
----
-
-<article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="{{page.date | date: date_to_xmlschema}}" itemprop="datePublished" class="post-meta__date date">{{page.date | date: "%F"}}</time>
-      <span class="post-meta__tags tags"></span>
-    </div>
-    <h1 class="post-title">{{ page.title }}</h1>
-  </header>
-
-  <section class="post">
-    {{ content }}
-  </section>
-</article>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
+	<title>{% if page.title %}{{ page.title }}{% endif %}</title>
+	{% if page.title=='标签' %}
+	<link rel="stylesheet" type="text/css" href="/css/tag.css">
+	{% endif %}
+	{% if page.title=='首页' %}
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+	{% endif %}
+	{% if page.title=='全部文章' %}
+	<link rel="stylesheet" type="text/css" href="/css/all.css">
+	{% endif %}
+	<link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body>
+	{% include navigation.html %}
+	<div class="page_container">
+		<header></header>
+		<div class="content_container">
+			{{content}}
+		</div>
+	</div>
+	
+</body>
+</html>

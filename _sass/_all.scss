@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+.all_page_wrap {
+	// 列表标签-begin
+    .tag_list_box {
+        overflow: auto;
+        padding: 0 0 30px 40px;
+        text-align: justify;
+    }
+    .tag_item {
+        display: inline-block;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        border-radius: 4px;
+        overflow: hidden;
+        a {
+            float: left;
+            padding: 0 0.5em;
+            background-color: $tag_color;
+            color: #fff;
+            line-height: 2em;
+            font-size: 0.8em;
+        }
+        a:hover {
+            background-color: adjust-color($tag_color, $red: -20, $blue: -20, $green: -20);
+        }
+        .icon_size {
+            float: left;
+            min-width: 12px;
+            padding: 0 0.2em;
+            line-height: 2em;
+            color: #fff;
+            font-size: 0.8em;
+            background-color: adjust-color($tag_color, $red: -30, $blue: -30, $green: -30);
+            text-align: center;
+        }
+    }
+    // 列表标签-end
+   
+    // 文章列表-begin
+    .post_title_list_box {
+        .post_title_list_wrap {
+            position: relative;
+            .axis {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background-color: $tag_color;
+                font-size: 2em;
+                font-weight: bold;
+                color: #333;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    z-index: 1;
+                    top: 24px;
+                    left: -4px;
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 50%;
+                    background-color: #fff;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    z-index: 0;
+                    top: 20px;
+                    left: -8px;
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 50%;
+                    background-color: $tag_color;
+                }
+            }
+            .right_wrap {
+                padding-bottom: 40px;
+                ._wrap {
+                    padding: 20px;
+                    position: relative;
+                    margin-left: 40px;
+                    background-color: #fff;
+                    border-radius: 4px;
+                    box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
+                    h3 {
+                        margin: 0 0 10px;
+                        padding: 0;
+                        font-size: 1.5em;
+                        line-height: 1.5em;
+                        color: #000;
+                    }
+                    .post_title {
+                        margin: 0;
+                        padding: 0;
+                        line-height: 2.5em;
+                        font-size: 0.8em;
+                        color: #333;
+                        &:hover {
+                            text-decoration: underline;
+                            color: #000;
+                        }
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 22px;
+                        right: 100%;
+                        border: 16px solid transparent;
+                        border-top-width: 10px;
+                        border-bottom-width: 10px;
+                        border-right-color: #fff;
+                    }
+                }
+                .post_title_list {}
+            }
+        }
+    }
+    // 文章列表-end
+}
+
+.anchor_all a {
+    background-color: rgba(255, 248, 213, 0.1);
+}

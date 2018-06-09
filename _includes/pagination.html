@@ -1,16 +1,66 @@
-<hr class="post-list__divider " />
-
-<nav class="pagination" role="navigation">
-
-	<!-- 百度搜索 -->
-	<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=12441349038163667913' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();
-	</script>
-	
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  <ul class="page-list">
+    {% comment %} Link for previous page {% endcomment %}
     {% if paginator.previous_page %}
-        <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="{{ paginator.previous_page_path }}#blog">&larr; 最近</a>
+      {% if paginator.previous_page == 1 %}
+        <li><a href="{{ site.url }}" class="btn">上一页</a></li>
+      {% else %}
+        <li><a href="{{ site.url }}/page/{{ paginator.previous_page }}/" class="btn">上一页</a></li>
+      {% endif %}
     {% endif %}
-    <span class="pagination__page-number">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+
+    {% comment %} First page {% endcomment %}
+    {% if paginator.page == 1 %}
+      <li><strong class="current-page">1</strong></li>
+    {% else %}
+      <li><a href="{{ site.url }}">1</a></li>
+    {% endif %}
+
+    {% assign page_start = 2 %}
+    {% if paginator.page > 4 %}
+      {% assign page_start = paginator.page | minus: 2 %}
+      {% comment %} Ellipsis for truncated links {% endcomment %}
+      <li>…</li>
+    {% endif %}
+
+    {% assign page_end = paginator.total_pages | minus: 1 %}
+    {% assign pages_to_end = paginator.total_pages | minus: paginator.page %}
+    {% if pages_to_end > 4 %}
+      {% assign page_end = paginator.page | plus: 2 %}
+    {% endif %}
+
+    {% for index in (page_start..page_end) %}
+      {% if index == paginator.page %}
+        <li><strong class="current-page">{{index}}</strong></li>
+      {% else %}
+        {% comment %} Distance from current page and this link {% endcomment %}
+        {% assign dist = paginator.page | minus: index %}
+        {% if dist < 0 %}
+          {% comment %} Distance must be a positive value {% endcomment %}
+          {% assign dist = 0 | minus: dist %}
+        {% endif %}
+        <li><a href="{{ site.url }}/page/{{ index }}/">{{index}}</a></li>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Ellipsis for truncated links {% endcomment %}
+    {% if pages_to_end > 3 %}
+      <li>…</li>
+    {% endif %}
+
+    {% if paginator.page == paginator.total_pages %}
+      <li><strong class="current-page">{{ paginator.page }}</strong></li>
+    {% else %}
+      <li><a href="{{ site.url }}/page/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
+    {% endif %}
+
+    {% comment %}
+      Link next page
+    {% endcomment %}
     {% if paginator.next_page %}
-        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="{{ paginator.next_page_path }}#blog">更早 &rarr;</a>
+      <li><a href="{{ site.url }}/page/{{ paginator.next_page }}/" class="btn">下一页</a></li>
     {% endif %}
-</nav>
+  </ul>
+</div>
+{% endif %}

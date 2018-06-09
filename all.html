@@ -1,0 +1,64 @@
+---
+layout: page
+title: 全部文章
+comments: false
+---
+<article class="all_page_wrap">
+	<ul class="tag_list_box">
+		{% assign count = 1 %}
+		{% assign pre_year = 0 %}
+		{% for post in site.posts %} 
+			{% assign count = count | plus: 1 %}
+			{% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+			{% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+			{% if this_year != pre_year %}
+		<li class="tag_item">
+			<a href="#{{ this_year }}-ref">{{ this_year }}</a>
+			{% elsif  this_year!=next_year%}
+			<span class="icon_size">{{ count }}</span>
+			{% assign count = 1 %}
+		</li>
+			{% endif %}
+			{% assign pre_year = this_year %}
+		{% endfor %}
+	</ul>
+	<div class="post_title_list_box">
+	{% for post in site.posts %}
+	    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+	    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+
+	    {% if forloop.first %}
+	    <section class="post_title_list_wrap" id="{{ this_year }}-ref">
+	      <div class="axis"></div>
+	      <div class="right_wrap">
+		    <div class="_wrap">
+		      <h3>{{ this_year }}</h3>
+		      <ul class="post_title_list">
+	    {% endif %}
+	        	<li>
+		        	<a class="post_title" href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">
+		        		{{ post.title }}
+		        	</a>
+	        	</li>
+	    {% if forloop.last %}
+	      	  </ul>
+	  		</div>
+	  	  </div>
+	    </section>
+	    {% else %}
+	    {% if this_year != next_year %}
+	      	  </ul>
+	  		</div>
+	  	  </div>
+	    </section>
+	    <section class="post_title_list_wrap" id="{{ next_year }}-ref">
+	      <div class="axis"></div>
+	      <div class="right_wrap">
+		    <div class="_wrap">
+		      <h3 class="year-heading">{{next_year}}</h3>
+		      <ul class="post_title_list">
+	    {% endif %}
+	    {% endif %}
+	{% endfor %}
+	<div class="post_title_list_box">
+</article>

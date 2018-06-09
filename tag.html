@@ -1,0 +1,33 @@
+---
+title: 标签
+layout: page
+---
+<article class="tag_page_wrap">
+	<ul class="tag_list_box">
+		{% for tag in site.tags %} 
+		<li class="tag_item">
+			<a href="#{{ tag[0] }}-ref">{{ tag[0] }}</a>
+			{% assign word = tag[0]%}
+			<span class="icon_size">{{site.tags[word].size}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<ul class="post_title_list_box">
+		{% for tag in site.tags %} 
+			<li class="post_title_list_wrap" id="{{ tag[0] }}-ref">
+				<div class="axis"></div>
+				<div class="right_wrap">
+					<div class="_wrap">
+						<h3><span>{{tag[0]}}</span></h3>
+						<ul class="post_title_list">
+							{% for post in tag[1] %} 
+							<li><a class="post_title" href="{{post.url}}">{{post.title}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</article>
