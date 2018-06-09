@@ -39,7 +39,7 @@ comments: false
 		        	<a class="post_title" href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">
 		        		{{ post.title }}
 		        	</a>
-		        	<span class="time">&nbsp;&nbsp;{{ post.date | date: "%B %d, %Y"}}</span>
+		        	<span class="time">&nbsp;&nbsp;{{ post.date | date: "%Y-%m-%d %H:%M"}}</span>
 	        	</li>
 	    {% if forloop.last %}
 	      	  </ul>

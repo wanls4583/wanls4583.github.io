@@ -24,7 +24,7 @@ layout: page
 							{% for post in tag[1] %} 
 							<li>
 								<a class="post_title" href="{{post.url}}">{{post.title}}</a>
-								<span class="time">&nbsp;&nbsp;{{ post.date | date: "%B %d, %Y"}}</span>
+								<span class="time">&nbsp;&nbsp;{{ post.date | date: "%Y-%m-%d %H:%M"}}</span>
 							</li>
 							{% endfor %}
 						</ul>
