@@ -33,3 +33,11 @@ ul,li{
 a{
     text-decoration: none;
 }
+
+.head_wrap{
+    min-height: 400px;
+    img{
+        width: 100%;
+        min-height: 100%;
+    }
+}
