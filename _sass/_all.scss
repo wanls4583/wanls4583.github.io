@@ -1,6 +1,9 @@
 @charset "utf-8";
 
 .all_page_wrap {
+    .tag_list_box{
+        padding-left: 110px;
+    }
     .tag_item{
         margin-right: 1em;
     }
@@ -11,6 +14,7 @@
             .axis {
                 position: absolute;
                 top: 0;
+                left: 70px;
                 bottom: 0;
                 width: 4px;
                 background-color: $tag_color;
@@ -40,12 +44,22 @@
                     background-color: $tag_color;
                 }
             }
+            .left_year{
+                position: absolute;
+                left: 0;
+                top: 15px;
+                margin: 0;
+                padding: 0;
+                font-size: 1.5em;
+                line-height: 1.5em;
+                color: #000;
+            }
             .right_wrap {
                 padding-bottom: 40px;
                 ._wrap {
                     padding: 20px;
                     position: relative;
-                    margin-left: 40px;
+                    margin-left: 110px;
                     background-color: #fff;
                     border-radius: 4px;
                     box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
@@ -65,6 +79,7 @@
                     }
                     .post_title {
                         display: inline-block;
+                        max-width: 350px;
                         line-height: 1.5em;
                         color: #333;
                         &:hover {
@@ -86,12 +101,6 @@
                         .tag{
                             margin-right: 20px;
                         }
-                        .iconfont{
-                            display: inline-block;
-                            margin-right: 0.5em;
-                            font-style:normal;
-                            font-family:"iconfont" !important;
-                        }
                     }
                     &:after {
                         content: '';
@@ -107,6 +116,11 @@
                 }
             }
         }
+        .post_title_list_wrap:last-of-type{
+            .right_wrap{
+                padding-bottom: 0;
+            }
+        }
     }
     // 文章列表-end
 }
@@ -115,9 +129,34 @@
     background-color: rgba(255, 248, 213, 0.1);
 }
 
+// 小设备隐藏左边时间轴
+@media #{$small}{
+    .axis{
+        display: none;
+    }
+    .left_year{
+        display: none;
+    }
+    ._wrap{
+        margin-left: 0 !important;
+        &:after{
+            display: none;
+        }
+    }
+    .tag_list_box{
+        padding-left: 0 !important;
+    }
+}
+
+
 @media #{$large}{
     .tag_list_box{
         padding-bottom: 30px !important;
+    }
+    ._wrap{
+        h3{
+            display: none;
+        }
     }
     .right_wrap{
         .post_title_list {

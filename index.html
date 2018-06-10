@@ -7,7 +7,7 @@ layout: page
 		{% for post in paginator.posts %} 
 		<li class="post_item">
 			<div class="item_header">
-				<span class="time">{{ post.date | date: "%B %d, %Y"}}</span>
+				<span class="time"><i class="iconfont">&#xe621;</i>{{ post.date | date: "%B %d, %Y"}}</span>
 				{% if site.reading_time %}
 				<span class="reading-time">
 				{% assign readtime = post.content | strip_html | number_of_words | divided_by:site.words_per_minute %}
@@ -21,8 +21,8 @@ layout: page
 				</span>
 				{% endif %}
 			</div>
-			<a href="{{post.url}}" class="item_title">
-				{{post.title}}
+			<a title="{{post.title}}" href="{{post.url}}" class="item_title">
+				<span><i class="iconfont">&#xe793;</i>{{post.title}}</span>
 			</a>
 			<div class="item_cont">
 				{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;

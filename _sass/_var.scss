@@ -2,9 +2,10 @@
    Screen sizes
    ========================================================================== */
 
-$small                           : "only screen and (min-width: 30em)";
-$medium                          : "only screen and (min-width: 48em)";
+$small                           : "only screen and (max-width: 30em)";
+$medium                          : "only screen and (min-width: 30em ) and (max-width: 62.5em)";
 $large                           : "only screen and (min-width: 62.5em)";
+$bigger-then-small						 : "only screen and (min-width: 30em)";
 
 /* 
    color

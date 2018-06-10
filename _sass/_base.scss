@@ -58,3 +58,10 @@ a{
     url('/iconfont/iconfont.woff') format('woff'),
     url('/iconfont/iconfont.ttf') format('truetype')
 }
+
+.iconfont{
+    display: inline-block;
+    font-family: 'iconfont';
+    font-style: normal;
+    margin-right: 0.5em;
+}

@@ -29,6 +29,7 @@ comments: false
 
 	    {% if forloop.first %}
 	    <section class="post_title_list_wrap" id="{{ this_year }}-ref">
+	      <h3 class="left_year">{{ this_year }}</h3>
 	      <div class="axis"></div>
 	      <div class="right_wrap">
 		    <div class="_wrap">
@@ -58,10 +59,11 @@ comments: false
 	  	  </div>
 	    </section>
 	    <section class="post_title_list_wrap" id="{{ next_year }}-ref">
+	      <h3 class="left_year">{{ next_year }}</h3>
 	      <div class="axis"></div>
 	      <div class="right_wrap">
 		    <div class="_wrap">
-		      <h3 class="year-heading">{{next_year}}</h3>
+		      <h3>{{ next_year }}</h3>
 		      <ul class="post_title_list">
 	    {% endif %}
 	    {% endif %}

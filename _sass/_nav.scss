@@ -71,6 +71,7 @@
 
 @media #{$medium}{
 	.nav{
+		position: fixed;
 		top: 30px;
 		left: 30px;
 		width: #{$menu_width}px;

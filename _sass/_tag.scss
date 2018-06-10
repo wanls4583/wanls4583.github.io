@@ -1,6 +1,9 @@
 @charset "utf-8";
 
 .tag_page_wrap {
+    .tag_list_box{
+        padding-left: 40px;
+    }
     // 文章列表-begin
     .post_title_list_box {
         .post_title_list_wrap {
@@ -63,6 +66,7 @@
                     .post_title {
                         display: inline-block;
                         line-height: 1.5em;
+                        max-width: 350px;
                         color: #333;
                         &:hover {
                             text-decoration: underline;
@@ -79,12 +83,6 @@
                         &:hover{
                             color: #000;
                         }
-                        .iconfont{
-                            display: inline-block;
-                            margin-right: 0.5em;
-                            font-style:normal;
-                            font-family:"iconfont" !important;
-                        }
                     }
                     &:after {
                         content: '';
@@ -100,6 +98,11 @@
                 }
             }
         }
+        .post_title_list_wrap:last-of-type{
+            .right_wrap{
+                padding-bottom: 0;
+            }
+        }
     }
     // 文章列表-end
 }
@@ -108,10 +111,26 @@
     background-color: rgba(255, 248, 213, 0.1);
 }
 
-@media #{$large}{
+// 小设备隐藏左边时间轴
+@media #{$small}{
     .tag_list_box{
-        padding-bottom: 30px !important;
+        padding-left: 0 !important;
     }
+    .axis{
+        display: none;
+    }
+    ._wrap{
+        margin-left: 0 !important;
+        &:after{
+            display: none;
+        }
+    }
+    .tag_list_box{
+        padding-left: 0;
+    }
+}
+
+@media #{$bigger-then-small}{
     .right_wrap{
         .post_title_list {
             li{
@@ -126,5 +145,11 @@
             font-size: 1em !important;
             border-bottom-style: none !important;
         }
+    }
+}
+
+@media #{$large}{
+    .tag_list_box{
+        padding-bottom: 30px !important;
     }
 }

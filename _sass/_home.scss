@@ -31,6 +31,9 @@
 			font-weight: bold;
 			text-decoration: none;
 		}
+		.item_title:hover span{
+			text-shadow: 0 6px 12px rgba(34,34,34,0.4);
+		}
 		.item_cont{
 			margin-top: 20px;
 			color: #999;
