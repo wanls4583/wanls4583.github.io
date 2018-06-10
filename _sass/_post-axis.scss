@@ -1,0 +1,135 @@
+@charset "utf-8"; 
+
+// 文章列表-begin
+.post_title_list_box {
+    .post_title_list_wrap {
+        position: relative;
+        .axis {
+            position: absolute;
+            top: 0;
+            left: 70px;
+            bottom: 0;
+            width: 4px;
+            background-color: $tag_color;
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            &:before {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                top: 24px;
+                left: -4px;
+                height: 12px;
+                width: 12px;
+                border-radius: 50%;
+                background-color: #fff;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                z-index: 0;
+                top: 20px;
+                left: -8px;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: $tag_color;
+            }
+        }
+        .left_year {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            margin: 0;
+            padding: 0;
+            font-size: 1.5em;
+            line-height: 1.5em;
+            color: #000;
+        }
+        .right_wrap {
+            padding-bottom: 40px;
+            ._wrap {
+                padding: 20px;
+                position: relative;
+                margin-left: 110px;
+                background-color: #fff;
+                border-radius: 4px;
+                box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
+                h3 {
+                    margin: 0 0 10px;
+                    padding: 0;
+                    font-size: 1.5em;
+                    color: #000;
+                }
+                .post_title_list {
+                    li {
+                        position: relative;
+                        line-height: 2.5em;
+                        font-size: 1em;
+                    }
+                }
+                .post_title {
+                    display: inline-block;
+                    max-width: 350px;
+                    line-height: 1.2em;
+                    color: #333;
+                    &:hover {
+                        text-decoration: underline;
+                        color: #000;
+                    }
+                }
+                .r_w {
+                    display: block;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                    font-size: 0.8em;
+                    a {
+                        color: #999;
+                    }
+                    a:hover {
+                        color: #000;
+                    }
+                    .tag {
+                        margin-right: 20px;
+                    }
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 22px;
+                    right: 100%;
+                    margin-right: -2px;
+                    border: 16px solid transparent;
+                    border-top-width: 10px;
+                    border-bottom-width: 10px;
+                    border-right-color: #fff;
+                }
+            }
+        }
+    }
+    .post_title_list_wrap:last-of-type {
+        .right_wrap {
+            padding-bottom: 0;
+        }
+    }
+} 
+// 文章列表-end
+
+// 小设备隐藏左边时间轴
+@media #{$small} {
+    .axis {
+        display: none;
+    }
+    .left_year {
+        display: none;
+    }
+    ._wrap {
+        margin-left: 0 !important;
+        &:after {
+            display: none;
+        }
+    }
+    .tag_list_box {
+        padding-left: 0 !important;
+    }
+}

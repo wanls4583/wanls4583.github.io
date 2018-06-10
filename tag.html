@@ -26,7 +26,11 @@ layout: page
 								<a class="post_title" href="{{post.url}}" title="{{ post.title }}">
 									{{post.title}}
 								</a>
-								<a class="time" href="/all/#{{post.date | date: '%Y'}}-ref"><i class="iconfont">&#xe621;</i>{{ post.date | date: "%Y-%m-%d"}}</a>
+								<div class="r_w">
+									<a class="time" href="/all/#{{post.date | date: '%Y'}}-ref">
+										<i class="iconfont">&#xe621;</i>{{ post.date | date: "%Y-%m-%d"}}
+									</a>
+								</div>
 							</li>
 							{% endfor %}
 						</ul>

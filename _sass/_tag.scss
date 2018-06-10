@@ -4,130 +4,16 @@
     .tag_list_box{
         padding-left: 40px;
     }
-    // 文章列表-begin
-    .post_title_list_box {
-        .post_title_list_wrap {
-            position: relative;
-            .axis {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 4px;
-                background-color: $tag_color;
-                font-size: 2em;
-                font-weight: bold;
-                color: #333;
-                &:before {
-                    content: '';
-                    position: absolute;
-                    z-index: 1;
-                    top: 24px;
-                    left: -4px;
-                    height: 12px;
-                    width: 12px;
-                    border-radius: 50%;
-                    background-color: #fff;
-                }
-                &:after {
-                    content: '';
-                    position: absolute;
-                    z-index: 0;
-                    top: 20px;
-                    left: -8px;
-                    height: 20px;
-                    width: 20px;
-                    border-radius: 50%;
-                    background-color: $tag_color;
-                }
-            }
-            .right_wrap {
-                padding-bottom: 40px;
-                ._wrap {
-                    padding: 20px;
-                    position: relative;
-                    margin-left: 40px;
-                    background-color: #fff;
-                    border-radius: 4px;
-                    box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
-                    h3 {
-                        margin: 0 0 10px;
-                        padding: 0;
-                        font-size: 1.5em;
-                        line-height: 1.2em;
-                        color: #000;
-                    }
-                    .post_title_list {
-                        li{
-                            position: relative;
-                            line-height: 2.5em;
-                            font-size: 1em;
-                        }
-                    }
-                    .post_title {
-                        display: inline-block;
-                        line-height: 1.5em;
-                        max-width: 350px;
-                        color: #333;
-                        &:hover {
-                            text-decoration: underline;
-                            color: #000;
-                        }
-                    }
-                    .time{
-                        display: block;
-                        border-bottom: 1px solid rgba(0,0,0,0.1);
-                        line-height: 2.5em;
-                        font-size: 0.8em;
-                        color: #999;
-                        cursor: pointer;
-                        &:hover{
-                            color: #000;
-                        }
-                    }
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        top: 22px;
-                        right: 100%;
-                        margin-right: -2px;
-                        border: 16px solid transparent;
-                        border-top-width: 10px;
-                        border-bottom-width: 10px;
-                        border-right-color: #fff;
-                    }
-                }
-            }
-        }
-        .post_title_list_wrap:last-of-type{
-            .right_wrap{
-                padding-bottom: 0;
-            }
-        }
+    .axis{
+        padding-left: 0 !important;
     }
-    // 文章列表-end
+    ._wrap{
+        padding-left: 40 !important;
+    }
 }
 
 .anchor_tag a {
     background-color: rgba(255, 248, 213, 0.1);
-}
-
-// 小设备隐藏左边时间轴
-@media #{$small}{
-    .tag_list_box{
-        padding-left: 0 !important;
-    }
-    .axis{
-        display: none;
-    }
-    ._wrap{
-        margin-left: 0 !important;
-        &:after{
-            display: none;
-        }
-    }
-    .tag_list_box{
-        padding-left: 0;
-    }
 }
 
 @media #{$bigger-then-small}{
@@ -137,7 +23,7 @@
                 padding-right: 100px;
             }
         }
-        .time{
+        .r_w{
             position: absolute;
             right: 0;
             top: 0;
