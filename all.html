@@ -36,10 +36,15 @@ comments: false
 		      <ul class="post_title_list">
 	    {% endif %}
 	        	<li>
-		        	<a class="post_title" href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">
+		        	<a class="post_title" href="{{ post.url }}" title="{{ post.title }}">
 		        		{{ post.title }}
 		        	</a>
-		        	<span class="time">&nbsp;&nbsp;~{{ post.date | date: "%Y-%m-%d"}}</span>
+		        	<div class="r_w">
+		        		{% for tag in post.tags %}
+		        		<a class="tag" href="/tag/#{{tag}}-ref"><i class="iconfont">&#xe602;</i>{{tag}}</a>
+		        		{% endfor %}
+			        	<a class="time" href="/all/#{{post.date | date: '%Y'}}-ref"><i class="iconfont">&#xe621;</i>{{post.date | date: "%Y-%m-%d"}}</a>
+		        	</div>
 	        	</li>
 	    {% if forloop.last %}
 	      	  </ul>

@@ -23,8 +23,10 @@ layout: page
 						<ul class="post_title_list">
 							{% for post in tag[1] %} 
 							<li>
-								<a class="post_title" href="{{post.url}}">{{post.title}}</a>
-								<span class="time">&nbsp;&nbsp;~{{ post.date | date: "%Y-%m-%d"}}</span>
+								<a class="post_title" href="{{post.url}}" title="{{ post.title }}">
+									{{post.title}}
+								</a>
+								<a class="time" href="/all/#{{post.date | date: '%Y'}}-ref"><i class="iconfont">&#xe621;</i>{{ post.date | date: "%Y-%m-%d"}}</a>
 							</li>
 							{% endfor %}
 						</ul>

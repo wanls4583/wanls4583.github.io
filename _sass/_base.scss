@@ -9,6 +9,7 @@ html,body{
 }
 
 .page_container {
+    max-width:800px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left:20px;
@@ -17,9 +18,7 @@ html,body{
 
 @media #{$large} {
     .page_container {
-        max-width:800px;
-        margin-top: 50px;
-        margin-bottom: 20px;
+        margin-top: 40px;
         margin-left: auto;
         margin-right: auto
     }
@@ -50,4 +49,12 @@ a{
         height: 100%;
         background-color: rgba(0,0,0,0.1);
     }
+}
+
+@font-face{
+    font-family: 'iconfont';
+    src: url('/iconfont/iconfont.eot');
+    src: url('/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('/iconfont/iconfont.woff') format('woff'),
+    url('/iconfont/iconfont.ttf') format('truetype')
 }

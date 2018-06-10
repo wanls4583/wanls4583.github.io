@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+// 标签列表-begin
+.tag_list_box {
+    overflow: auto;
+    padding: 0 0 10px 40px;
+    text-align: justify;
+}
+
+.tag_item {
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    a {
+        float: left;
+        padding: 0 0.5em;
+        background-color: $tag_color;
+        color: #fff;
+        line-height: 2em;
+        font-size: 0.8em;
+    }
+    a:hover {
+        background-color: adjust-color($tag_color, $red: -60, $blue: -60, $green: -60);
+    }
+    .icon_size {
+        float: left;
+        min-width: 12px;
+        padding: 0 0.2em;
+        line-height: 2em;
+        color: #fff;
+        font-size: 0.8em;
+        background-color: adjust-color($tag_color, $red: -30, $blue: -30, $green: -30);
+        text-align: center;
+    }
+} // 标签列表-end

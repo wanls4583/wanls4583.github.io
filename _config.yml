@@ -26,4 +26,4 @@ plugins:
 # Gems
 gems:
   - jekyll-paginate
-  - jekyll-sitemap
+  # - jekyll-sitemap
