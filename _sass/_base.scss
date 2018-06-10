@@ -51,6 +51,22 @@ a{
         display: flex;
         align-items: center;
         justify-content: center;
+        .name{
+            position: relative;
+            user-select: none;
+            img{
+                max-width: 100%;
+            }
+            &:after{
+                content: '';
+                position: absolute;
+                width: 100%;
+                top: 0;
+                bottom: 0;
+                z-index: 1;
+            }
+        }
+        
     }
 }
 
