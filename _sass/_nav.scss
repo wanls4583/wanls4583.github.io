@@ -69,7 +69,7 @@
 	}
 }
 
-@media #{$medium}{
+@media #{$bigger-then-small}{
 	.nav{
 		position: fixed;
 		top: 30px;
