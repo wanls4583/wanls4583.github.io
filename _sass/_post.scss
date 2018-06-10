@@ -22,7 +22,6 @@
 	}
 	h1{
 		font-size: 2em;
-		line-height: 2em;
 		font-weight: bold;
 		padding: 30px 0 0 0;
 	}
@@ -57,6 +56,6 @@
 @media #{$small}{
 	h1{
 		font-size: 1.5em;
-		line-height: 1.5em;
+		line-height: 1.2em;
 	}
 }
