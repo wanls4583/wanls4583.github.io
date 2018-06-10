@@ -51,10 +51,11 @@ header {
             z-index: 1;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             .name {
                 position: relative;
                 user-select: none;
@@ -69,6 +70,13 @@ header {
                     bottom: 0;
                     z-index: 1;
                 }
+            }
+            .motto{
+                font-size: 1.5em;
+                font-family: "Lato",Calibri,Arial,sans-serif;
+                font-weight: bold;
+                color: #fff;
+                text-shadow: 0 6px 12px rgba(34,34,34,0.4);
             }
         }
     }

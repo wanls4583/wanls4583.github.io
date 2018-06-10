@@ -1,8 +1,17 @@
 <div class="head_wrap">
+	{% if page.title=='首页' %}
 	<img class="bg" src="/images/abstract-1.jpg">
+	{% elsif page.title=='标签'%}
+	<img class="bg" src="/images/abstract-5.jpg">
+	{% elsif page.title=='全部文章' %}
+	<img class="bg" src="/images/abstract-10.jpg">
+	{% else %}
+	<img class="bg" src="/images/abstract-12.jpg">
+	{% endif %}
 	<div class="intro_wrap">
 		<div class="name">
 			<img src="/images/name.png"></img>
 		</div>
+		<p class="motto">stay hungry stay foolish</p>
 	</div>
 </div>
