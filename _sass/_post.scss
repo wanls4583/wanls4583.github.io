@@ -42,8 +42,17 @@
 	h5{
 		font-size: 0.6em;
 	}
-	.highlight,p,table{
-		margin: 15px 0;
+	.post-content{
+		blockquote{
+			font-size: 16px !important;
+		}
+		.highlight,p,table{
+			margin: 15px 0 !important;
+		}
+		.highlighter-rouge{
+			background-color: #fff5f5 !important;
+			color: #ff502c !important;
+		}
 	}
 }
 
