@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
+	<link rel="stylesheet" type="text/css" href="/assets/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/post.css">
+	<link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body>
+	{% include navigation.html %}
+	<header>{% include header.html %}</header>
+	<div class="page_container">
+		<div class="content_container">
+			<h1>{{page.title}}</h1>
+			<p class="post-meta">
+				{% for tag in page.tags %}
+        		<a class="tag" href="/tag/#{{tag}}-ref">
+        			<i class="iconfont">&#xe602;</i>{{tag}}
+        		</a>
+        		{% endfor %}
+				{{ page.date | date: "%B %d, %Y"}}
+			</p>
+			{{content}}
+		</div>
+		<div class="pre_next_warp">
+			{% if page.previous %}
+			<div class="pre_wrap">
+				<a href="{{page.previous.url}}">上一篇&nbsp;&nbsp;{{page.previous.title}}</a>
+			</div>
+		    {% endif %}
+			{% if page.next %}
+			<div class="next_wrap">
+				<a href="{{page.next.url}}">下一篇&nbsp;&nbsp;{{page.next.title}}</a>
+			</div>
+		    {% endif %}
+		</div>
+	</div>
+	<footer>{% include footer.html %}</footer>
+</body>
+</html>

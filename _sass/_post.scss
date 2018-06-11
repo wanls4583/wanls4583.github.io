@@ -1,13 +1,43 @@
 @charset "utf-8";
 
 .page_container {
-    box-shadow: 0 0 0 0, 0 6px 12px rgba(34,34,34,0.1)
+    box-shadow: 0 0 0 0, 0 6px 12px rgba(34,34,34,0.1);
+    background-color: #fff;
+    .post-meta{
+    	color: #999;
+    	a{
+    		color: #999 !important;
+    		margin-right: 20px;
+    	}
+    	a:hover{
+    		color: #000 !important;
+    	}
+    }
+    .pre_next_warp{
+		margin: 20px 20px 0;
+		padding: 50px 0;
+		overflow: auto;
+		border-top: 1px solid rgba(0,0,0,0.1);
+		.pre_wrap,.next_wrap{
+			a{
+				color: #666;
+			}
+			a:hover{
+				color: #000;
+			}
+		}
+		.pre_wrap{
+			float: left;
+		}
+		.next_wrap{
+			float: right;
+		}
+	}
 }
 
 .content_container{
 	overflow: auto;
 	padding: 20px;
-	background-color: #fff;
 	color: #666;
 	h1,h2,h3,h4,h5{
 		color: #333;

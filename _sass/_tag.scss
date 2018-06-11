@@ -16,7 +16,10 @@
     background-color: rgba(255, 248, 213, 0.1);
 }
 
-@media #{$bigger-then-small}{
+@media #{$large}{
+    .tag_list_box{
+        padding-bottom: 30px !important;
+    }
     .right_wrap{
         .post_title_list {
             li{
@@ -31,11 +34,5 @@
             font-size: 1em !important;
             border-bottom-style: none !important;
         }
-    }
-}
-
-@media #{$large}{
-    .tag_list_box{
-        padding-bottom: 30px !important;
     }
 }
