@@ -43,15 +43,21 @@
 		font-size: 0.6em;
 	}
 	.post-content{
+		ul li{
+			list-style-type: disc
+		}
+		ol li{
+			list-style-type: decimal;
+		}
 		blockquote{
-			font-size: 16px !important;
+			font-size: 16px;
 		}
 		.highlight,p,table{
-			margin: 15px 0 !important;
+			margin: 15px 0;
 		}
-		.highlighter-rouge{
-			background-color: #fff5f5 !important;
-			color: #ff502c !important;
+		strong .highlighter-rouge{
+			background-color: #fff5f5;
+			color: #ff502c;
 		}
 	}
 }
