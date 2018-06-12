@@ -1,7 +1,10 @@
 ---
 title: JS数据结构-KMP算法
+comments: true
 layout: post
 date: 2018-6-12 21:31:00
+tags:
+- JS数据结构
 ---
 
 > KMP 算法核心思想为：通过为模式串建立失败链接，使主串在匹配时不需要回溯索引
