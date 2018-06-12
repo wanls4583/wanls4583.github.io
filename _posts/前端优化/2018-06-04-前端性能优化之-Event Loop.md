@@ -1,7 +1,7 @@
 ---
 author: wanls4583
 comments: true
-date: 2018-06-04 14:06:00
+date: 2018-06-04 14:06
 layout: post
 title: 前端性能优化之-Event Loop
 categories:

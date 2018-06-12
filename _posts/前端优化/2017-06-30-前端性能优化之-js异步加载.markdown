@@ -1,10 +1,9 @@
 ---
 author: wanls4583
 comments: true
-date: 2017-06-30 03:52:33+00:00
+date: 2017-06-30 03:52
 layout: post
-title: js异步加载
-wordpress_id: 252
+title: 前端性能优化之-js异步加载
 categories:
 - 前端优化
 

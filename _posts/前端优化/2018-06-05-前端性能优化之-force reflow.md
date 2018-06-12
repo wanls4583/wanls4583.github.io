@@ -1,7 +1,7 @@
 ---
 author: wanls4583
 comments: true
-date: 2018-06-05 20:15:00
+date: 2018-06-05 20:15
 layout: post
 title: 前端性能优化之-force reflow
 categories:

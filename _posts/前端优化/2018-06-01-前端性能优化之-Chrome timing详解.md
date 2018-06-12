@@ -1,7 +1,7 @@
 ---
 author: wanls4583
 comments: true
-date: 2018-06-01 14:26:00
+date: 2018-06-01 14:26
 layout: post
 title: 前端性能优化之-Chrome timing详解
 categories:
