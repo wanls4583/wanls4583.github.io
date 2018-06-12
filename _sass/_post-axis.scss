@@ -65,12 +65,13 @@
                 .post_title_list {
                     li {
                         position: relative;
-                        line-height: 2.5em;
+                        /*line-height: 2.5em;*/
                         font-size: 1em;
                     }
                 }
                 .post_title {
                     display: inline-block;
+                    padding: 0.8em 0;
                     max-width: 350px;
                     line-height: 1.2em;
                     color: #333;
@@ -81,6 +82,7 @@
                 }
                 .r_w {
                     display: block;
+                    padding: 0 0 0.8em;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                     font-size: 0.8em;
                     a {
