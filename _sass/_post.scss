@@ -72,29 +72,27 @@
 	h5{
 		font-size: 0.6em;
 	}
-	.post-content{
-		ul{
-			margin-left: 1.2em;
-		}
-		ol{
-			margin-left: 1em;
-		}
-		ul>li{
-			list-style-type: disc
-		}
-		ol>li{
-			list-style-type: decimal;
-		}
-		blockquote{
-			font-size: 16px;
-		}
-		.highlight,p,table{
-			margin: 15px 0;
-		}
-		code.highlighter-rouge{
-			background-color: #fff5f5;
-			color: #ff502c;
-		}
+	ul{
+		margin-left: 1.2em;
+	}
+	ol{
+		margin-left: 1em;
+	}
+	ul>li{
+		list-style-type: disc
+	}
+	ol>li{
+		list-style-type: decimal;
+	}
+	blockquote{
+		font-size: 16px;
+	}
+	.highlight,p,table{
+		margin: 15px 0;
+	}
+	code.highlighter-rouge{
+		background-color: #fff5f5;
+		color: #ff502c;
 	}
 }
 
