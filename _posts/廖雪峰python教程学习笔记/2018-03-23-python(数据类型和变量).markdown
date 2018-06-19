@@ -3,13 +3,13 @@ author: wanls4583
 comments: true
 date: 2018-03-23 16:28:38+00:00
 layout: post
-title: 数据类型和变量
+title: python(数据类型和变量)
 wordpress_id: 504
 categories:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 tags:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 ---
 

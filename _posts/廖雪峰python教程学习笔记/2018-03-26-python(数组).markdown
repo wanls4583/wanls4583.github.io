@@ -3,13 +3,13 @@ author: wanls4583
 comments: true
 date: 2018-03-26 13:51:23+00:00
 layout: post
-title: 数组
+title: python(数组)
 wordpress_id: 509
 categories:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 tags:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 ---
 

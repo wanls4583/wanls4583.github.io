@@ -3,13 +3,13 @@ author: wanls4583
 comments: true
 date: 2018-04-02 14:04:19+00:00
 layout: post
-title: list与dic
+title: python(list与dic)
 wordpress_id: 514
 categories:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 tags:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 ---
 
 ## dic

@@ -3,13 +3,13 @@ author: wanls4583
 comments: true
 date: 2018-03-25 15:08:20+00:00
 layout: post
-title: 字符串和编码
+title: python(字符串和编码)
 wordpress_id: 507
 categories:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 tags:
-- 廖雪峰python教程学习笔记
+- python学习笔记
 
 ---
 
