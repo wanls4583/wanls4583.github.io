@@ -20,7 +20,9 @@
         		{% endfor %}
 				{{ page.date | date: "%B %d, %Y"}}
 			</p>
-			{{content}}
+			<div class="post_content" id="post_content">
+				{{content}}
+			</div>
 		</div>
 		<div class="pre_next_warp">
 			{% if page.previous %}
@@ -36,5 +38,13 @@
 		</div>
 	</div>
 	<footer>{% include footer.html %}</footer>
+	<script src="https://cdn.jsdelivr.net/npm/auto-toc-js@1.0.0/dist/toc.min.js"></script>
+	<script type="text/javascript">
+		new Toc({
+		    wrapperId: 'post_content',
+		    insertId: 'post_content',
+		    showSerial: true
+		}).createToc();
+	</script>
 </body>
 </html>
