@@ -94,7 +94,8 @@ JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSO
 	console.log(Foo.prototype.constructor === Foo);//true   
 </script>
 ```
-Function、Object、Prototype、__proto__内存关系图
+
+Function、Object、Prototype、\__proto\__内存关系图
 
 <img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（二）函数与对象深入了解-1.png" alt="" />
 
@@ -213,5 +214,7 @@ instanceof操作符和对象的isPrototypeOf方法功能一样，只不过isProt
 ```
 
 参考：
-http://blog.csdn.net/cuew1987/article/details/15498121
-http://www.blogjava.net/heavensay/archive/2013/10/20/405440.html
+
+[http://blog.csdn.net/cuew1987/article/details/15498121](http://blog.csdn.net/cuew1987/article/details/15498121)
+
+[http://www.blogjava.net/heavensay/archive/2013/10/20/405440.html](http://www.blogjava.net/heavensay/archive/2013/10/20/405440.html)

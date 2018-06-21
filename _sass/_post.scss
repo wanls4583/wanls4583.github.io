@@ -157,6 +157,7 @@
 }
 
 .toc_wrap .hide_toc_btn {
+    cursor: pointer;
     position: absolute;
     top: 4px;
     right: 10px;
@@ -166,7 +167,7 @@
     display: none;
     padding: 10px;
     margin-bottom: 20px;
-    background: #f9f9f9;
+    background: #fbfbfb;
     line-height: 1.5;
     border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 1em;
