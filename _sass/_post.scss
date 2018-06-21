@@ -101,6 +101,9 @@
         background-color: #fff5f5;
         color: #ff502c;
     }
+    p{
+        overflow: auto;
+    }
 }
 
 @media #{$small} {
