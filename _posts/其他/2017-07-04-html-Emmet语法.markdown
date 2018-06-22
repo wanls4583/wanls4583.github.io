@@ -6,10 +6,10 @@ layout: post
 title: html-Emmet语法
 wordpress_id: 283
 categories:
-- 其他
+- 开发工具
 
 tags:
-- 其他
+- 开发工具
 
 ---
 

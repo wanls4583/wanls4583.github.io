@@ -6,10 +6,10 @@ layout: post
 title: npm包发布
 wordpress_id: 518
 categories:
-- 其他
+- 开发工具
 
 tags:
-- 其他
+- 开发工具
 ---
 
 ## npm包发布流程

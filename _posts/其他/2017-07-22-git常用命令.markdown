@@ -6,10 +6,10 @@ layout: post
 title: git常用命令
 wordpress_id: 360
 categories:
-- 其他
+- 开发工具
 
 tags:
-- 其他
+- 开发工具
 
 ---
 
@@ -56,6 +56,12 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ### git reset --soft commitid
 HEAD指向commitid，工作区和暂存区不变
+
+### git push --force origin master
+reset 到某个版本后，可以使用该命令强制推送到远程仓库，回滚远程仓库代码
+
+### git reset --hard origin/master
+同步远程代码到本地仓库
 
 ## 分支切换操作
 ### git branch branchname 
@@ -113,3 +119,9 @@ git rebase 不会产生新的历史记录：
 ## 修改commit注释
 ### git commit --amend
 该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。
+
+## 其他
+
+git diff --name-only <commit-1> <commit-2> #获取两次提交之间修改的文件
+
+git diff --name-only HEAD~ HEAD #获取最近依次提交修改的文件
