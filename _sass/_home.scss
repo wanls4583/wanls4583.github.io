@@ -21,24 +21,23 @@
 			overflow: hidden;
 			.time{
 				float: left;
+				margin-bottom: 10px;
 			}
 			.tag{
-				margin-left: 10px;
+				margin: 0 10px 10px 10px;
 				float: left;
-				color: #6f6f6f;
 			}
 			.tag:hover{
 				color: #333;
 				text-decoration: underline;
 			}
 			.reading-time{
-				margin-left: 10px;
 				float: right;
 			}
 		}
 		.item_title{
 			display: block;
-			margin-top: 20px;
+			margin-top: 10px;
 			color: #333;
 			font-size: 1.5em;
 			line-height: 1.2em;
