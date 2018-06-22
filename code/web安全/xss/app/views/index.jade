@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1 xss demo
+	//-'!='代表不转义
+	p!= xss
+	form(action="/add", method="post")
+		textarea(name="comment",rows=10,cols=50)
+		<br>
+		input(type="submit" value="提交评论")
+		<br>
+	p
+		a(href="/get") 获取评论
+		p!= comment
