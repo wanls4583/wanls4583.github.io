@@ -22,6 +22,8 @@ kramdown:
   use_coderay: true
 plugins:
   - jekyll-feed
+# 来必力评论系统id
+datauid: "MTAyMC8zNzEzOC8xMzY3Mg=="
 
 # Gems
 gems:
