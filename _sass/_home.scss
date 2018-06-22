@@ -18,6 +18,18 @@
 		.item_header{
 			color: #6f6f6f;
 			line-height: 1em;
+			overflow: hidden;
+			.time{
+				float: left;
+			}
+			.tag{
+				color: #6f6f6f;
+				float: left;
+			}
+			.tag:hover{
+				color: #333;
+				text-decoration: underline;
+			}
 			.reading-time{
 				float: right;
 			}
@@ -61,4 +73,12 @@
 
 .anchor_home a{
 	background-color: rgba(255,248,213,0.1);
+}
+
+@media #{$small}{
+	.item_header{
+		.reading-time{
+			float: left;
+		}
+	}
 }
