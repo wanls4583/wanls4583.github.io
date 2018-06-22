@@ -72,7 +72,7 @@ while (!mExiting)
 
 ### 更新详细流程
 
-![](http://on-img.com/chart_image/5b13d368e4b07596cf3b2b5c.png)
+![](https://wanls4583.github.io/images/posts/前端优化/2018-06-04-前端性能优化之-Event Loop-1.png)
 
 为了避免混淆，假设是从最近的一次页面更新完成后开始执行主循环的。
 
