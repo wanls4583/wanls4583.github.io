@@ -23,6 +23,18 @@
 			<div class="post_content" id="post_content">
 				{{content}}
 			</div>
+			<div class="pre_next_warp">
+				{% if page.previous %}
+				<div class="pre_wrap">
+					<a href="{{page.previous.url}}">上一篇&nbsp;&nbsp;{{page.previous.title}}</a>
+				</div>
+			    {% endif %}
+				{% if page.next %}
+				<div class="next_wrap">
+					<a href="{{page.next.url}}">下一篇&nbsp;&nbsp;{{page.next.title}}</a>
+				</div>
+			    {% endif %}
+			</div>
 			{% if site.datauid && page.comments%}
 			<!-- 来必力City版安装代码 -->
 			<div id="lv-container" data-id="city" data-uid="{{site.datauid}}">
@@ -42,18 +54,6 @@
 			</div>
 			<!-- City版安装代码已完成 -->
 			{% endif %}
-		</div>
-		<div class="pre_next_warp">
-			{% if page.previous %}
-			<div class="pre_wrap">
-				<a href="{{page.previous.url}}">上一篇&nbsp;&nbsp;{{page.previous.title}}</a>
-			</div>
-		    {% endif %}
-			{% if page.next %}
-			<div class="next_wrap">
-				<a href="{{page.next.url}}">下一篇&nbsp;&nbsp;{{page.next.title}}</a>
-			</div>
-		    {% endif %}
 		</div>
 	</div>
 	<footer>{% include footer.html %}</footer>
