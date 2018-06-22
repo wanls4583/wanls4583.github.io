@@ -23,14 +23,16 @@
 				float: left;
 			}
 			.tag{
-				color: #6f6f6f;
+				margin-left: 10px;
 				float: left;
+				color: #6f6f6f;
 			}
 			.tag:hover{
 				color: #333;
 				text-decoration: underline;
 			}
 			.reading-time{
+				margin-left: 10px;
 				float: right;
 			}
 		}
@@ -78,7 +80,7 @@
 @media #{$small}{
 	.item_header{
 		.reading-time{
-			float: left;
+			float: left !important;
 		}
 	}
 }
