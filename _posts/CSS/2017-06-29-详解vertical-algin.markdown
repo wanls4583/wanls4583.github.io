@@ -3,7 +3,7 @@ author: wanls4583
 comments: true
 date: 2017-06-29 11:59:03+00:00
 layout: post
-title: 详解line-height与vertical-algin
+title: 详解vertical-algin
 categories:
 - CSS
 
@@ -12,6 +12,7 @@ tags:
 ---
 
 首先我们来看下官方给出的`line-height`属性的解释:
+
 `line-height`属性会影响行框的布局。在应用到一个块级元素时，它定义了该元素中基线之间的最小距离而不是最大距离。`line-height` 与 `font-size` 的计算值之差（在 CSS 中成为“行间距”）分为两半，分别加到一个文本行内容的顶部和底部。可以包含这些内容的最小框就是行框。
 
 ```html

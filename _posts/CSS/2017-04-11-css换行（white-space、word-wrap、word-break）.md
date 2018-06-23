@@ -3,7 +3,7 @@ author: wanls4583
 comments: true
 date: 2017-04-11-css
 layout: post
-title: 换行（white-space、word-wrap、word-break）
+title: css换行（white-space、word-wrap、word-break）
 categories:
 - CSS
 
