@@ -117,11 +117,11 @@ tags:
 
 **结果：**
 
-![](https://wanls4583.github.io/images/posts/css/bfc-2.png)
+![](https://wanls4583.github.io/images/posts/CSS/bfc-2.png)
 
 如果将右边框`overflow: hidden`去掉，将会发生重叠：
 
-![](https://wanls4583.github.io/images/posts/css/bfc-3.png)
+![](https://wanls4583.github.io/images/posts/CSS/bfc-3.png)
 
 ### bfc的形成:
 - 根元素，即HTML元素
