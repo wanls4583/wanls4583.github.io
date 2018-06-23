@@ -125,10 +125,13 @@ img {
 当点击看夜景后，夜景透明度将慢慢从0变成1，慢慢显示出来，因为夜景是在上层，所以日景将慢慢消失。因为transition动画默认有逆向动画的特性，当点击看日景将夜景图片的透明度改为0的时候，夜景并不会突兀的立马消失，而是随着透明度慢慢的从1变为0，慢慢的消失，日景也随之慢慢的显现出来。
 
 ### animation
- @keyframes 规则和所有动画属性：
- ![这里写图片描述](https://wanls4583.github.io/images/posts/CSS/2017-04-16-css3 动画之transition，animation-2.jpg)
+
+@keyframes 规则和所有动画属性：
+
+![这里写图片描述](http://img.blog.csdn.net/20170416200131034?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 可以把所有属性写在一行：
+
 ```css
 div
 {
@@ -141,9 +144,11 @@ animation: myfirst 5s linear 2s infinite alternate running;
 -o-animation: myfirst 5s linear 2s infinite alternate running;
 }
 ```
-keyframes有两种写法：
 
-1.from和to
+### keyframes有两种写法
+
+#### 1.from和to
+
 ```css
 @keyframes myfirst
 {
@@ -151,7 +156,9 @@ from {background: red;}
 to {background: yellow;}
 }
 ```
-2.%
+
+#### 2.%
+
 ```css
 @keyframes myfirst
 {
@@ -169,9 +176,10 @@ animation主要用来实现多帧动画，多帧的状态是通过@keyframes来�
 - animation-play-state默认的值是running，也即运行状态，可以通过js代码使其为pause来暂停动画，当动画暂停时，动画的运行时间animation-duration也将暂停计时，当再次变为running值时，可以从当前位置继续运行动画。
 - animation-fill-mode默认值为none，也即当动画结束时会回到起点的位置和状态，可以将其设置为forwards，这样当动画结束后会保持在终点的位置和状态。
 
-animation有三种方式触发：
+### animation有三种方式触发
 
-1.直接给元素添加动画，页面渲染时就触发
+#### 1.直接给元素添加动画，页面渲染时就触发
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -205,7 +213,8 @@ div {
 
 在这种情况下，元素的初始状态也是一帧，所以可以不用设置0%对应的状态
 
-2.hover触发
+#### 2.hover触发
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -246,7 +255,8 @@ img {
 
 这个效果和之前transition用hover触发的那个例子的效果一样，在用hover触发的情况下，动画的第一帧即元素当前所对应的状态，所以@keyframes night可以不设置0%的状态。
 
-3.用js脚本触发
+#### 3.用js脚本触发
+
 ```html
 <!doctype html>
 <html lang="en">
