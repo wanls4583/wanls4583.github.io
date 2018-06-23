@@ -128,7 +128,7 @@ img {
 
 @keyframes 规则和所有动画属性：
 
-![这里写图片描述](http://img.blog.csdn.net/20170416200131034?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://wanls4583.github.io/images/posts/CSS/2017-04-16-css3 动画之transition，animation-2.jpg)
 
 可以把所有属性写在一行：
 
