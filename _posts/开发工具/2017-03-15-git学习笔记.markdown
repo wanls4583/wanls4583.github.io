@@ -19,7 +19,7 @@ tags:
 
 Git 的版本库里存了很多东西，其中最重要的就是称为`stage`（或者叫`index`）的暂存区，还有 Git 为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
 
-![](http://img.blog.csdn.net/20170406140747557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/开发工具/2017-03-15-git学习笔记-1.jpg)
 
 注意事项：
 
@@ -67,7 +67,7 @@ $ git checkout master
 Switched to branch 'master'
 ```
 
-![](http://img.blog.csdn.net/20170406140917261?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/开发工具/2017-03-15-git学习笔记-2.jpg)
 
 然后，把dev分支的工作成果合并到master分支上：
 
@@ -110,7 +110,7 @@ Merge made by the 'recursive' strategy.
 
 不使用`Fast forward`模式，merge后就像这样：
 
-![](http://img.blog.csdn.net/20170406141117241?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/开发工具/2017-03-15-git学习笔记-3.jpg)
 
 相对于快速合并模式，该模式会生成一个记录`merge`操作的`commit id`，可以在`git log`里查看到。不过有一种情况比较特殊：如果在有冲突的情况下，这两种其实是没区别的，因为有冲突的情况下`git merge --no-ff -m 'xxx'`不能通过。 
 
@@ -118,7 +118,7 @@ Merge made by the 'recursive' strategy.
 
 当在`master`和`dev`分支上都对同一文件进行了修改，则合并的时候可能产生冲突，此时不能再用快速合并，需要先手动修改，add后再提交。
 
-![](http://img.blog.csdn.net/20170315175140327?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![](https://wanls4583.github.io/images/posts/开发工具/2017-03-15-git学习笔记-4.jpg)
 
 ## 删除分支
 
