@@ -25,6 +25,7 @@ git分为工作区，暂存区，版本库：
 注意：所有被跟踪的文件在暂存区都有相应的索引，当index中没有要提交的索引时，其和当前分支的历史记录所有得索引是一致的。分支只能操作被暂存区跟踪(track)了的文件。
 
 ## 撤销操作
+
 ### git checkout -- [dir|file]
 git checkout 后面跟-- 可以将暂存区内的内容恢复到工作区，从而撤销工作区的修改
 
@@ -48,6 +49,7 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 注意：需要revert的那个commitid之后如果对同一个文件有过修改才会产生冲突
 
 ## 回退操作
+
 ### git reset --mixed commitid(--mixed是git reset commit的默认参数)
 将某个提交恢复到暂存区，HEAD指向commitid
 
@@ -57,6 +59,8 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 ### git reset --soft commitid
 HEAD指向commitid，工作区和暂存区不变
 
+## 回滚远程仓库
+
 ### git push --force origin master
 reset 到某个版本后，可以使用该命令强制推送到远程仓库，回滚远程仓库代码
 
@@ -64,6 +68,7 @@ reset 到某个版本后，可以使用该命令强制推送到远程仓库，�
 同步远程代码到本地仓库
 
 ## 分支切换操作
+
 ### git branch branchname 
 在当前最新提交下新建分支，不会切换到新分支
 
@@ -82,6 +87,7 @@ commitid指向的是一个提交，该命令可以将工作区和暂存区切换
 该命令相当于git checkout commitid和git checkout -b branchname的组合
 
 ## 分支合并操作
+
 ### git merge commitid
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-6.png)
 
@@ -117,11 +123,14 @@ git rebase 不会产生新的历史记录：
 其中，cf2484和e17071分别是654454和4b3c42将修改添加到master HEAD后的结果
 
 ## 修改commit注释
+
 ### git commit --amend
 该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。
 
 ## 其他
 
-git diff --name-only <commit-1> <commit-2> #获取两次提交之间修改的文件
+### git diff --name-only <commit-1> <commit-2> 
+获取两次提交之间修改的文件
 
-git diff --name-only HEAD~ HEAD #获取最近依次提交修改的文件
+### git diff --name-only HEAD~ HEAD
+获取最近依次提交修改的文件
