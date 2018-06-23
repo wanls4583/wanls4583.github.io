@@ -1,0 +1,44 @@
+---
+author: wanls4583
+comments: true
+date: 2017-04-22
+layout: post
+title: 实现微信内置浏览器全屏播放模式下html元素漂浮
+wordpress_id: 417
+categories:
+- 移动端
+
+tags:
+- 移动端
+
+---
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <style type="text/css">
+        html,body {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          height: 100%;
+          -webkit-user-select: none; 
+          user-select: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style='position: fixed;z-index: 1;top:0px;left:0;width:40px;height: 40px;background-color: red'></div>
+    <video height="100%" id="mainvideo" x5-video-player-type="h5" x5-video-player-fullscreen="true" x-webkit-airplay="true" playsinline webkit-playsinline="true"  src="http://7xvl2z.com1.z0.glb.clouddn.com/nigg2.mp4"></video>
+</body>
+</html>
+```
+在微信内置浏览器下vedio标签调用的是微信内置的播放器，该播放器会全屏播放，此时html元素是不能漂浮在屏幕上的。`x5-video-player-fullscreen="true"`，`x5-video-player-type="h5"`两个属性可实现 andorid 微信内置浏览器中 vedio 调用 h5 内核的播放器来全屏播放，此时只剩一个返回按钮和一个分享按钮，并且html元素可浮动在视频上，效果如下：
+
+![这里写图片描述](http://img.blog.csdn.net/20170422203025158?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+`playsinline`和`webkit-playsinline="true"`用来防止在 ios 下自动调用内置播放器全屏播放，改用内联播放模式。`x-webkit-airplay="true"`用来支持 Airplay 的设备（如：音箱、Apple TV)播放。
+

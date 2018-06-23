@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<style>
+body,html{
+    margin: 0;
+    padding: 0;
+}
+img {
+    position:absolute;
+}
+.transparent {
+    opacity: 0;
+}
+.transparent:hover{
+    animation: night 5s;
+}
+@keyframes night
+{
+    100%{
+        opacity: 1;
+    }
+}
+</style>
+</head>
+<body>
+    <div>
+        <img src="http://img.blog.csdn.net/20170416194335276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="日景"/>
+        <img src="http://img.blog.csdn.net/20170416194441746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="夜景" id="nightImage" class="transparent"/>
+    </div>
+</body>
+</html>

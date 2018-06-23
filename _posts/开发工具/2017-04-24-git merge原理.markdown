@@ -23,7 +23,7 @@ tags:
 
 可以使用git命令计算文件的 sha-1 值:
 
-```base
+```bash
 echo 'test content' | git hash-object --stdin
 d670460b4b4aece5915caf5c68d12f560a9fe3e4
 ```

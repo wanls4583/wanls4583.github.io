@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+ 
+<style>
+body,html{
+    margin: 0;
+    padding: 0;
+}
+img {
+    position:absolute;
+    transition: opacity 5s;
+    -webkit-transition: opacity 5s;
+}
+.solid {
+    opacity: 1;
+}
+.transparent {
+    opacity: 0;
+}
+</style>
+ 
+<script>
+    function toNight(){
+            var nightImage = document.getElementById("nightImage");
+            nightImage.className = "solid";
+    }
+ 
+    function toDay(){
+            var nightImage = document.getElementById("nightImage");
+            nightImage.className = "transparent";
+    }
+</script>
+</head>
+<body>
+    <button onclick="toNight()">看夜景</button>
+    <button onclick="toDay()">看日景</button>
+    <div>
+        <img src="http://img.blog.csdn.net/20170416194335276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="日景"/>
+        <img src="http://img.blog.csdn.net/20170416194441746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="夜景" id="nightImage" class="transparent"/>
+    </div>
+</body>
+</html>
