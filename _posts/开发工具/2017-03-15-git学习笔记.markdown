@@ -220,3 +220,11 @@ git push origin :refs/tags/v0.1
 git push origin v0.1
 git push origin --tags //推送全部
 ```
+
+## 关于git的pull与push
+
+- 当本地有未`push`的`commit`，此时如果远程仓库的版本比本地的版本要新，`pull`时会发生`merge`，并针对此`merge`生成相应的`commitId`。
+- 如果远程仓库的版本比本地的版本要新，此时`push`会失败，提示需要先`pull`。
+- `commit`了一次以后，此时如果你没有`pull`，则会提示你`ahead of` '远程分支' by 1 `commits`，但是如果你本地版本不是最新的，你`pull`以后会发生`merge`，该`merge`会生成相应的`commitId`，此时本地的`HEAD`是改`merge`的`commitId`，每`merge`一次，提示的超前版本数量会增加一。
+
+![](https://wanls4583.github.io/images/posts/开发工具/2017-03-15-git学习笔记-5.jpg)
