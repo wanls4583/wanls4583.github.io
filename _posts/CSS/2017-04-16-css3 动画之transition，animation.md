@@ -67,7 +67,7 @@ img {
 </html>
 ```
 
-<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test1.html" width="370" height="260"></iframe>
+<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test1.html" width="370" height="260" style="border-style: none"></iframe>
 
 当鼠标放上去后，夜景透明度将慢慢从0变成1，慢慢显示出来，因为夜景是在上层，所以日景将慢慢消失。因为transition动画默认有逆向动画的特性，当鼠标移开后，夜景将慢慢消失，日景将慢慢显示，而不是突兀的从夜景变为日景。
 
@@ -120,7 +120,7 @@ img {
 </html>
 ```
 
-<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test2.html" width="370" height="260"></iframe>
+<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test2.html" width="370" height="300" style="border-style: none"></iframe>
 
 当点击看夜景后，夜景透明度将慢慢从0变成1，慢慢显示出来，因为夜景是在上层，所以日景将慢慢消失。因为transition动画默认有逆向动画的特性，当点击看日景将夜景图片的透明度改为0的时候，夜景并不会突兀的立马消失，而是随着透明度慢慢的从1变为0，慢慢的消失，日景也随之慢慢的显现出来。
 
@@ -203,8 +203,6 @@ div {
 </html>
 ```
 
-<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test3.html" width="370" height="260"></iframe>
-
 在这种情况下，元素的初始状态也是一帧，所以可以不用设置0%对应的状态
 
 2.hover触发
@@ -244,7 +242,7 @@ img {
 </html>
 ```
 
-<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test4.html" width="370" height="260"></iframe>
+<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test4.html" width="370" height="260" style="border-style: none"></iframe>
 
 这个效果和之前transition用hover触发的那个例子的效果一样，在用hover触发的情况下，动画的第一帧即元素当前所对应的状态，所以@keyframes night可以不设置0%的状态。
 
@@ -314,7 +312,7 @@ img {
 </html>
 ```
 
-<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test5.html" width="370" height="260"></iframe>
+<iframe src="https://wanls4583.github.io/code/css/tansition-animation/test5.html" width="370" height="300" style="border-style: none"></iframe>
 
 这个例子的效果和之前transition用js触发的那个例子的效果一样，在用 js 事件改变 class 来触发 animation 动画的情况下，@keyframes 如果用百分号划分帧界限，则 @keyframes 默认的第一帧为规则里最小的那个值所对应的状态。如果用 from，to 划分，如果定义了 from，则为 from 所对应的状态，否则为 to。
 

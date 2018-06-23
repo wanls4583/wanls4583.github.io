@@ -18,6 +18,7 @@ tags:
 - 发生边距折叠的两个节点必须同处于一个bfc布局中
 - 发生边距折叠的两个父子节点没有border或者padding隔开
 - 只有普通文档流中块框的垂直外边距才会发生外边距合并，行内框、浮动框- 或绝对定位之间的外边距不会合并。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +51,11 @@ tags:
 </body>
 </html>
 ```
+
 ![这里写图片描述](http://img.blog.csdn.net/20170417100545035?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 将行内块换成浮动块：
+
 ```css
 .d2{
 	height: 100px;
@@ -62,6 +65,7 @@ tags:
 	float: left;
 }
 ```
+
 ![这里写图片描述](http://img.blog.csdn.net/20170417100644771?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## bfc
