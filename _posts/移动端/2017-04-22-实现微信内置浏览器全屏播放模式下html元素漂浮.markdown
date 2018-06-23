@@ -38,7 +38,7 @@ tags:
 ```
 在微信内置浏览器下vedio标签调用的是微信内置的播放器，该播放器会全屏播放，此时html元素是不能漂浮在屏幕上的。`x5-video-player-fullscreen="true"`，`x5-video-player-type="h5"`两个属性可实现 andorid 微信内置浏览器中 vedio 调用 h5 内核的播放器来全屏播放，此时只剩一个返回按钮和一个分享按钮，并且html元素可浮动在视频上，效果如下：
 
-![这里写图片描述](http://img.blog.csdn.net/20170422203025158?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://wanls4583.github.io/images/posts/移动端/2017-04-22-实现微信内置浏览器全屏播放模式下html元素漂浮-1.jpg)
 
 `playsinline`和`webkit-playsinline="true"`用来防止在 ios 下自动调用内置播放器全屏播放，改用内联播放模式。`x-webkit-airplay="true"`用来支持 Airplay 的设备（如：音箱、Apple TV)播放。
 
