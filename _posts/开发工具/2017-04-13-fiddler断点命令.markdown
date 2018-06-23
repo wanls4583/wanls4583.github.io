@@ -1,0 +1,23 @@
+---
+author: wanls4583
+comments: true
+date: 2017-04-13
+layout: post
+title: fiddler断点命令
+categories:
+- 开发工具
+
+tags:
+- 开发工具
+---
+
+**断点命令：**
+
+- `bpu`:在请求开始时中断
+- `bpafter`:在响应到达时中断
+- `bps`:在特定http状态码时中断
+- `bpv/bpm`:在特定请求method时中断
+
+注意：以上所以命令在后面不加url的情况下表示清除断点过滤。
+
+提示：命令输入区域输入help，回车执行会打开一页面详细介绍fiddler的所有命令。

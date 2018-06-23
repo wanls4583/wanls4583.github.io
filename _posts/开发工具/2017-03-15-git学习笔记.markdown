@@ -4,7 +4,6 @@ comments: true
 date: 2017-03-15
 layout: post
 title: git学习笔记
-wordpress_id: 360
 categories:
 - 开发工具
 

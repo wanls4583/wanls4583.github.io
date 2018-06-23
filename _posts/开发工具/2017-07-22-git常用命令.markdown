@@ -4,7 +4,6 @@ comments: true
 date: 2017-07-22 07:27:47+00:00
 layout: post
 title: git常用命令
-wordpress_id: 360
 categories:
 - 开发工具
 

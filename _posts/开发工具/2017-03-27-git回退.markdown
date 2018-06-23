@@ -4,7 +4,6 @@ comments: true
 date: 2017-03-27
 layout: post
 title: git回退
-wordpress_id: 360
 categories:
 - 开发工具
 

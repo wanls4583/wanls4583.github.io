@@ -4,7 +4,6 @@ comments: true
 date: 2018-04-20 03:31:58+00:00
 layout: post
 title: npm包发布
-wordpress_id: 518
 categories:
 - 开发工具
 
