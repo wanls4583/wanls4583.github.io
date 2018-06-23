@@ -21,29 +21,29 @@ git分为工作区，暂存区，版本库：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-1.jpg)
 
-工作区有一个隐藏目录.Git，这个不算工作区，而是git的版本库。其中有一个index的文件，其记录了暂存区的索引。
+工作区有一个隐藏目录.Git，这个不算工作区，而是 git 的版本库。其中有一个`index`的文件，其记录了暂存区的索引。
 
-注意：所有被跟踪的文件在暂存区都有相应的索引，当index中没有要提交的索引时，其和当前分支的历史记录所有得索引是一致的。分支只能操作被暂存区跟踪(track)了的文件。
+注意：所有被跟踪的文件在暂存区都有相应的索引，当`index`中没有要提交的索引时，其和当前分支的历史记录所有得索引是一致的。分支只能操作被暂存区跟踪(track)了的文件。
 
 ## 撤销操作
 
-#### `git checkout -- [dir|file]`
+### `git checkout -- [dir|file]`
 
 git checkout 后面跟-- 可以将暂存区内的内容恢复到工作区，从而撤销工作区的修改
 
-#### `git chekout commitid -- [dir|file]`
+### `git chekout commitid -- [dir|file]`
 
 也可以将某个提交恢复到工作区和暂存区，从而撤销工作区的修改，并且add到暂存区
 
-#### `git reset commitid -- [dir|file]`
+### `git reset commitid -- [dir|file]`
 
 将某个提交恢复到暂存区，工作区不变：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-2.png)
 
-#### `git revert commitid`
+### `git revert commitid`
 
-git revert 可以撤销某个提交的操作，并且生成一个新的commit:
+`git revert` 可以撤销某个提交的操作，并且生成一个新的`commit`:
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-3.png)
 
@@ -51,7 +51,7 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-4.png)
 
-注意：需要revert的那个commitid之后如果对同一个文件有过修改才会产生冲突
+注意：需要`revert`的那个`commitid`之后如果对同一个文件有过修改才会产生冲突
 
 ## 回退操作
 
@@ -59,41 +59,41 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ## 回滚远程仓库
 
-#### `git push --force origin master`
+### `git push --force origin master`
 
 reset 到某个版本后，可以使用该命令强制推送到远程仓库，回滚远程仓库代码
 
-#### `git reset --hard origin/master`
+### `git reset --hard origin/master`
 
 同步远程代码到本地仓库
 
 ## 分支切换操作
 
-#### `git branch branchname `
+### `git branch branchname `
 
 在当前最新提交下新建分支，不会切换到新分支
 
-#### `git branch -d|-D branchname `
+### `git branch -d|-D branchname `
 
 -d删除已经merge过的分支，-D强制可以删除未merge的分支
 
-#### `git checkout commitid`
+### `git checkout commitid`
 
-commitid指向的是一个提交，该命令可以将工作区和暂存区切换到某一个具体提交或者某一个分支，当切换到某一个具体提交时,将进入datached HEAD状态，此时可以在该提交下新建新的分支：
+`commitid`指向的是一个提交，该命令可以将工作区和暂存区切换到某一个具体提交或者某一个分支，当切换到某一个具体提交时,将进入`datached HEAD`状态，此时可以在该提交下新建新的分支：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-5.png)
 
-#### `git checkout -b branchname`
+### `git checkout -b branchname`
 
 在当前最新提交下新建分支，并切换到新分支
 
-#### `git checkout -b branchname commitid`
+### `git checkout -b branchname commitid`
 
-该命令相当于git checkout commitid和git checkout -b branchname的组合
+该命令相当于`git checkout commitid`和`git checkout -b branchname`的组合
 
 ## 分支合并操作
 
-#### `git merge commitid`
+### `git merge commitid`
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-6.png)
 
@@ -103,7 +103,7 @@ git merge 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-8.png)
 
-#### `git rebase commitid`
+### `git rebase commitid`
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-9.png)
 
@@ -115,7 +115,7 @@ git merge 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-11.png)
 
-git rebase --continue继续解决下一个冲突（总共有两个冲突）
+`git rebase --continue`继续解决下一个冲突（总共有两个冲突）
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-12.png)
 
@@ -123,24 +123,24 @@ git rebase --continue继续解决下一个冲突（总共有两个冲突）
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-14.png)
 
-git rebase 不会产生新的历史记录：
+`git rebase` 不会产生新的历史记录：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-15.png)
 
-其中，cf2484和e17071分别是654454和4b3c42将修改添加到master HEAD后的结果
+其中，`cf2484`和`e17071`分别是`654454`和`4b3c42`将修改添加到`master HEAD`后的结果
 
 ## 修改commit注释
 
-#### `git commit --amend`
+### `git commit --amend`
 
 该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。
 
 ## 其他
 
-#### `git diff --name-only <commit-1> <commit-2> `
+### `git diff --name-only <commit-1> <commit-2> `
 
 获取两次提交之间修改的文件
 
-#### `git diff --name-only HEAD~ HEAD`
+### `git diff --name-only HEAD~ HEAD`
 
 获取最近依次提交修改的文件
