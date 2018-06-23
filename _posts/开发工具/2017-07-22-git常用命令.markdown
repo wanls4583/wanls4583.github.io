@@ -99,7 +99,7 @@ reset 到某个版本后，可以使用该命令强制推送到远程仓库，�
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-7.png)
 
-git merge 会产生一个新的提交：
+`git merge` 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-8.png)
 
@@ -107,7 +107,7 @@ git merge 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-9.png)
 
-执行git rebase master（以master HEAD为基础，在其上添加dev的修改）
+执行`git rebase master`（以提交时间为基础）
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-10.png)
 
@@ -127,13 +127,13 @@ git merge 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-15.png)
 
-其中，`cf2484`和`e17071`分别是`654454`和`4b3c42`将修改添加到`master HEAD`后的结果
+其中，`cf2484`和`e17071`分别是`654454`和`4b3c42`rebase 后的结果。
 
 ## 修改commit注释
 
 ### `git commit --amend`
 
-该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。
+该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid 将改变），也可以提交新内容后覆盖最后一次提交。
 
 ## 其他
 
