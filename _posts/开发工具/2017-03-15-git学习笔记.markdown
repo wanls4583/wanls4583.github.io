@@ -123,13 +123,13 @@ Merge made by the 'recursive' strategy.
 ## 删除分支
 
 
-### 普通删除
+#### 普通删除
 
 ```bash
 git branch -d dev
 ```
 
-### 强行删除
+#### 强行删除
 
 ```bash
 git branch -D dev 
@@ -141,40 +141,40 @@ git branch -D dev
 
 ## 多人协作
 
-### 查看远程库信息
+#### 查看远程库信息
 
 ```bash
 git remote -v 
 ```
 
-### 推送信息到远程库
+#### 推送信息到远程库
 
 ```bash
 git push origin master
 git push origin dev
 ```
 
-### 关联本地分支与远程分支
+#### 关联本地分支与远程分支
 
 ```bash
 git checkout -b dev 
 git pull origin dev
 ```
 
-### 在本地新建分支并推送到远程
+#### 在本地新建分支并推送到远程
 
 ```bash
 git checkout -b test
 git push origin test  //这样远程仓库中也就创建了一个test分支
 ```
 
-### 克隆
+#### 克隆
 
 ```bash
 git clone git@github.com:michaelliao/learngit.git
 ```
 
-### 抓取分支
+#### 抓取分支
 
 ```bash
 git checkout -b dev origin/dev
@@ -184,38 +184,38 @@ git checkout -b dev origin/dev
 
 Git 的标签是版本库的快照，其实它就是指向某个commit的指针，跟分支很像，但是分支可以移动，标签不能移动。
 
-### 创建标签
+#### 创建标签
 
 ```bash
 git tag v0.1
 git tag -a v0.1 -m "version 0.1 released"
 ```
 
-### 查看标签列表
+#### 查看标签列表
 
 ```bash
 git tag
 ```
 
-### 查看标签详情
+#### 查看标签详情
 
 ```bash
 git show v0.1
 ```
 
-### 删除标签
+#### 删除标签
 
 ```bash
 git tag -d v0.1
 ```
 
-### 删除远程标签
+#### 删除远程标签
 
 ```bash
 git push origin :refs/tags/v0.1
 ```
 
-### 推送标签到远程库
+#### 推送标签到远程库
 
 ```bash
 git push origin v0.1

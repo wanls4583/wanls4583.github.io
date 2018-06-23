@@ -15,7 +15,8 @@ tags:
 
 >git是一个分布式的版本管理系统，没有服务端和客户端的概率，不过在团队协作中，通常会选一台客户端作为服务器，方便成员之间的push与pull
 
-## git的结构。
+## git 的结构
+
 git分为工作区，暂存区，版本库：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-1.jpg)
@@ -26,18 +27,22 @@ git分为工作区，暂存区，版本库：
 
 ## 撤销操作
 
-### git checkout -- [dir|file]
+#### `git checkout -- [dir|file]`
+
 git checkout 后面跟-- 可以将暂存区内的内容恢复到工作区，从而撤销工作区的修改
 
-### git chekout commitid -- [dir|file]
+#### `git chekout commitid -- [dir|file]`
+
 也可以将某个提交恢复到工作区和暂存区，从而撤销工作区的修改，并且add到暂存区
 
-### git reset commitid -- [dir|file]
+#### `git reset commitid -- [dir|file]`
+
 将某个提交恢复到暂存区，工作区不变：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-2.png)
 
-### git revert commitid
+#### `git revert commitid`
+
 git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-3.png)
@@ -54,34 +59,42 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ## 回滚远程仓库
 
-### git push --force origin master
+#### `git push --force origin master`
+
 reset 到某个版本后，可以使用该命令强制推送到远程仓库，回滚远程仓库代码
 
-### git reset --hard origin/master
+#### `git reset --hard origin/master`
+
 同步远程代码到本地仓库
 
 ## 分支切换操作
 
-### git branch branchname 
+#### `git branch branchname `
+
 在当前最新提交下新建分支，不会切换到新分支
 
-### git branch -d|-D branchname 
+#### `git branch -d|-D branchname `
+
 -d删除已经merge过的分支，-D强制可以删除未merge的分支
 
-### git checkout commitid
+#### `git checkout commitid`
+
 commitid指向的是一个提交，该命令可以将工作区和暂存区切换到某一个具体提交或者某一个分支，当切换到某一个具体提交时,将进入datached HEAD状态，此时可以在该提交下新建新的分支：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-5.png)
 
-### git checkout -b branchname
+#### `git checkout -b branchname`
+
 在当前最新提交下新建分支，并切换到新分支
 
-### git checkout -b branchname commitid
+#### `git checkout -b branchname commitid`
+
 该命令相当于git checkout commitid和git checkout -b branchname的组合
 
 ## 分支合并操作
 
-### git merge commitid
+#### `git merge commitid`
+
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-6.png)
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-7.png)
@@ -90,7 +103,8 @@ git merge 会产生一个新的提交：
 
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-8.png)
 
-### git rebase commitid
+#### `git rebase commitid`
+
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-9.png)
 
 执行git rebase master（以master HEAD为基础，在其上添加dev的修改）
@@ -117,13 +131,16 @@ git rebase 不会产生新的历史记录：
 
 ## 修改commit注释
 
-### git commit --amend
+#### `git commit --amend`
+
 该命令可以生成一个新的提交，覆盖掉当前分支最新的一次提交，利用这个特性，可以在不提交新内容的情况下修改最后一次提交的注释（commitid将改变），也可以提交新内容后覆盖最后一次提交。
 
 ## 其他
 
-### git diff --name-only <commit-1> <commit-2> 
+#### `git diff --name-only <commit-1> <commit-2> `
+
 获取两次提交之间修改的文件
 
-### git diff --name-only HEAD~ HEAD
+#### `git diff --name-only HEAD~ HEAD`
+
 获取最近依次提交修改的文件
