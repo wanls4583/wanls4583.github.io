@@ -1,0 +1,223 @@
+---
+author: wanls4583
+comments: true
+date: 2017-03-15
+layout: post
+title: git学习笔记
+wordpress_id: 360
+categories:
+- 开发工具
+
+tags:
+- 开发工具
+
+---
+
+## 版本库
+
+工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+Git 的版本库里存了很多东西，其中最重要的就是称为`stage`（或者叫`index`）的暂存区，还有 Git 为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
+
+![](http://img.blog.csdn.net/20170406140747557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+注意事项：
+
+- [版本回退](https://wanls4583.github.io/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2017/03/27/git%E5%9B%9E%E9%80%80/)时可能会清空暂存区`stage`里的内容
+- 用`git r`删除文件时，可以删除暂存区里的文件也可以删除版本库里的文件，不过删除版本库里的文件需要commit
+- `git checkout -- file`可以把工作区的修改回退到仓库或者暂存区（如果 add 到暂存区了）
+
+## 远程库
+
+可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到 GitHub 仓库。本地库和远程库关联时，如果远程库里的文件在本地库里没有或者远程库的版本比本地的版本要新，则必须先`pull`才能`push`。如果是克隆下来的，则不需要再关联远程库。
+
+## 分支管理
+
+创建和合并分支
+
+当我们创建新的分支，例如`dev`，Git 新建一个指针叫`dev`，指向`master`相同的提交，再把`HEAD`指向`dev`，就表示当前分支在`dev`上。
+
+Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化。
+
+创建dev分支，然后切换到dev分支：
+```bash
+$ git checkout -b dev
+Switched to a new branch 'dev'
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+
+$ git branch dev
+$ git checkout dev
+Switched to branch 'dev'
+```
+
+然后，用git branch命令查看当前分支：
+
+```bash
+$ git branch
+* dev
+  master
+```
+
+`git branch`命令会列出所有分支，当前分支前面会标一个\*号。
+
+`dev`分支的工作完成，我们就可以切换回`master`分支了：
+
+```bash
+$ git checkout master
+Switched to branch 'master'
+```
+
+![](http://img.blog.csdn.net/20170406140917261?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+然后，把dev分支的工作成果合并到master分支上：
+
+```bash
+$ git merge dev
+Updating d17efd8..fec145a
+Fast-forward
+ readme.txt |    1 +
+ 1 file changed, 1 insertion(+)
+```
+
+git merge命令用于合并指定分支到当前分支。
+
+注意到上面的`Fast-forward`信息，Git告诉我们，这次合并是“快进模式”，也就是直接把`master`指向`dev`的当前提交，所以合并速度非常快。
+
+合并完成后，就可以放心地删除dev分支了：
+
+```bash
+$ git branch -d dev
+Deleted branch dev (was fec145a).
+```
+
+删除后，查看branch，就只剩下master分支了：
+
+```bash
+$ git branch
+* master
+```
+
+因为创建、合并和删除分支非常快，所以 Git 鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在 master 分支上工作效果是一样的，但过程更安全。
+
+合并dev分支时使用`--no-ff`参数，表示禁用`Fast forward`：
+
+```bash
+$ git merge --no-ff -m "merge with no-ff" dev
+Merge made by the 'recursive' strategy.
+ readme.txt |    1 +
+ 1 file changed, 1 insertion(+)
+```
+
+不使用`Fast forward`模式，merge后就像这样：
+
+![](http://img.blog.csdn.net/20170406141117241?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+相对于快速合并模式，该模式会生成一个记录`merge`操作的`commit id`，可以在`git log`里查看到。不过有一种情况比较特殊：如果在有冲突的情况下，这两种其实是没区别的，因为有冲突的情况下`git merge --no-ff -m 'xxx'`不能通过。 
+
+## 合并冲突
+
+当在`master`和`dev`分支上都对同一文件进行了修改，则合并的时候可能产生冲突，此时不能再用快速合并，需要先手动修改，add后再提交。
+
+![](http://img.blog.csdn.net/20170315175140327?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTQwOTA1MTk4Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+## 删除分支
+
+
+### 普通删除
+
+```bash
+git branch -d dev
+```
+
+### 强行删除
+
+```bash
+git branch -D dev 
+```
+
+## stash
+
+`stash`可以将当前的工作区保存起来，当用`git stash apply`或者`git stash pop`返回现场时，会发生`merge`，如果文件有冲突，需要手动解决。 
+
+## 多人协作
+
+### 查看远程库信息
+
+```bash
+git remote -v 
+```
+
+### 推送信息到远程库
+
+```bash
+git push origin master
+git push origin dev
+```
+
+### 关联本地分支与远程分支
+
+```bash
+git checkout -b dev 
+git pull origin dev
+```
+
+### 在本地新建分支并推送到远程
+
+```bash
+git checkout -b test
+git push origin test  //这样远程仓库中也就创建了一个test分支
+```
+
+### 克隆
+
+```bash
+git clone git@github.com:michaelliao/learngit.git
+```
+
+### 抓取分支
+
+```bash
+git checkout -b dev origin/dev
+```
+
+## 标签
+
+Git 的标签是版本库的快照，其实它就是指向某个commit的指针，跟分支很像，但是分支可以移动，标签不能移动。
+
+### 创建标签
+
+```bash
+git tag v0.1
+git tag -a v0.1 -m "version 0.1 released"
+```
+
+### 查看标签列表
+
+```bash
+git tag
+```
+
+### 查看标签详情
+
+```bash
+git show v0.1
+```
+
+### 删除标签
+
+```bash
+git tag -d v0.1
+```
+
+### 删除远程标签
+
+```bash
+git push origin :refs/tags/v0.1
+```
+
+### 推送标签到远程库
+
+```bash
+git push origin v0.1
+git push origin --tags //推送全部
+```

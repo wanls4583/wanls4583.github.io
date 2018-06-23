@@ -50,14 +50,7 @@ git revert 可以撤销某个提交的操作，并且生成一个新的commit:
 
 ## 回退操作
 
-### git reset --mixed commitid(--mixed是git reset commit的默认参数)
-将某个提交恢复到暂存区，HEAD指向commitid
-
-### git reset --hard commitid
-将某个提交恢复到暂存区和工作区，HEAD指向commitid
-
-### git reset --soft commitid
-HEAD指向commitid，工作区和暂存区不变
+[回退操作](https://wanls4583.github.io/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2017/03/27/git%E5%9B%9E%E9%80%80/)
 
 ## 回滚远程仓库
 
