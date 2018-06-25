@@ -1,15 +1,15 @@
 /* 
    Screen sizes
    ========================================================================== */
-
-$small                           : "only screen and (max-width: 30em)";
-$medium                          : "only screen and (min-width: 30em ) and (max-width: 799px)";
-$large                           : "only screen and (min-width: 800px)";
-$bigger-then-small						 : "only screen and (min-width: 30em)";
+$large-width: 900px;
+$small: "only screen and (max-width: 30em)";
+$medium: "only screen and (min-width: 30em ) and (max-width: 899px)";
+$large: "only screen and (min-width: 900px)";
+$bigger-then-small: "only screen and (min-width: 30em)";
 
 /* 
    color
    ========================================================================== */
 $menu_width: 48;
 $menu_height: 48;
-$tag_color: rgba(162,162,162,0.8);
+$tag_color: rgba(162,162,162,.8);

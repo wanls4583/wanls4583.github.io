@@ -10,7 +10,7 @@ body {
 }
 
 .page_container {
-    max-width: 800px;
+    max-width: #{$large-width};
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 10px;
