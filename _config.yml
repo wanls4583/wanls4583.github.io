@@ -16,7 +16,7 @@ reading_time:     true
 words_per_minute: 200
 # Build settings
 markdown:     kramdown
-theme:        jekyll-theme-cayman
+# theme:        jekyll-theme-cayman
 kramdown:
   input:  GFM
   use_coderay: true
@@ -28,4 +28,4 @@ datauid: "MTAyMC8zNzEzOC8xMzY3Mg=="
 # Gems
 gems:
   - jekyll-paginate
-  # - jekyll-sitemap
+  - jekyll-sitemap
