@@ -609,16 +609,16 @@ a:hover {
     }
 }
 
-.main-content {
+.post_content {
     word-wrap: break-word
 }
 
-.main-content :first-child {
+.post_content :first-child {
     margin-top: 0
 }
 
 @media screen and (min-width: 64em) {
-    .main-content {
+    .post_content {
         max-width:64rem;
         padding: 2rem 6rem;
         margin: 0 auto;
@@ -627,35 +627,35 @@ a:hover {
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
-    .main-content {
+    .post_content {
         padding:2rem 4rem;
         font-size: 1.1rem
     }
 }
 
 @media screen and (max-width: 42em) {
-    .main-content {
+    .post_content {
         padding:2rem 1rem;
         font-size: 1rem
     }
 }
 
-.main-content img {
+.post_content img {
     max-width: 100%
 }
 
-.main-content h1,.main-content h2,.main-content h3,.main-content h4,.main-content h5,.main-content h6 {
+.post_content h1,.post_content h2,.post_content h3,.post_content h4,.post_content h5,.post_content h6 {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: normal;
     color: #159957
 }
 
-.main-content p {
+.post_content p {
     margin-bottom: 1em
 }
 
-.main-content code {
+.post_content code {
     padding: 2px 4px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.9rem;
@@ -664,7 +664,7 @@ a:hover {
     border-radius: 0.3rem
 }
 
-.main-content pre {
+.post_content pre {
     padding: 0.8rem;
     margin-top: 0;
     margin-bottom: 1rem;
@@ -676,7 +676,7 @@ a:hover {
     border-radius: 0.3rem
 }
 
-.main-content pre>code {
+.post_content pre>code {
     padding: 0;
     margin: 0;
     font-size: 0.9rem;
@@ -687,16 +687,16 @@ a:hover {
     border: 0
 }
 
-.main-content .highlight {
+.post_content .highlight {
     margin-bottom: 1rem
 }
 
-.main-content .highlight pre {
+.post_content .highlight pre {
     margin-bottom: 0;
     word-break: normal
 }
 
-.main-content .highlight pre,.main-content pre {
+.post_content .highlight pre,.post_content pre {
     padding: 0.8rem;
     overflow: auto;
     font-size: 0.9rem;
@@ -705,7 +705,7 @@ a:hover {
     -webkit-overflow-scrolling: touch
 }
 
-.main-content pre code,.main-content pre tt {
+.post_content pre code,.post_content pre tt {
     display: inline;
     max-width: initial;
     padding: 0;
@@ -717,30 +717,30 @@ a:hover {
     border: 0
 }
 
-.main-content pre code:before,.main-content pre code:after,.main-content pre tt:before,.main-content pre tt:after {
+.post_content pre code:before,.post_content pre code:after,.post_content pre tt:before,.post_content pre tt:after {
     content: normal
 }
 
-.main-content ul,.main-content ol {
+.post_content ul,.post_content ol {
     margin-top: 0
 }
 
-.main-content blockquote {
+.post_content blockquote {
     padding: 0 1rem;
     margin-left: 0;
     color: #819198;
     border-left: 0.3rem solid #dce6f0
 }
 
-.main-content blockquote>:first-child {
+.post_content blockquote>:first-child {
     margin-top: 0
 }
 
-.main-content blockquote>:last-child {
+.post_content blockquote>:last-child {
     margin-bottom: 0
 }
 
-.main-content table {
+.post_content table {
     display: block;
     width: 100%;
     overflow: auto;
@@ -749,32 +749,32 @@ a:hover {
     -webkit-overflow-scrolling: touch
 }
 
-.main-content table th {
+.post_content table th {
     font-weight: bold
 }
 
-.main-content table th,.main-content table td {
+.post_content table th,.post_content table td {
     padding: 0.5rem 1rem;
     border: 1px solid #e9ebec
 }
 
-.main-content dl {
+.post_content dl {
     padding: 0
 }
 
-.main-content dl dt {
+.post_content dl dt {
     padding: 0;
     margin-top: 1rem;
     font-size: 1rem;
     font-weight: bold
 }
 
-.main-content dl dd {
+.post_content dl dd {
     padding: 0;
     margin-bottom: 1rem
 }
 
-.main-content hr {
+.post_content hr {
     height: 2px;
     padding: 0;
     margin: 1rem 0;
