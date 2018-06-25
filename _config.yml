@@ -16,7 +16,7 @@ reading_time:     true
 words_per_minute: 200
 # Build settings
 markdown:     kramdown
-theme:        minima
+theme:        jekyll-theme-cayman
 kramdown:
   input:  GFM
   use_coderay: true
