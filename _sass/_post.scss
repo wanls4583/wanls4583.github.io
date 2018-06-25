@@ -1,23 +1,23 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 .page_container {
-    box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
     background-color: #fff;
+    box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, .1);
     .post-meta {
         color: #999;
         a {
-            color: #999 !important;
             margin-right: 20px;
+            color: #999 !important;
         }
         a:hover {
             color: #000 !important;
         }
     }
     .pre_next_warp {
+        overflow: auto;
         margin: 40px 0 0;
         padding: 50px 0;
-        overflow: auto;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, .1);
         .pre_wrap,
         .next_wrap {
             a {
@@ -50,15 +50,15 @@
         word-break: break-all;
     }
     h1 {
+        padding: 30px 0 0 0;
         font-size: 2em;
         font-weight: bold;
-        padding: 30px 0 0 0;
     }
     h2 {
+        padding: 30px 0 0 0;
+        border-top: 1px solid rgba(0, 0, 0, .1);
         font-size: 1.5em;
         font-weight: bold;
-        padding: 30px 0 0 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
     h3 {
         font-size: 1.2em;
@@ -72,10 +72,10 @@
         font-size: 1em;
     }
     h5 {
-        font-size: 0.8em;
+        font-size: .8em;
     }
     h5 {
-        font-size: 0.6em;
+        font-size: .6em;
     }
     ul {
         margin-left: 1.2em;
@@ -83,10 +83,10 @@
     ol {
         margin-left: 1em;
     }
-    ul>li {
-        list-style-type: disc
+    ul > li {
+        list-style-type: disc;
     }
-    ol>li {
+    ol > li {
         list-style-type: decimal;
     }
     blockquote {
@@ -117,26 +117,30 @@
     }
 }
 
+.toc_wrap{
+    margin-bottom: 20px;
+}
+
 .toc_root {
     display: inline-block;
     min-width: 225px;
     padding: 20px 10px 10px;
+    border: 1px solid rgba(0, 0, 0, .1);
     background: #f9f9f9;
-    line-height: 2;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 1em;
+    line-height: 2;
 }
 
-// .toc_wrap a {
-//     color: #75b17d;
-//     text-decoration: none;
-//     cursor: pointer;
-// }
+.toc_wrap a {
+    cursor: pointer;
+    color: #159957;
+    text-decoration: none;
+}
 
-// .toc_wrap a:hover {
-//     text-decoration: underline;
-//     color: #333;
-// }
+.toc_wrap a:hover {
+    color: #333;
+    text-decoration: underline;
+}
 
 .toc_wrap.hide .toc_root {
     display: none;
@@ -160,19 +164,21 @@
 }
 
 .toc_wrap .hide_toc_btn {
-    cursor: pointer;
     position: absolute;
     top: 4px;
     right: 10px;
+    cursor: pointer;
+    color: #159957;
 }
 
 .toc_wrap .show_toc_btn {
-    cursor: pointer;
     display: none;
-    padding: 10px;
     margin-bottom: 20px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, .1);
     background: #fbfbfb;
-    line-height: 1.5;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 1em;
+    line-height: 1.5;
+    color: #159957;
 }

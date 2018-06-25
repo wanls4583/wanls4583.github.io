@@ -1,28 +1,28 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 html,
 body {
     margin: 0;
     padding: 0;
-    font-size: 14px;
     background-color: #e8e8e8;
     font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, Arial, sans-serif;
+    font-size: 14px;
 }
 
 .page_container {
     max-width: #{$large-width};
     margin-top: 20px;
+    margin-right: 10px;
     margin-bottom: 20px;
     margin-left: 10px;
-    margin-right: 10px;
     word-break: break-all;
 }
 
 @media #{$large} {
     .page_container {
         margin-top: 40px;
-        margin-left: auto;
-        margin-right: auto
+        margin-right: auto;
+        margin-left: auto;;
     }
 }
 
@@ -47,16 +47,16 @@ header {
         }
         .intro_wrap {
             position: absolute;
+            z-index: 1;
             top: 0;
             left: 0;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3);
             .name {
                 position: relative;
                 user-select: none;
@@ -64,20 +64,20 @@ header {
                     max-width: 100%;
                 }
                 &:after {
-                    content: '';
                     position: absolute;
-                    width: 100%;
+                    z-index: 1;
                     top: 0;
                     bottom: 0;
-                    z-index: 1;
+                    width: 100%;
+                    content: '';
                 }
             }
             .motto{
+                font-family: 'Lato',Calibri,Arial,sans-serif;
                 font-size: 1.5em;
-                font-family: "Lato",Calibri,Arial,sans-serif;
                 font-weight: bold;
+                text-shadow: 0 6px 12px rgba(34,34,34,.4);
                 color: #fff;
-                text-shadow: 0 6px 12px rgba(34,34,34,0.4);
             }
         }
     }
@@ -97,12 +97,12 @@ footer{
     src: url('/iconfont/iconfont.eot');
     src: url('/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
     url('/iconfont/iconfont.woff') format('woff'),
-    url('/iconfont/iconfont.ttf') format('truetype')
+    url('/iconfont/iconfont.ttf') format('truetype');
 }
 
 .iconfont {
     display: inline-block;
+    margin-right: .5em;
     font-family: 'iconfont';
     font-style: normal;
-    margin-right: 0.5em;
 }

@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 .all_page_wrap {
     .tag_list_box{
@@ -10,7 +10,7 @@
 }
 
 .anchor_all a {
-    background-color: rgba(255, 248, 213, 0.1);
+    background-color: rgba(255, 248, 213, .1);
 }
 
 @media #{$bigger-then-small}{
@@ -35,11 +35,11 @@
         }
         .r_w{
             position: absolute;
-            right: 0;
             top: 0;
-            line-height: 2.5em !important;
-            font-size: 1em !important;
+            right: 0;
             border-bottom-style: none !important;
+            font-size: 1em !important;
+            line-height: 2.5em !important;
         }
     }
 }

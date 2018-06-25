@@ -1,4 +1,4 @@
-@charset "utf-8"; 
+@charset 'utf-8';
 
 // 文章列表-begin
 .post_title_list_box {
@@ -7,40 +7,40 @@
         .axis {
             position: absolute;
             top: 0;
-            left: 70px;
             bottom: 0;
+            left: 70px;
             width: 4px;
             background-color: $tag_color;
             font-size: 2em;
             font-weight: bold;
             color: #333;
             &:before {
-                content: '';
                 position: absolute;
                 z-index: 1;
                 top: 24px;
                 left: -4px;
-                height: 12px;
                 width: 12px;
+                height: 12px;
+                content: '';
                 border-radius: 50%;
                 background-color: #fff;
             }
             &:after {
-                content: '';
                 position: absolute;
                 z-index: 0;
                 top: 20px;
                 left: -8px;
-                height: 20px;
                 width: 20px;
+                height: 20px;
+                content: '';
                 border-radius: 50%;
                 background-color: $tag_color;
             }
         }
         .left_year {
             position: absolute;
-            left: 0;
             top: 15px;
+            left: 0;
             margin: 0;
             padding: 0;
             font-size: 1.5em;
@@ -50,12 +50,12 @@
         .right_wrap {
             padding-bottom: 40px;
             ._wrap {
-                padding: 20px;
                 position: relative;
                 margin-left: 110px;
-                background-color: #fff;
+                padding: 20px;
                 border-radius: 4px;
-                box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, 0.1);
+                background-color: #fff;
+                box-shadow: 0 0 0 0, 0 6px 12px rgba(34, 34, 34, .1);
                 h3 {
                     margin: 0 0 10px;
                     padding: 0;
@@ -71,20 +71,20 @@
                 }
                 .post_title {
                     display: inline-block;
-                    padding: 0.8em 0;
                     max-width: 350px;
+                    padding: .8em 0;
                     line-height: 1.2em;
                     color: #333;
                     &:hover {
-                        text-decoration: underline;
                         color: #000;
+                        text-decoration: underline;
                     }
                 }
                 .r_w {
                     display: block;
-                    padding: 0 0 0.8em;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                    font-size: 0.8em;
+                    padding: 0 0 .8em;
+                    border-bottom: 1px solid rgba(0, 0, 0, .1);
+                    font-size: .8em;
                     a {
                         color: #999;
                     }
@@ -96,15 +96,15 @@
                     }
                 }
                 &:after {
-                    content: '';
                     position: absolute;
                     top: 22px;
                     right: 100%;
                     margin-right: -2px;
+                    content: '';
                     border: 16px solid transparent;
                     border-top-width: 10px;
-                    border-bottom-width: 10px;
                     border-right-color: #fff;
+                    border-bottom-width: 10px;
                 }
             }
         }
@@ -114,7 +114,7 @@
             padding-bottom: 0;
         }
     }
-} 
+}
 // 文章列表-end
 
 // 小设备隐藏左边时间轴

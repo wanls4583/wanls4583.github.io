@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 // 标签列表-begin
 .tag_list_box {
@@ -9,16 +9,16 @@
 
 .tag_item {
     display: inline-block;
+    overflow: hidden;
     margin-bottom: 10px;
     border-radius: 4px;
-    overflow: hidden;
     a {
         float: left;
-        padding: 0 0.5em;
+        padding: 0 .5em;
         background-color: $tag_color;
-        color: #fff;
+        font-size: .8em;
         line-height: 2em;
-        font-size: 0.8em;
+        color: #fff;
     }
     a:hover {
         background-color: adjust-color($tag_color, $red: -60, $blue: -60, $green: -60);
@@ -26,11 +26,11 @@
     .icon_size {
         float: left;
         min-width: 12px;
-        padding: 0 0.2em;
-        line-height: 2em;
-        color: #fff;
-        font-size: 0.8em;
+        padding: 0 .2em;
         background-color: adjust-color($tag_color, $red: -30, $blue: -30, $green: -30);
+        font-size: .8em;
+        line-height: 2em;
         text-align: center;
+        color: #fff;
     }
 } // 标签列表-end
