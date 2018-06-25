@@ -15,7 +15,7 @@ paginate_path: "page/:num/"
 reading_time:     true
 words_per_minute: 200
 # Build settings
-markdown:     kramdown
+# markdown:     kramdown
 # theme:        jekyll-theme-cayman
 kramdown:
   input:  GFM
