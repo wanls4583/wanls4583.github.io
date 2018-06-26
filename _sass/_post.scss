@@ -139,6 +139,12 @@
         color: #444;
         font-weight: 700;
     }
+
+    a {
+        color: #39c;
+        font-weight: 400;
+        text-decoration: none;
+    }
 }
 
 @media #{$small} {
@@ -165,17 +171,6 @@
     background: #f9f9f9;
     font-size: 1em;
     line-height: 2;
-}
-
-.toc_wrap a {
-    cursor: pointer;
-    color: #{$theme_color};
-    text-decoration: none;
-}
-
-.toc_wrap a:hover {
-    color: #333;
-    text-decoration: underline;
 }
 
 .toc_wrap.hide .toc_root {
@@ -205,6 +200,7 @@
     right: 10px;
     cursor: pointer;
     color: #{$theme_color};
+
 }
 
 .toc_wrap .show_toc_btn {
@@ -213,6 +209,7 @@
     margin-bottom: 20px;
     cursor: pointer;
     color: #{$theme_color};
+
     border: 1px solid rgba(0, 0, 0, .1);
     background: #fbfbfb;
     font-size: 1em;
