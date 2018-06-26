@@ -199,8 +199,6 @@
     top: 4px;
     right: 10px;
     cursor: pointer;
-    color: #{$theme_color};
-
 }
 
 .toc_wrap .show_toc_btn {
@@ -208,8 +206,6 @@
     padding: 10px;
     margin-bottom: 20px;
     cursor: pointer;
-    color: #{$theme_color};
-
     border: 1px solid rgba(0, 0, 0, .1);
     background: #fbfbfb;
     font-size: 1em;
