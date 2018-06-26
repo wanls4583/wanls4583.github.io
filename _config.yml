@@ -28,4 +28,4 @@ datauid: "MTAyMC8zNzEzOC8xMzY3Mg=="
 # Gems
 gems:
   - jekyll-paginate
-  - jekyll-sitemap
+  # - jekyll-sitemap
