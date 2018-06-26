@@ -76,7 +76,7 @@
         font-size: .6em;
     }
     ul {
-        margin-left: 1.2em;
+        margin-left: .8em;
     }
     ol {
         margin-left: 1em;
@@ -188,6 +188,9 @@
 .toc_lvl {
     display: block;
     padding-left: 22px;
+    &:hover {
+        color: #333;
+    }
 }
 
 .toc_lvl_1 {
@@ -199,6 +202,9 @@
     top: 4px;
     right: 10px;
     cursor: pointer;
+    &:hover {
+        color: #333;
+    }
 }
 
 .toc_wrap .show_toc_btn {
@@ -210,4 +216,7 @@
     background: #fbfbfb;
     font-size: 1em;
     line-height: 1.5;
+    &:hover {
+        color: #333;
+    }
 }
