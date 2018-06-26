@@ -1,16 +1,17 @@
-@charset 'utf-8';
+@charset "utf-8";
 
 html,
 body {
-    margin: 0;
     padding: 0;
+    margin: 0;
     background-color: #e8e8e8;
-    font-family: 'Quattrocento Sans', Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, Arial, sans-serif;
+    font-family: "Quattrocento Sans", Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, Arial, sans-serif;
     font-size: 14px;
 }
 
 .page_container {
     max-width: #{$large-width};
+
     margin-top: 20px;
     margin-right: 10px;
     margin-bottom: 20px;
@@ -19,6 +20,7 @@ body {
 }
 
 @media #{$large} {
+
     .page_container {
         margin-top: 40px;
         margin-right: auto;
@@ -28,8 +30,8 @@ body {
 
 ul,
 li {
-    margin: 0;
     padding: 0;
+    margin: 0;
     list-style-type: none;
 }
 
@@ -47,9 +49,9 @@ header {
         }
         .intro_wrap {
             position: absolute;
-            z-index: 1;
             top: 0;
             left: 0;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -65,44 +67,44 @@ header {
                 }
                 &:after {
                     position: absolute;
-                    z-index: 1;
                     top: 0;
                     bottom: 0;
+                    z-index: 1;
                     width: 100%;
-                    content: '';
+                    content: "";
                 }
             }
-            .motto{
-                font-family: 'Lato',Calibri,Arial,sans-serif;
+            .motto {
+                color: #fff;
+                font-family: "Lato",Calibri,Arial,sans-serif;
                 font-size: 1.5em;
                 font-weight: bold;
                 text-shadow: 0 6px 12px rgba(34,34,34,.4);
-                color: #fff;
             }
         }
     }
 }
 
-footer{
+footer {
     padding: 20px;
-    text-align: center;
     color: #999;
-    a{
+    text-align: center;
+    a {
         color: #337ab7;
     }
 }
 
 @font-face {
-    font-family: 'iconfont';
-    src: url('/iconfont/iconfont.eot');
-    src: url('/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
-    url('/iconfont/iconfont.woff') format('woff'),
-    url('/iconfont/iconfont.ttf') format('truetype');
+    font-family: "iconfont";
+    src: url("/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
+    url("/iconfont/iconfont.woff") format("woff"),
+    url("/iconfont/iconfont.ttf") format("truetype");
+    src: url("/iconfont/iconfont.eot");
 }
 
 .iconfont {
     display: inline-block;
     margin-right: .5em;
-    font-family: 'iconfont';
+    font-family: "iconfont";
     font-style: normal;
 }

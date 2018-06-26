@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "utf-8";
 
 .page_container {
     background-color: #fff;
@@ -14,9 +14,9 @@
         }
     }
     .pre_next_warp {
-        overflow: auto;
-        margin: 40px 0 0;
         padding: 50px 0;
+        margin: 40px 0 0;
+        overflow: auto;
         border-top: 1px solid rgba(0, 0, 0, .1);
         .pre_wrap,
         .next_wrap {
@@ -37,8 +37,8 @@
 }
 
 .content_container {
-    overflow: auto;
     padding: 20px;
+    overflow: auto;
     color: #666;
     h1,
     h2,
@@ -47,6 +47,7 @@
     h5 {
         /*color: #333;*/
         margin: 20px 0;
+        color: #333;
         word-break: break-all;
     }
     h1 {
@@ -68,13 +69,10 @@
         font-size: 1em;
         font-weight: bold;
     }
-    h4 {
-        font-size: 1em;
-    }
     h5 {
         font-size: .8em;
     }
-    h5 {
+    h6 {
         font-size: .6em;
     }
     ul {
@@ -84,7 +82,7 @@
         margin-left: 1em;
     }
     ul > li {
-        list-style-type: disc;
+        list-style-image: url("/images/bullet.png");
     }
     ol > li {
         list-style-type: decimal;
@@ -98,15 +96,53 @@
         margin: 15px 0;
     }
     code.highlighter-rouge {
-        background-color: #fff5f5;
         color: #ff502c;
+        background-color: #fff5f5;
     }
-    p{
+    p {
         overflow: auto;
+    }
+    blockquote {
+        padding: 0 0 0 20px;
+        margin: 0;
+        border-left: 1px solid #{$theme_color};
+
+        font-style: italic;
+    }
+    table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 5px 10px;
+        color: #444;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+    }
+
+    td {
+        padding: 5px 10px;
+        border-right: 1px solid #{$theme_color};
+
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+    }
+
+    td:first-child {
+        border-left: 1px solid #{$theme_color};
+
+    }
+
+    dt {
+        color: #444;
+        font-weight: 700;
     }
 }
 
 @media #{$small} {
+
     h1 {
         font-size: 1.5em !important;
         line-height: 1.2em !important;
@@ -117,7 +153,7 @@
     }
 }
 
-.toc_wrap{
+.toc_wrap {
     margin-bottom: 20px;
 }
 
@@ -133,7 +169,7 @@
 
 .toc_wrap a {
     cursor: pointer;
-    color: #159957;
+    color: #{$theme_color};
     text-decoration: none;
 }
 
@@ -168,17 +204,17 @@
     top: 4px;
     right: 10px;
     cursor: pointer;
-    color: #159957;
+    color: #{$theme_color};
 }
 
 .toc_wrap .show_toc_btn {
     display: none;
-    margin-bottom: 20px;
     padding: 10px;
+    margin-bottom: 20px;
     cursor: pointer;
+    color: #{$theme_color};
     border: 1px solid rgba(0, 0, 0, .1);
     background: #fbfbfb;
     font-size: 1em;
     line-height: 1.5;
-    color: #159957;
 }
