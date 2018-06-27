@@ -85,10 +85,13 @@
         position: relative;
         &:before {
             position: absolute;
+            top: -2px;
             left: -.8em;
             content: "\e665";
             color: #{$theme_color};
 
+            font-family: iconfont;
+            font-size: 25px;
         }
     }
     ol > li {

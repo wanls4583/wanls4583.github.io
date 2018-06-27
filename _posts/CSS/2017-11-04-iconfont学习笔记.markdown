@@ -37,7 +37,7 @@ tags:
 - font-weight 和 font-style 和之前使用的是一致的。 
 
 src属性后还有一个 local(font name) 字段，表示从用户系统中加载字体，失败后才加载webfont。
-```
+```css
 src: local(font name), url("font_name.ttf")
 ```
 ### @font-face的属性解释：
@@ -60,6 +60,7 @@ IE专用字体格式，可以从TrueType格式创建此格式字体。
 <img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-1.png" alt="" />
 
 ### <format>字符串对应值：
+
 <img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-2.png" alt="" />
 
 图标字体的尅一使用阿里巴巴的<a href="http://www.iconfont.cn/">iconfont</a>和icomoon，制作推荐使用<a href="https://icomoon.io/app/#/select" rel="noopener" target="_blank">icomoon</a>。图标字体的使用主要有两种方式：html实体（兼容ie6），css伪类（ie8+）。
@@ -119,9 +120,11 @@ html:
 注意：在html文件中，字符实体以'$#x'开头，中间是编码，以';'结尾，而在css的content中可以直接\后面跟着字符编码
 
 在ie8下结果：
+
 <img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-3.png" alt="" />
 
 在ie7下结果：
+
 <img src="https://wanls4583.github.io/images/posts/CSS/2017-11-04-iconfont学习笔记-4.png" alt="" />
 
 演示demo：<a href="http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html" rel="noopener" target="_blank">http://lisong.hn.cn/blog-demo/icomoon-demo/demo.html</a>
@@ -198,9 +201,13 @@ style:
 
 ```
 
-icomoon demo示例：<a href="http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html">http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html</a>
+icomoon demo示例：
 
-iconfont demo示例：<a href="http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html">http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html</a>
+<a href="http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html">http://lisong.hn.cn/blog-demo/icomoon-color-icon/demo.html</a>
+
+iconfont demo示例：
+
+<a href="http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html">http://lisong.hn.cn/blog-demo/iconfont-demo/demo.html</a>
 
 ## “浏览器模式”和“文档模式”的区别
 
