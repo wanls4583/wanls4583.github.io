@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "utf-8";
 
 .page_container {
     background-color: #fff;
@@ -14,9 +14,9 @@
         }
     }
     .pre_next_warp {
-        overflow: auto;
-        margin: 40px 0 0;
         padding: 50px 0;
+        margin: 40px 0 0;
+        overflow: auto;
         border-top: 1px solid rgba(0, 0, 0, .1);
         .pre_wrap,
         .next_wrap {
@@ -37,8 +37,8 @@
 }
 
 .content_container {
-    overflow: auto;
     padding: 20px;
+    overflow: auto;
     color: #666;
     h1,
     h2,
@@ -82,7 +82,14 @@
         margin-left: 1em;
     }
     ul > li {
-        list-style-image: url('/images/bullet.png');
+        position: relative;
+        &:before {
+            position: absolute;
+            left: -.8em;
+            content: "\e665";
+            color: #{$theme_color};
+
+        }
     }
     ol > li {
         list-style-type: decimal;
@@ -96,16 +103,17 @@
         margin: 15px 0;
     }
     code.highlighter-rouge {
-        background-color: #fff5f5;
         color: #ff502c;
+        background-color: #fff5f5;
     }
     p {
         overflow: auto;
     }
     blockquote {
-        margin: 0;
         padding: 0 0 0 20px;
-        border-left: 1px solid #{$theme_color};
+        margin: 0;
+        border-left: 2px solid #{$theme_color};
+
         font-style: italic;
     }
     table {
@@ -116,35 +124,39 @@
 
     th {
         padding: 5px 10px;
+        color: #444;
         border-bottom: 1px solid #e5e5e5;
         text-align: left;
-        color: #444;
     }
 
     td {
         padding: 5px 10px;
         border-right: 1px solid #{$theme_color};
+
         border-bottom: 1px solid #e5e5e5;
         text-align: left;
     }
 
     td:first-child {
         border-left: 1px solid #{$theme_color};
+
     }
 
     dt {
-        font-weight: 700;
         color: #444;
+        font-weight: 700;
     }
 
     a {
-        font-weight: 400;
         color: #{$theme_color};
+
+        font-weight: 400;
         text-decoration: none;
     }
 }
 
 @media #{$small} {
+
     h1 {
         font-size: 1.5em !important;
         line-height: 1.2em !important;
@@ -205,8 +217,8 @@
 
 .toc_wrap .show_toc_btn {
     display: none;
-    margin-bottom: 20px;
     padding: 10px;
+    margin-bottom: 20px;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, .1);
     background: #fbfbfb;
