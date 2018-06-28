@@ -104,6 +104,8 @@ reset 到某个版本后，可以使用该命令强制推送到远程仓库，�
 
 ### `git rebase commitid`
 
+把另一个分支的最新commit改变为当前分支的基础。实现过程：在改动中会把不一致的本分支commit保存，把另一个分支的commit加载过来，然后把之前保存的commit打上新的时间戳放在后面，简称“变基”。
+
 ![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-9.png)
 
 执行`git rebase master`（以提交时间为基础）

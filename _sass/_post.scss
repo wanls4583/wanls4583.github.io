@@ -47,8 +47,8 @@
     h5 {
         /*color: #333;*/
         margin: 20px 0;
-        color: #333;
         word-break: break-all;
+        color: #333;
     }
     h1 {
         padding: 30px 0 0 0;
@@ -88,10 +88,10 @@
             top: -2px;
             left: -.8em;
             content: "\e665";
-            color: #{$theme_color};
-
             font-family: iconfont;
             font-size: 25px;
+            color: #{$theme_color};
+
         }
     }
     ol > li {
@@ -106,8 +106,12 @@
         margin: 15px 0;
     }
     code.highlighter-rouge {
-        color: #ff502c;
-        background-color: #fff5f5;
+        padding: 3px 5px;
+        margin: 0 2px;
+        border-radius: 2px;
+        background-color: #f8f8f8;
+        font-family: "Roboto Mono", Monaco, courier, monospace;
+        color: #e96900;
     }
     p {
         overflow: auto;
@@ -130,9 +134,9 @@
 
     th {
         padding: 5px 10px;
-        color: #444;
         border-bottom: 1px solid #e5e5e5;
         text-align: left;
+        color: #444;
     }
 
     td {
@@ -149,15 +153,15 @@
     }
 
     dt {
-        color: #444;
         font-weight: 700;
+        color: #444;
     }
 
     a {
-        color: #{$theme_color};
-
         font-weight: 400;
         text-decoration: none;
+        color: #{$theme_color};
+
     }
 }
 
@@ -235,8 +239,9 @@
     }
 }
 
-@media #{$large}{
-    .content_container{
+@media #{$large} {
+
+    .content_container {
         padding: 20px 50px;
     }
 }
