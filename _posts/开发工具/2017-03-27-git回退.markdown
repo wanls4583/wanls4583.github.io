@@ -15,9 +15,9 @@ tags:
 ## reset
 
 git reset有三个可选项：
---mixed：默认，修改 HEAD，使其指向到对应版本号，并且清空暂存区（stage 或者叫 index），注意，这里的修改 HEAD 并不会改变工作区的文件。
---soft：修改HEAD，使其指向到对应版本号，不会清空暂存区，也不会改变工作区的文件，并且会把当前版本相对于现在工作区有修改的文件添加到暂存区（添加到暂存区的文件和工作区的文件内容是一样，想要恢复对应版本号的文件，可以先`get reset HEAD`，然后`git checkout -- 'fileName/filePathName'`），此时可以直接提交。
---hard：将文件恢复到对应版本号的状态，暂存区将被清空，工作区文件将被更改，恢复到对应版本号的状态。
+- `--mixed`：默认，修改 HEAD，使其指向到对应版本号，并且清空暂存区（stage 或者叫 index），注意，这里的修改 HEAD 并不会改变工作区的文件。
+- `--soft`：修改HEAD，使其指向到对应版本号，不会清空暂存区，也不会改变工作区的文件，并且会把当前版本相对于现在工作区有修改的文件添加到暂存区（添加到暂存区的文件和工作区的文件内容是一样，想要恢复对应版本号的文件，可以先`get reset HEAD`，然后`git checkout -- 'fileName/filePathName'`），此时可以直接提交。
+- `--hard`：将文件恢复到对应版本号的状态，暂存区将被清空，工作区文件将被更改，恢复到对应版本号的状态。
 
 **git reset 也可回复单个文件或者单个文件夹**
 
@@ -29,7 +29,7 @@ git reset  'commitId'  'fileName/filePathName'
 
 ## revert
 
-revert主要用来撤销某一次修改，如果之前提交增加了内容则会把该内容删除，如果之前提交删除了内容则会把相应内容恢复。
+revert 主要用来撤销某一次修改，如果之前提交增加了内容则会把该内容删除，如果之前提交删除了内容则会把相应内容恢复。
 
 先假设我们有如下四次提交：
 
@@ -65,11 +65,11 @@ test-revert-begin
 
 蓝色部分为撤销后的内容，红色内容为版本库最新的内容，发生了冲突，此时需要我们解决冲突后commit -am。
 
-*注意：如果我们revert 0869，是不是产生冲突的，因为在0869之后没有再对1.txt进行过修改*
+*注意：如果我们revert`0869`，是不是产生冲突的，因为在`0869`之后没有再对 1.txt 进行过修改*
 
 
-## git reset 与git revert的区别
+## git reset 与 git revert 的区别
 
-git reset会删除指定版本之后的commit，而revert会产生新的commit，revert不可以回复单个文件
+reset 会删除指定版本之后的 commit，而 revert 会产生新的 commit，并且 revert 不可以回复单个文件
 
 ![](https://wanls4583.github.io/images/posts/开发工具/2017-03-27日-git回退-4.jpg)
