@@ -90,46 +90,6 @@ reset 到某个版本后，可以使用该命令强制推送到远程仓库，�
 
 该命令相当于`git checkout commitid`和`git checkout -b branchname`的组合
 
-## 分支合并操作
-
-### `git merge commitid`
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-6.png)
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-7.png)
-
-`git merge` 会产生一个新的提交：
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-8.png)
-
-### `git rebase commitid`
-
-把另一个分支的最新commit改变为当前分支的基础。实现过程：在改动中会把不一致的本分支commit保存，把另一个分支的commit加载过来，然后把之前保存的commit打上新的时间戳放在后面，简称“变基”。
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-9.png)
-
-执行`git rebase master`（以提交时间为基础）
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-10.png)
-
-解决完第一个冲突后add到暂存区
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-11.png)
-
-`git rebase --continue`继续解决下一个冲突（总共有两个冲突）
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-12.png)
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-13.png)
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-14.png)
-
-`git rebase` 不会产生新的历史记录：
-
-![](https://wanls4583.github.io/images/posts/其他/2017-07-22-git常用命令-15.png)
-
-其中，`cf2484`和`e17071`分别是`654454`和`4b3c42`rebase 后的结果。
-
 ## 修改commit注释
 
 ### `git commit --amend`
