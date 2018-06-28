@@ -39,8 +39,8 @@ tags:
 
 `git rebase`不会产生新的历史记录：
 
-<embed src="https://wanls4583.github.io/images/posts/开发工具/git-rebase.svg" type="image/svg+xml"></embed>
+<embed src="https://wanls4583.github.io/images/posts/开发工具/git-rebase.svg" type="image/svg+xml" />
 
-
+`61ef`、`9d36`分别是`da60`、`b590`rebase后的结果
 
 
