@@ -14,7 +14,7 @@ tags:
 
 `git rebase commitid`
 
-该命令可以把另一个分支的最新commit改变为当前分支的基础。在改动中会把不一致的本分支commit保存，把另一个分支的commit加载过来，然后把之前保存的commit打上新的时间戳放在后面，简称“变基”。**rebase 过程是与提交时间无关的**。
+该命令可以把另一个分支的最新 commit 改变为当前分支的基础。在改动中会把不一致的本分支 commit 保存，把另一个分支的 commit 加载过来，然后把之前保存的 commit 打上新的时间戳放在后面，简称“变基”。**rebase 过程是与提交时间无关的**。
 
 ![](https://wanls4583.github.io/images/posts/开发工具/git-rebase-1.png)
 
@@ -41,6 +41,6 @@ tags:
 
 <embed src="https://wanls4583.github.io/images/posts/开发工具/git-rebase.svg" type="image/svg+xml" />
 
-`61ef`、`9d36`分别是`da60`、`b590`rebase后的结果
+`61ef`、`9d36`分别是`da60`、`b590`rebase 后的结果
 
 
