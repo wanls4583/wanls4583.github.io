@@ -1,0 +1,94 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.out {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+.carousel{
+    height: 100%;
+}
+.wrap{
+    font-size: 0;
+    white-space: nowrap;
+}
+.wrap img{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+/*DOT-BEGIN*/
+.dots{
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10px;
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    margin: 0 2px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+}
+.dot.active{
+    background: rgba(255,255,255,1);
+}
+/*DOT-END*/
+
+/*ARROW-BEGIN*/
+.left,
+.right{
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.2);
+}
+.left:hover,
+.right:hover{
+    background-color: rgba(255,255,255,.5);
+}
+.left{
+    left: 10px;
+}
+.left:after{
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 5px 0 0 7px;
+    content: '';
+    transform: rotateZ(-135deg);
+    border: 3px solid #fff;
+    border-width: 3px 3px 0 0;
+}
+.right{
+    right: 10px;
+}
+.right:after{
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 5px 0 0 4px;
+    content: '';
+    transform: rotateZ(45deg);
+    border: 3px solid #fff;
+    border-width: 3px 3px 0 0;
+}
+/*ARROW-END*/
+
+.param{
+    text-align: center;
+    color: rgb(0,116,0);
+}
