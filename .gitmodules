@@ -1,0 +1,6 @@
+[submodule "code/carousel-plugin"]
+	path = code/carousel-plugin
+	url = git@github.com:wanls4583/carousel-plugin.git
+[submodule "code/mp3player"]
+	path = code/mp3player
+	url = git@github.com:wanls4583/mp3player.git
