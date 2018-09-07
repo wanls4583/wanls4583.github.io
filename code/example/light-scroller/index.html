@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<style type="text/css">
+		html,body{
+			padding: 0;
+			margin: 0;
+			height: 100%;
+		}
+		#wrapper{
+			height: 100%;
+			background: #fff;
+			position: relative;
+			overflow: hidden;
+			-webkit-overflow-scrolling: touch;
+		}
+		.item{
+			display: flex;
+			align-items: center;
+			height: 60px;
+			padding: 10px 30px;
+			border-bottom: 1px solid #eee;
+			font-size: 12px;
+		}
+		.item img{
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			flex-shrink: 0;
+			margin-right: 30px;
+		}
+		.item .title{
+			font-size: 14px;
+			color: #333;
+		}
+		.item .desc{
+			font-size: 10px;
+			color: #999;
+		}
+		.top_tip{
+			font-size: 12px;
+			line-height: 40px;
+			text-align: center;
+			color: #999;
+		}
+		.bottom_tip{
+			font-size: 12px;
+			line-height: 40px;
+			text-align: center;
+			color: #999;
+		}
+		.bar{
+			width:6px;
+			border-radius:6px;
+			opacity:0.5;
+			background:#000;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="scroller">
+			<div class="top_tip">下拉刷新...</div>
+			<div class="content"></div>
+			<div class="bottom_tip">加载中...</div>
+		</div>
+	</div>
+<script type="text/javascript" src="demo.min.js"></script></body>
+</html>
