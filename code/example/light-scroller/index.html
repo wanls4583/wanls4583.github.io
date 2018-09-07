@@ -15,7 +15,6 @@
 			background: #fff;
 			position: relative;
 			overflow: hidden;
-			-webkit-overflow-scrolling: touch;
 		}
 		.item{
 			display: flex;
@@ -52,12 +51,6 @@
 			text-align: center;
 			color: #999;
 		}
-		.bar{
-			width:6px;
-			border-radius:6px;
-			opacity:0.5;
-			background:#000;
-		}
 	</style>
 </head>
 <body>
@@ -65,7 +58,7 @@
 		<div id="scroller">
 			<div class="top_tip">下拉刷新...</div>
 			<div class="content"></div>
-			<div class="bottom_tip">加载中...</div>
+			<div class="bottom_tip">上拉加载...</div>
 		</div>
 	</div>
 <script type="text/javascript" src="demo.min.js"></script></body>
