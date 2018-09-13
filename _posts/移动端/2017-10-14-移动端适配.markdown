@@ -90,7 +90,7 @@ viewport标签content参数：
 
 其中布局viewport可以使用document.body.clientWidth来获取，度量viewport可以使用window.innerWidth来获取，window.outerWidth可以获取到设备的逻辑分辨率宽，此时的px对应于安卓的dp或ios的pt。
 
-移动端页面，如果没有设置viewport标签，默认会有一个980px的布局视口，而默认度量视口没有固定值，只有一个默认最大度量视口，不同设备的默认最大度量视口不一致。
+移动端页面，如果没有设置viewport标签，默认会有一个980px的布局视口，而默认度量视口没有固定值，只有一个默认最大度量视口(即使设置 scale,最多也只能缩放到该大小)，不同设备的默认最大度量视口不一致。
 
 ```
 <!DOCTYPE>
