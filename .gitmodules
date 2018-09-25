@@ -1,3 +1,3 @@
-[submodule "code/example/ja-avl-tree"]
+[submodule "code/example/js-avl-tree"]
 	path = code/example/js-avl-tree
 	url = https://github.com/wanls4583/js-avl-tree.git
