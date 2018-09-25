@@ -1,0 +1,23 @@
+{
+  "name": "js-mod-loader",
+  "version": "1.0.0",
+  "description": "A avl-tree by javascript",
+  "main": "dist/avl.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanls4583/js-avl-tree.git"
+  },
+  "keywords": [
+    "avl",
+    "avl-tree",
+    "js-avl",
+    "js-avl-tree"
+  ],
+  "author": "lisong",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "scripts": {
+    "build": "uglifyjs --compress --mangle --output dist/avl.min.js -- src/avl.js"
+  }
+}

@@ -1,0 +1,3 @@
+[submodule "js-avl-tree"]
+	path = code/js-avl-tree
+	url = https://github.com/wanls4583/js-avl-tree.git
