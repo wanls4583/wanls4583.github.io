@@ -88,7 +88,7 @@ viewport标签content参数：
 - max-scale：用于控制最大度量viewport的大小
 - user-no-scale：禁止用户缩放页面
 
-其中布局viewport可以使用document.body.clientWidth来获取，度量viewport可以使用window.innerWidth来获取，window.outerWidth可以获取到设备的逻辑分辨率宽，此时的px对应于安卓的dp或ios的pt。
+其中布局viewport可以使用document.body.clientWidth来获取，度量viewport可以使用window.innerWidth来获取（在某些浏览器上，如果度量视口小于元素宽度，则 window.innerWidth 将为元素的宽度，不等于度量视口的宽度），window.outerWidth可以获取到设备的逻辑分辨率宽，此时的px对应于安卓的dp或ios的pt。
 
 移动端页面，如果没有设置viewport标签，默认会有一个980px的布局视口，而默认度量视口没有固定值，只有一个默认最大度量视口(即使设置 scale,最多也只能缩放到该大小)，不同设备的默认最大度量视口不一致。
 
@@ -122,6 +122,64 @@ iphone5下最大度量视口为1280px，iphone6下最大度量视口为1600px：
 <img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-3.png" alt="" />
 
 <img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-4.png" alt="" />
+
+如果只设置了布局视口，则度量视口会根据页面元素的宽度设置一个合适的值：
+```
+<!DOCTYPE>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1000">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding-top: 0;
+		}
+		#d1{
+			width: 1300px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'></div>
+</body>
+<script type="text/javascript">
+</script>
+</html>
+```
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-7.png" alt="" />
+
+如果只设置了度量视口，则布局视口将等于度量视口：
+```
+<!DOCTYPE>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=0.3">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding-top: 0;
+		}
+		#d1{
+			width: 750px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'></div>
+</body>
+<script type="text/javascript">
+</script>
+</html>
+```
+<img src="https://wanls4583.github.io/images/posts/移动端/2017-10-14-移动端适配-8.png" alt="" />
 
 如果度量视口小于布局视口将产生滚动条：
 ```
