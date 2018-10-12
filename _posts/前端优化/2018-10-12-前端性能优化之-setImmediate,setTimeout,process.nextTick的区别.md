@@ -21,7 +21,7 @@ process.nextTick 属于 micro-task ,优先级甚至比 promise 更高。setTimeo
 **注意：以下的测试均在 Miscrosoft Edg 上运行**
 
 测试1：
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +47,7 @@ process.nextTick 属于 micro-task ,优先级甚至比 promise 更高。setTimeo
 
 测试2：
 
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +74,7 @@ process.nextTick 属于 micro-task ,优先级甚至比 promise 更高。setTimeo
 ![](http://wanls4583.github.io/images/posts/前端优化/setImmediate-2.png)
 
 测试3：
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
