@@ -8,7 +8,7 @@ tags:
 - 前端优化
 ---
 
-setImmediate 和 process.nextTick 是 nodejs 中的 api,标准浏览器里是没有这两个函数，不过 ie10+ 浏览器实现了非标准的 setImmediate，其主要用来在事件循环结束后，尽快的执行其回调（延时<=2ms）。在前端开发中，应避免使用 setImmediate。
+> setImmediate 和 process.nextTick 是 nodejs 中的 api,标准浏览器里是没有这两个函数，不过 ie10+ 浏览器实现了非标准的 setImmediate，其主要用来在事件循环结束后，尽快的执行其回调（延时<=2ms）。在前端开发中，应避免使用 setImmediate。
 
 为了实现异步执行代码，js 引擎使用了观察者来检测相应的队列是否有待执行的任务。setTimeout 采用的是类似IO观察者，setImmediate 采用的是 check 观察者，而 process.nextTick 采用的是 idle 观察者。每个事件循环都会执行一遍检测操作。这三个观察者的优先级为：**idle > IO > check**。
 
