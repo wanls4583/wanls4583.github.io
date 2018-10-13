@@ -4,3 +4,6 @@
 [submodule "code/example/js-rb-tree"]
 	path = code/example/js-rb-tree
 	url = https://github.com/wanls4583/js-rb-tree.git
+[submodule "code/example/subjs-editor"]
+	path = code/example/subjs-editor
+	url = https://github.com/wanls4583/subjs-editor.git
