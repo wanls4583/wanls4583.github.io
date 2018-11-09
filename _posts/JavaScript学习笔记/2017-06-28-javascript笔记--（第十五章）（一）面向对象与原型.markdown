@@ -447,10 +447,12 @@ o.sayHi();//hi
 ```
 function F(){};
 var a = new F();
-F.prototype = new Number(1);
+F.prototype = {a:1};
 var b = new F();
 console.log(a.__proto__);//F {}
-console.log(b.__proto__);//Number {[[PrimitiveValue]]: 1}
+console.log(b.__proto__);//{a: 1}
+console.log(a.a); //undefined
+console.log(b.a); //1
 ```
 
 
