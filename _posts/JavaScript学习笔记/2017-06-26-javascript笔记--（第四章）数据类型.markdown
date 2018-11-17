@@ -28,21 +28,19 @@ typeof操作符是用来检测变量的数据类型。对于值或变量使用ty
 
 function - 如果变量是函数（函数对象，Function是最顶层的构造器，Object也是一个函数对象，Object是被Function构造出来的。）
 
-```
-<script type="text/javascript">
-	var a;
-	console.log(typeof a);//undefined
-	var b = false;
-	console.log(typeof b);//boolean
-	var c = 1;
-	console.log(typeof c);//number
-	var d = "";
-	console.log(typeof d);//string
-	var e = {};
-	console.log(typeof e);//object
-	var f = function(){};
-	console.log(typeof f);//function
-</script>
+```javascript
+var a;
+console.log(typeof a);//undefined
+var b = false;
+console.log(typeof b);//boolean
+var c = 1;
+console.log(typeof c);//number
+var d = "";
+console.log(typeof d);//string
+var e = {};
+console.log(typeof e);//object
+var f = function(){};
+console.log(typeof f);//function
 ```
 
 注意：js只存在5种基本类型和一种引用类型。typeof返回的字符串并不代表类型，而是根据ECMScript标准来返回字符串，以下就是ECMScript对typeof操作符返回值的说明。
@@ -131,12 +129,10 @@ function - 如果变量是函数（函数对象，Function是最顶层的构造�
 
 Undefined类型只有一个值，即特殊的undefined。在使用var声明变量，但没有对其初始化时，这个变量的值就是undefined。
 
-```
-<script type="text/javascript">
-	var a;
-	console.log(typeof a);//undefined
-	console.log(b);//s报错
-</script>
+```javascript
+var a;
+console.log(typeof a);//undefined
+console.log(b);//s报错
 ```
 
 注意：未初始化的变量和未定义的变量是不一样的。
@@ -165,15 +161,13 @@ console.log(typeof hello2);//boolean
 
 隐式转换:
 
-```
-<script type="text/javascript">
-	var hello = 'Hello World!';
-	if (hello) {
-		console.log('如果条件为true，就执行我这条！');
-	} else {
-		console.log('如果条件为false，就执行我这条！');
-	}
-</script>
+```javascript
+var hello = 'Hello World!';
+if (hello) {
+	console.log('如果条件为true，就执行我这条！');
+} else {
+	console.log('如果条件为false，就执行我这条！');
+}
 ```
 
 当要转换的值是至少有一个字符的字符串、非 0 数字或对象时，Boolean() 函数将返回 true。如果该值是空字符串、数字 0、NaN、undefined 或 null，它将返回 false。
@@ -269,7 +263,7 @@ alert(isNaN('Lee'));		//true，'Lee'不能转换为数值
 alert(isNaN(true));		//false	true可以转成成1
 ```
 
-isNaN()函数也适用于对象。在调用isNaN()函数过程中，首先会调用valueOf()方法，然后确定返回值是否能够转换成数值。如果不能，则调用toString()方法，再测试返回值是否能够转换成数值。
+isNaN()函数也适用于对象。在调用isNaN()函数过程中，如果定义了valueOf方法，会调用valueOf()方法，然后确定返回值是否能够转换成数值。如果没有定义valueOf方法，则调用toString()方法，再测试返回值是否能够转换成数值。
 
 ```
 <script type="text/javascript">
