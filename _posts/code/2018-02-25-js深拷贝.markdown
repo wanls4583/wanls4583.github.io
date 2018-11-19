@@ -32,7 +32,7 @@ function copy_1(obj){
             result = [];
         }
         for (var key in obj) {
-            result[key] = Util.copyObj(obj[key]);
+            result[key] = copy_1(obj[key]);
         }
     } else {
         result = obj;
