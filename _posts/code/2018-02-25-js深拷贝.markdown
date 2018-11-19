@@ -26,30 +26,18 @@ var obj1 = {
 	g:undefined
 }
 function copy_1(obj){
-	var newObj = null;
-	if(typeof obj === 'object' || typeof obj === 'array'){
-		if(typeof obj === 'object'){
-			newObj = {};
-		}else{
-			newObj = [];
-		}
-	}
-	function _copy(target,obj){
-		for(var key in obj){
-			if(typeof obj[key] === 'object' && obj[key]){
-				if(obj[key] instanceof Array){
-					target[key] = [];
-				}else{
-					target[key] = {};
-				}
-				_copy(target[key],obj[key]);
-			}else{
-				target[key] = obj[key];
-			}
-		}
-	}
-	_copy(newObj,obj);
-	return newObj;
+	var result = {};
+    if (obj && typeof obj == 'object') {
+        if (obj instanceof Array) {
+            result = [];
+        }
+        for (var key in obj) {
+            result[key] = Util.copyObj(obj[key]);
+        }
+    } else {
+        result = obj;
+    }
+    return result;
 }
 //使用JSON实现拷贝，将会忽略function和undefined
 function copy_2(obj){
