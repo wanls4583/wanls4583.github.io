@@ -14,109 +14,108 @@ tags:
 
 ## 运算符
 
-小于: <,lt 
-小于等于: le,<=
-大于: gt,>
-大于等于: ge,=
-等于: eq,=
-不等: ne,!=
-非: not,!
-与: and,&&
-或: or,||
+- 小于: <,lt 
+- 小于等于: le,<=
+- 大于: gt,>
+- 大于等于: ge,=
+- 等于: eq,=
+- 不等: ne,!=
+- 非: not,!
+- 与: and,&&
+- 或: or,||
 
 ## 过滤IP
 
-ip.src eq 192.168.1.107 or ip.dst eq 192.168.1.107
-或者
-ip.addr eq 192.168.1.107 // 都能显示来源IP和目标IP
+- ip.src eq 192.168.1.107 or ip.dst eq 192.168.1.107
+- ip.addr eq 192.168.1.107 // 都能显示来源IP和目标IP
 
 ## 过滤端口
 
-tcp.port eq 80 // 不管端口是来源的还是目标的都显示
-tcp.port == 80
-tcp.port eq 2722
-tcp.port eq 80 or udp.port eq 80
-tcp.dstport == 80 // 只显tcp协议的目标端口80
-tcp.srcport == 80 // 只显tcp协议的来源端口80
-tcp.port >= 1 and tcp.port <= 80
+- tcp.port eq 80 // 不管端口是来源的还是目标的都显示
+- tcp.port == 80
+- tcp.port eq 2722
+- tcp.port eq 80 or udp.port eq 80
+- tcp.dstport == 80 // 只显tcp协议的目标端口80
+- tcp.srcport == 80 // 只显tcp协议的来源端口80
+- tcp.port >= 1 and tcp.port <= 80
 
 ## 过滤协议
 
-tcp
-udp
-arp
-icmp
-http
-smtp
-ftp
-dns
-msnms
-ip
-ssl
-oicq
-bootp
+- tcp
+- udp
+- arp
+- icmp
+- http
+- smtp
+- ftp
+- dns
+- msnms
+- ip
+- ssl
+- oicq
+- bootp
 ...
 
 排除arp包，如!arp   或者   not arp
 
 ## 过滤MAC
 
-eth.dst == A0:00:00:04:C5:84 // 过滤目标mac
-eth.src eq A0:00:00:04:C5:84 // 过滤来源mac
-eth.dst==A0:00:00:04:C5:84
-eth.dst==A0-00-00-04-C5-84
-eth.addr eq A0:00:00:04:C5:84 // 过滤来源MAC和目标MAC都等于A0:00:00:04:C5:84的
+- eth.dst == A0:00:00:04:C5:84 // 过滤目标mac
+- eth.src eq A0:00:00:04:C5:84 // 过滤来源mac
+- eth.dst==A0:00:00:04:C5:84
+- eth.dst==A0-00-00-04-C5-84
+- eth.addr eq A0:00:00:04:C5:84 // 过滤来源MAC和目标MAC都等于A0:00:00:04:C5:84的
 
 ## 包长度过滤
 
-udp.length == 26 这个长度是指udp本身固定长度8加上udp下面那块数据包之和
-tcp.len >= 7   指的是ip数据包(tcp下面那块数据),不包括tcp本身
-ip.len == 94 除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
-frame.len == 119 整个数据包长度,从eth开始到最后
+- udp.length == 26 这个长度是指udp本身固定长度8加上udp下面那块数据包之和
+- tcp.len >= 7   指的是ip数据包(tcp下面那块数据),不包括tcp本身
+- ip.len == 94 除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
+- frame.len == 119 整个数据包长度,从eth开始到最后
 
 ## http模式过滤
 
-http.request.method == "GET"
-http.request.method == "POST"
-http.request.uri == "/img/logo-edu.gif"
-http contains "GET"
-http contains "HTTP/1."
-http.request.method == "GET" && http contains "Host: "
+- http.request.method == "GET"
+- http.request.method == "POST"
+- http.request.uri == "/img/logo-edu.gif"
+- http contains "GET"
+- http contains "HTTP/1."
+- http.request.method == "GET" && http contains "Host: "
 
 
 ## TCP参数过滤
 
-tcp.flags 显示包含TCP标志的封包。
-tcp.flags.syn == 0x02     显示包含TCP SYN标志的封包。
-tcp.window_size == 0 && tcp.flags.reset != 1
+- tcp.flags 显示包含TCP标志的封包。
+- tcp.flags.syn == 0x02     显示包含TCP SYN标志的封包。
+- tcp.window_size == 0 && tcp.flags.reset != 1
 
 ## 过滤内容
 
 语法:tcp[offset,n]
 
-tcp[20]表示从20开始，取1个字符
-tcp[20:]表示从20开始，取1个字符以上
-tcp[20:8]表示从20开始，取8个字符
+- tcp[20]表示从20开始，取1个字符
+- tcp[20:]表示从20开始，取1个字符以上
+- tcp[20:8]表示从20开始，取8个字符
 
 例:
-udp[8:3]==81:60:03 // 偏移8个bytes,再取3个数，是否与==后面的数据相等？
-udp[8:1]==32   如果我猜的没有错的话，应该是udp[offset:截取个数]=nValue
-eth.addr[0:3]==00:06:5B
+- udp[8:3]==81:60:03 // 偏移8个bytes,再取3个数，是否与==后面的数据相等？
+- udp[8:1]==32   如果我猜的没有错的话，应该是udp[offset:截取个数]=nValue
+- eth.addr[0:3]==00:06:5B
 
 ## matches
 
 matches 可以使用正则匹配
 
 例:
-http.request.full_uri matches "http://.*\.jpg.*"
+- http.request.full_uri matches "http://.*\.jpg.*"
 
 ## contains
 
 matches 可以用来判断是否包含某个字符串(不可以使用正则)
 
 例:
-tcp contains "baidu"
-ip contains "baidu"
+- tcp contains "baidu"
+- ip contains "baidu"
 
 ## 让 wirshark 支持 https 包的抓取与分析
 
