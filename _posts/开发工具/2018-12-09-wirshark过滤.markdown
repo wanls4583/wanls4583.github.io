@@ -22,7 +22,7 @@ tags:
 - 不等: ne,!=
 - 非: not,!
 - 与: and,&&
-- 或: or,||
+- 或: or,\|\|
 
 ## 过滤IP
 
@@ -54,9 +54,7 @@ tags:
 - ssl
 - oicq
 - bootp
-...
-
-排除arp包，如!arp   或者   not arp
+- !arp 或者 not arp
 
 ## 过滤MAC
 
@@ -68,10 +66,10 @@ tags:
 
 ## 包长度过滤
 
-- udp.length == 26 这个长度是指udp本身固定长度8加上udp下面那块数据包之和
-- tcp.len >= 7   指的是ip数据包(tcp下面那块数据),不包括tcp本身
-- ip.len == 94 除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
-- frame.len == 119 整个数据包长度,从eth开始到最后
+- udp.length == 26  //这个长度是指udp本身固定长度8加上udp下面那块数据包之和
+- tcp.len >= 7  //指的是ip数据包(tcp下面那块数据),不包括tcp本身
+- ip.len == 94  //除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
+- frame.len == 119  //整个数据包长度,从eth开始到最后
 
 ## http模式过滤
 
@@ -85,8 +83,8 @@ tags:
 
 ## TCP参数过滤
 
-- tcp.flags 显示包含TCP标志的封包。
-- tcp.flags.syn == 0x02     显示包含TCP SYN标志的封包。
+- tcp.flags //显示包含TCP标志的封包。
+- tcp.flags.syn == 0x02   //显示包含TCP SYN标志的封包。
 - tcp.window_size == 0 && tcp.flags.reset != 1
 
 ## 过滤内容
@@ -107,7 +105,7 @@ tags:
 matches 可以使用正则匹配
 
 例:
-- http.request.full_uri matches "http://.*\.jpg.*"
+- http.request.full_uri matches "http://.*\\.jpg.*"
 
 ## contains
 
@@ -120,5 +118,5 @@ matches 可以用来判断是否包含某个字符串(不可以使用正则)
 ## 让 wirshark 支持 https 包的抓取与分析
 
 默认情况下，wirshark 是不支持 https 包的分析的，需要做如下配置：
-- 配置环境变量`SSLKEYLOGFILE`指向一个日志文件，如：`D:\Program Files\Wireshark\firefox_sslkey.log` (chrome,firfox使用该文件记录ssl秘钥)
+- 配置环境变量`SSLKEYLOGFILE`指向一个日志文件，如：`D:\Program Files\Wireshark\firefox_sslkey.log` (chrome, firfox 使用该文件记录ssl秘钥)
 - 在 wirshark 配置该日志文件的路径(编辑->首选项->Protocols->ssl)
