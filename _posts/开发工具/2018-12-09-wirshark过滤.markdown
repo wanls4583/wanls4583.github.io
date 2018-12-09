@@ -117,3 +117,9 @@ matches 可以用来判断是否包含某个字符串(不可以使用正则)
 例:
 tcp contains "baidu"
 ip contains "baidu"
+
+## 让 wirshark 支持 https 包的抓取与分析
+
+默认情况下，wirshark 是不支持 https 包的分析的，需要做如下配置：
+- 配置环境变量`SSLKEYLOGFILE`指向一个日志文件，如：`D:\Program Files\Wireshark\firefox_sslkey.log` (chrome,firfox使用该文件记录ssl秘钥)
+- 在 wirshark 配置该日志文件的路径(编辑->首选项->Protocols->ssl)
