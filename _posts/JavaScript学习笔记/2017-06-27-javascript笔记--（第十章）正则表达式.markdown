@@ -126,80 +126,70 @@ tags:
 </table>
 
 *test方法：*
-```
-<script type="text/javascript">
-	var reg = /lisong/;
+```javascript
+var reg = /lisong/;
 
-	console.log(reg.test("i am lisong"));//true
+console.log(reg.test("i am lisong"));//true
 
-	console.log(reg.test("i am lison"));//false
-</script>
+console.log(reg.test("i am lison"));//false
 ```
 *exec方法：*
 
 如果 exec() 找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。
-```
-<script type="text/javascript">
-	var reg = /(\d+)lisong((\d+)[a-z])(\d)/;
+```javascript
+var reg = /(\d+)lisong((\d+)[a-z])(\d)/;
 
-	console.log(reg.exec("i am 5lisong26a1df"));//["5lisong26a1", "5", "26a", "26", "1", index: 5, input: "i am 5lisong26a1df"]
+console.log(reg.exec("i am 5lisong26a1df"));//["5lisong26a1", "5", "26a", "26", "1", index: 5, input: "i am 5lisong26a1df"]
 
-	console.log(reg.exec("i am 12lisong18t2easdst"));//["12lisong18t2", "12", "18t", "18", "2", index: 5, input: "i am 12lisong18t2easdst"]
-</script>
+console.log(reg.exec("i am 12lisong18t2easdst"));//["12lisong18t2", "12", "18t", "18", "2", index: 5, input: "i am 12lisong18t2easdst"]
 ```
 如果一个子表达式中还有字表达式，则先返回外层字表达式所匹配的文本。
 
 *exec全局匹配：*
-```
-<script type="text/javascript">
-	var reg = /lisong/;//非全局匹配
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
-	console.log(reg.lastIndex);//0
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+```javascript
+var reg = /lisong/;//非全局匹配
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+console.log(reg.lastIndex);//0
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
 
-	reg = /lisong/g;//重新赋值
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
-	console.log(reg.lastIndex);//11
-	console.log(reg.exec("i am lisong"));//null,从下标11开始，后面已经没有字符了
+reg = /lisong/g;//重新赋值
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+console.log(reg.lastIndex);//11
+console.log(reg.exec("i am lisong"));//null,从下标11开始，后面已经没有字符了
 
-	reg = /lisong/g;//重新赋值
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
-	console.log(reg.lastIndex);//11
-	console.log(reg.exec("i am lisong i am lisong"));//["lisong", index: 17, input: "i am lisong i am lisong"]
-</script>
+reg = /lisong/g;//重新赋值
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+console.log(reg.lastIndex);//11
+console.log(reg.exec("i am lisong i am lisong"));//["lisong", index: 17, input: "i am lisong i am lisong"]
 ```
 全局匹配下，exec会记录上一次匹配到的文本结尾的位置的下一个下标（lastIndex），即再次调用exec会从上一次匹配的文本之后开始搜索，非全局下lastIndex为0。
-```
-<script type="text/javascript">
-	var reg = /lisong/;
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
-	console.log(reg.lastIndex);//0
-	reg.lastIndex = 6;//手动设置为6
-	console.log(reg.lastIndex);//6
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"],非全局下lastIndex对exec没有影响
+```javascript
+var reg = /lisong/;
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+console.log(reg.lastIndex);//0
+reg.lastIndex = 6;//手动设置为6
+console.log(reg.lastIndex);//6
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"],非全局下lastIndex对exec没有影响
 
-	var reg = /lisong/g;
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
-	console.log(reg.lastIndex);//0
-	reg.lastIndex = 0;//手动设置为0
-	console.log(reg.lastIndex);//0
-	console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"],全局下，exec是从lastIndex开始匹配的
-</script>
+var reg = /lisong/g;
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"]
+console.log(reg.lastIndex);//0
+reg.lastIndex = 0;//手动设置为0
+console.log(reg.lastIndex);//0
+console.log(reg.exec("i am lisong"));//["lisong", index: 5, input: "i am lisong"],全局下，exec是从lastIndex开始匹配的
 ```
 全局和非全局模式下都可以手动修改lastIndex，非全局模式下修改lastIndex对exec的匹配没有影响。
 
 *compile函数：*
 
 compile() 方法用于改变和重新编译正则表达式。
-```
-<script type="text/javascript">
-	var str = "abc12456def45646ghi";
-	var regExp = new RegExp("[a-z]+");
-	console.log( regExp.exec(str) ); // abc
+```javascript
+var str = "abc12456def45646ghi";
+var regExp = new RegExp("[a-z]+");
+console.log( regExp.exec(str) ); // abc
 
-	regExp.compile("\\d+");// 作用相当于regExp = /\d+/;
-	console.log( regExp.exec(str) ); // 12456
-</script>
+regExp.compile("\\d+");// 作用相当于regExp = /\d+/;
+console.log( regExp.exec(str) ); // 12456
 ```
 ### RegExp 对象属性
 
@@ -292,18 +282,16 @@ compile() 方法用于改变和重新编译正则表达式。
 		</tbody>
 </table>
 
-```
-<script type="text/javascript">
-	var str = "abc12456def45646ghi";
-	var regExp = new RegExp("[a-z]+","g");
-	console.log( regExp.exec(str) ); // abc
+```javascript
+var str = "abc12456def45646ghi";
+var regExp = new RegExp("[a-z]+","g");
+console.log( regExp.exec(str) ); // abc
 
-	console.log(regExp.global);//true
-	console.log(regExp.ignoreCase);//false
-	console.log(regExp.lastIndex);//3
-	console.log(regExp.multiline);//false
-	console.log(regExp.source);//Source
-</script>
+console.log(regExp.global);//true
+console.log(regExp.ignoreCase);//false
+console.log(regExp.lastIndex);//3
+console.log(regExp.multiline);//false
+console.log(regExp.source);//Source
 ```
 ### RegExp静态属性
 ```
@@ -316,7 +304,6 @@ compile() 方法用于改变和重新编译正则表达式。
 	console.log(RegExp.rightContext); //lisong789hehe
 	console.log(RegExp.lastMatch); //abc456
 	console.log(RegExp.lastParen); //456
-	console.log(RegExp.multiline); //false
 	console.log("-------------------------------")
 	console.log( regExp.exec(str) ); //["lisong789", "789", index: 9, input: "123abc456lisong789hehe"]
 	console.log(RegExp.leftContext); //123abc456
@@ -325,7 +312,7 @@ compile() 方法用于改变和重新编译正则表达式。
 	console.log(RegExp.lastParen); //789
 	console.log("-------------------------------")
 	var regExp2 = /lisong(\d(\d))/;
-	regExp2.test("123lisong456");
+	regExp2.test("123lisong456"); //test函数也会更改RegExp全局属性
 	console.log( regExp.exec(str) ); //null,如果没匹配到不会改变静态属性
 	console.log(RegExp.leftContext); //123
 	console.log(RegExp.rightContext); //6
@@ -333,7 +320,7 @@ compile() 方法用于改变和重新编译正则表达式。
 	console.log(RegExp.lastParen); //5,如果没有子表达式，则返回空字符串
 </script>
 ```
-也可以使用短名称，如RegExp.$_，RegExp['$*']
+也可以使用短名称，如RegExp.\$\_，RegExp['$\*']
 
 ### String对象的正则方法
 
@@ -413,22 +400,18 @@ compile() 方法用于改变和重新编译正则表达式。
 </table>
 
 *search方法：*
-```
-<script type="text/javascript">
-	var str="Visit W3School!"
-	console.log(str.search(/W3School/))//6，返回值是第一次出现的位置，search的参数可以是字符串或者正则对象
-</script>
+```javascript
+var str="Visit W3School!"
+console.log(str.search(/W3School/))//6，返回值是第一次出现的位置，search的参数可以是字符串或者正则对象
 ```
 *match方法：*
-```
-<script type="text/javascript">
-	var str = "1lisong2lisong3lisong";
-	var reg = /li(song)/;//非全局模式
-	console.log(str.match(reg));//["lisong", "song", index: 1, input: "1lisong2lisong3lisong"]，search的参数可以是字符串或者正则对象
+```javascript
+var str = "1lisong2lisong3lisong";
+var reg = /li(song)/;//非全局模式
+console.log(str.match(reg));//["lisong", "song", index: 1, input: "1lisong2lisong3lisong"]，search的参数可以是字符串或者正则对象
 
-	reg = /li(song)/g;//全局模式
-	console.log(str.match(reg));//["lisong", "lisong", "lisong"]
-</script>
+reg = /li(song)/g;//全局模式
+console.log(str.match(reg));//["lisong", "lisong", "lisong"]
 ```
 非全局模式下，match只匹配一次，如果匹配到了则返回数组（和正则对象的exec()方法返回的数组一样），否则返回null。
 全局模式下，match匹配多次，如果匹配到了，只返回匹配的子串数组，否则返回null。
@@ -528,39 +511,35 @@ replacement 可以是字符串，也可以是函数。如果它是字符串，�
 		</tbody>
 </table>
 
-```
-<script type="text/javascript">
-	var str = "aLisong123lisong";
-	console.log(str.replace("lisong",'hero'));//aLisong123hero
+```javascript
+var str = "aLisong123lisong";
+console.log(str.replace("lisong",'hero'));//aLisong123hero
 
-	console.log(str.replace(/lisong/i,'hero'));//ahero123lisong
+console.log(str.replace(/lisong/i,'hero'));//ahero123lisong
 
-	console.log(str.replace(/(li)(song)/ig,'$2$1'));//asongLi123songli
+console.log(str.replace(/(li)(song)/ig,'$2$1'));//asongLi123songli
 
-	console.log(str.replace(/lisong/ig,'|$&|'));//a|Lisong|123|lisong|
+console.log(str.replace(/lisong/ig,'|$&|'));//a|Lisong|123|lisong|
 
-	console.log(str.replace(/lisong/ig,'$$'));//a$123$
+console.log(str.replace(/lisong/ig,'$$'));//a$123$
 
-	console.log(str.replace(/lisong/i,'$`|'));//aa|123lisong
-	console.log(str.replace(/lisong/ig,'$`|'));//aa|123aLisong123|,使用全局替换$`时，会在内容没有改变的基础上替换，而不管前一次替换的内容
-	
-	str = "aLisong123lisongalisongb"
-	console.log(str.replace(/lisong/i,'$\'|'));//a123lisongalisongb|123lisongalisongb
-	console.log(str.replace(/lisong/ig,'$\'|'));//a123lisongalisongb|123alisongb|ab|b,替换原理和$`一样
-</script>
+console.log(str.replace(/lisong/i,'$`|'));//aa|123lisong
+console.log(str.replace(/lisong/ig,'$`|'));//aa|123aLisong123|,使用全局替换$`时，会在内容没有改变的基础上替换，而不管前一次替换的内容
+
+str = "aLisong123lisongalisongb"
+console.log(str.replace(/lisong/i,'$\'|'));//a123lisongalisongb|123lisongalisongb
+console.log(str.replace(/lisong/ig,'$\'|'));//a123lisongalisongb|123alisongb|ab|b,替换原理和$`一样
 ```
 ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是 stringObject 本身。
-```
-<script type="text/javascript">
-	var str = "aLisong123lisong";
+```javascript
+var str = "aLisong123lisong";
 
-	console.log(str.replace(/(li)(song)/ig,function(){
-		console.log(arguments);
-		//["Lisong", "Li", "song", 1, "aLisong123lisong"]
-		//["lisong", "li", "song", 10, "aLisong123lisong"]
-		return arguments[2]+arguments[1];
-	}));//asongLi123songli,效果和str.replace(/(li)(song)/ig,'$2$1')一样
-</script>
+console.log(str.replace(/(li)(song)/ig,function(){
+	console.log(arguments);
+	//["Lisong", "Li", "song", 1, "aLisong123lisong"]
+	//["lisong", "li", "song", 10, "aLisong123lisong"]
+	return arguments[2]+arguments[1];
+}));//asongLi123songli,效果和str.replace(/(li)(song)/ig,'$2$1')一样
 ```
 *split函数：*
 
@@ -597,90 +576,76 @@ ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而�
 
 一个字符串数组。该数组是通过在 separator 指定的边界处将字符串 stringObject 分割成子串创建的。返回的数组中的字串不包括separator 自身。
 但是，如果 separator 是包含子表达式的正则表达式，那么返回的数组中包括与这些子表达式匹配的字串（但不包括与整个正则表达式匹配的文本）。
-```
-<script type="text/javascript">
-	var str = "aLisongblisongc";
-	console.log(str.split(/lisong/i));//["a", "b", "c"]
-	console.log(str.split(/lisong/i,2));//["a", "b"]，只返回前两个
-	console.log(str.split(/li(song)/i));//["a", "song", "b", "song", "c"]
-	console.log(str.split(/li(song)/i,2));//["a", "song"]
-</script>
+```javascript
+var str = "aLisongblisongc";
+console.log(str.split(/lisong/i));//["a", "b", "c"]
+console.log(str.split(/lisong/i,2));//["a", "b"]，只返回前两个
+console.log(str.split(/li(song)/i));//["a", "song", "b", "song", "c"]
+console.log(str.split(/li(song)/i,2));//["a", "song"]
 ```
 注意：给split设置第二个参数n，只是简单的返回原数组的前n个元素
 
 ### 多行匹配
-```
-<script type="text/javascript">
-	var pattern = /^\d+/mg;//启用了换行和全局模式
-	var str = '1.baidu\n2.google\n3.bing';
-	var result = str.replace(pattern, '#');
-	console.log(result);
-	//#.baidu
-	//#.google
-	//#.bing
-	
-	var pattern = /^\d+/g;//启用了全局模式
-	var str = '1.baidu\n2.google\n3.bing';
-	var result = str.replace(pattern, '#');
-	console.log(result);
-	//#.baidu
-	//2.google
-	//3.bing
-	
-	var pattern = /^\d+/m;//启用了多行模式
-	var str = '1.baidu\n2.google\n3.bing';
-	var result = str.replace(pattern, '#');
-	console.log(result);
-	//#.baidu
-	//2.google
-	//3.bing
-</script>
+```javascript
+var pattern = /^\d+/mg;//启用了换行和全局模式
+var str = '1.baidu\n2.google\n3.bing';
+var result = str.replace(pattern, '#');
+console.log(result);
+//#.baidu
+//#.google
+//#.bing
+
+var pattern = /^\d+/g;//启用了全局模式
+var str = '1.baidu\n2.google\n3.bing';
+var result = str.replace(pattern, '#');
+console.log(result);
+//#.baidu
+//2.google
+//3.bing
+
+var pattern = /^\d+/m;//启用了多行模式
+var str = '1.baidu\n2.google\n3.bing';
+var result = str.replace(pattern, '#');
+console.log(result);
+//#.baidu
+//2.google
+//3.bing
 ```
 注意：多行匹配必须和全局模式一起使用才有效，如果是匹配换行符，只需要开启全局模式即可
 
 ### 前瞻捕获
-```
-<script type="text/javascript">
-	var pattern = /(goo(?=gle))/;//goo后面必须跟着gle才能捕获,(?=)只能放在后面
-	var str = 'google';
-	console.log(pattern.exec(str));//["goo", "goo", index: 0, input: "google"]
-</script>
+```javascript
+var pattern = /(goo(?=gle))/;//goo后面必须跟着gle才能捕获,(?=)只能放在后面
+var str = 'google';
+console.log(pattern.exec(str));//["goo", "goo", index: 0, input: "google"]
 ```
 ### 非前瞻捕获
-```
-<script type="text/javascript">
-	var pattern = /(goo(?!gle))/;//goo后面必须不跟着gle才能捕获，(?!)与(?=)正好相反
-	console.log(pattern.exec("google"));//null
-	console.log(pattern.exec("gooagle"));//["goo", "goo", index: 0, input: "gooagle"]
-</script>
+```javascript
+var pattern = /(goo(?!gle))/;//goo后面必须不跟着gle才能捕获，(?!)与(?=)正好相反
+console.log(pattern.exec("google"));//null
+console.log(pattern.exec("gooagle"));//["goo", "goo", index: 0, input: "gooagle"]
 ```
 ### 非捕获性分组
-```
-<script type="text/javascript">
-	var pattern = /(\d+)(?:[a-z])/;//非捕获性分组
-	var str = '123abc';
-	console.log(pattern.exec(str));//["123a", "123", index: 0, input: "123abc"]
+```javascript
+var pattern = /(\d+)(?:[a-z])/;//非捕获性分组
+var str = '123abc';
+console.log(pattern.exec(str));//["123a", "123", index: 0, input: "123abc"]
 
-	var pattern = /(\d+)(?:(\d)[a-z])/;
-	var str = '123abc';
-	console.log(pattern.exec(str));//["123a", "12", "3", index: 0, input: "123abc"],外层括号没有捕获
+var pattern = /(\d+)(?:(\d)[a-z])/;
+var str = '123abc';
+console.log(pattern.exec(str));//["123a", "12", "3", index: 0, input: "123abc"],外层括号没有捕获
 
-	var pattern = /(\d+)((?:\d)[a-z])/;
-	var str = '123abc';
-	console.log(pattern.exec(str));//["123a", "12", "3a", index: 0, input: "123abc"],里层括号没有捕获
-</script>
+var pattern = /(\d+)((?:\d)[a-z])/;
+var str = '123abc';
+console.log(pattern.exec(str));//["123a", "12", "3a", index: 0, input: "123abc"],里层括号没有捕获
 ```
 ### 反向引用
+```javascript
+var pattern = /([a-z]+)(\1)\b/;//\b代表字符的边界
+var str = "ahehe b";
+console.log(pattern.exec(str));//["hehe", "he", "he", index: 1, input: "ahehe b"]
+
+var pattern = /\b([a-z]+)(\1)\b/;
+var str = "ahehe b";
+console.log(pattern.exec(str));//null
 ```
-<script type="text/javascript">
-	var pattern = /([a-z]+)(\1)\b/;//\b代表字符的边界
-	var str = "ahehe b";
-	console.log(pattern.exec(str));//["hehe", "he", "he", index: 1, input: "ahehe b"]
-
-	var pattern = /\b([a-z]+)(\1)\b/;
-	var str = "ahehe b";
-	console.log(pattern.exec(str));//null
-</script>
-```
-
-

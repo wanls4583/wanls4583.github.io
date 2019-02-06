@@ -209,15 +209,13 @@ var box = 0.00000000412; //即4.12e-9
 
 虽然浮点数值的最高精度是17位小数，但算术运算中可能会丢失精度。由于这个因素，做判断的时候一定要考虑到这个问题(比如使用整型判断)。
 
-```
-<script type="text/javascript">
+```javascript
 	var a = 0.1+0.2;
 	console.log(a)//0.30000000000000004
 	var b = 0.3;
 	console.log(a==b);//false
 	var c = 0.09999999999999999999999
 	console.log(c);//0.1
-</script>
 ```
 
 Number.MIN_VALUE   //最小值
@@ -234,11 +232,9 @@ var box = -100e1000; //超出范围，-Infinity
 
 要想确定一个数值到底是否超过了规定范围，可以使用isFinite()函数。如果没有超过，返回true，超过了返回false。
 
-```
-<script type="text/javascript">
+```javascript
 	var box = 100e1000;
 	console.log(isFinite(box));	//false
-</script>
 ```
 
 ### NaN:
@@ -265,8 +261,7 @@ alert(isNaN(true));		//false	true可以转成成1
 
 isNaN()函数也适用于对象。在调用isNaN()函数过程中，如果定义了valueOf方法，会调用valueOf()方法，然后确定返回值是否能够转换成数值。如果没有定义valueOf方法，则调用toString()方法，再测试返回值是否能够转换成数值。
 
-```
-<script type="text/javascript">
+```javascript
 	var box = {
 		toString : function () {
 			return '123';
@@ -291,7 +286,6 @@ isNaN()函数也适用于对象。在调用isNaN()函数过程中，如果定义
 		},
 	};
 	console.log(isNaN(box));		//false
-</script>
 ```
 
 有3个函数可以把非数值转换为数值：Number()、parseInt()和parseFloat()。Number()函数是转型函数，可以用于任何数据类型，而另外两个则专门用于把字符串转成数值。
@@ -317,11 +311,9 @@ alert(Number('08.90'));//8.9
 
 3.如果字符串是空，那么直接转成成0。
 
-```
-<script type="text/javascript">
+```javascript
 	console.log(Number("")); //0
 	console.log(parseInt("")); //NaN
-</script>
 ```
 
 4.如果不是以上三种字符串类型，则返回NaN。
@@ -335,8 +327,7 @@ alert('123Lee');//NaN
 
 5.如果是对象，首先会调用valueOf()方法，然后确定返回值是否能够转换成数值。如果没有valueOf()方法，会调用toString()，然后确定返回值是否能够转换成数值。
 
-```
-<script type="text/javascript">
+```javascript
 	var box = {
 		toString : function () {
 			return '123';
@@ -361,7 +352,6 @@ alert('123Lee');//NaN
 		},
 	};
 	console.log(Number(box));		//1
-</script>
 ```
 
 ### prseInt():
@@ -415,14 +405,12 @@ var box = 'Mr.';
 box = box + ' Lee';
 ```
 toString()方法可以把值转换成字符串。
-```
-<script type="text/javascript">
+```javascript
 	var a = 1;
 	console.log(a.toString()+1);//11
 	var b = true;
 	console.log(b+1);//2
 	console.log(b.toString()+1);//true1
-</script>
 ```
 
 toString()方法一般是不需要传参的，但在数值转成字符串的时候，可以传递进制参数。
@@ -436,15 +424,13 @@ alert(box.toString(16));//a，十六进制输出
 
 如果值有toString()方法，则调用该方法并返回相应的结果；如果是null或者undefined，则返回"null"或者"undeinfed"。不过可以用String()，这个函数能够将任何类型的值转换为字符串。
 
-```
-<script type="text/javascript">
+```javascript
 	var a ;
 	//console.log(a.toString());//报错
 	console.log(String(a));//undefined
 	a = null;
 	//console.log(a.toString());//报错
 	console.log(String(a));//null
-</script>
 ```
 
 ## Object类型
@@ -463,8 +449,7 @@ var box = new Object;
 
 Object()里可以任意传参，可以传数值、字符串、布尔值等。而且，还可以进行相应的计算。
 
-```
-<script type="text/javascript">
+```javascript
 	var a = new Object;
 	a.toString = function(){
 		return 2
@@ -482,9 +467,8 @@ Object()里可以任意传参，可以传数值、字符串、布尔值等。而
 		return 2
 	}
 	console.log(c+1);//3
-</script>
 ```
 
-注意：如果给对象传递了参数，则相对于给对象定义了valueOf函数，我们可以重新valueOf函数和toString函数，valueOf函数在计算的时候优先级高于toString函数
+注意：如果给对象传递了参数，则相当于于给对象定义了valueOf函数，我们可以重新定义valueOf函数和toString函数，valueOf函数在计算的时候优先级高于toString函数
 
 
