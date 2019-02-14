@@ -11,11 +11,11 @@ tags:
 - 构建工具
 ---
 
-一、分布式部署拓扑图
+## 一、分布式部署拓扑图
 
 ![](https://wanls4583.github.io/images/posts/构建工具/使用jenkins构建vue项目与分布式部署-1.png)
 
-二、配置远程服务器
+## 二、配置远程服务器
 
 可以使用`Publish Over SSH`插件来实现linux服务器之间的免密码登录，其步骤如下：
 1. 在 jenkins 服务器上安装`Publish Over SSH`插件
@@ -28,7 +28,7 @@ tags:
 
 注意 `jenkins_publish_dir` 目录在远程服务器上的 root 账户下必须存在，通过SSH传输的文件默认会放在该目录下
 
-三、配置触发器、构建等操作
+## 三、配置触发器、构建等操作
 
 ![](https://wanls4583.github.io/images/posts/构建工具/使用jenkins构建vue项目与分布式部署-3.png)
 
