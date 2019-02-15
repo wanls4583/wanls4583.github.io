@@ -11,7 +11,7 @@ tags:
 - JavaScript
 ---
 
-```javaScript
+```javascript
     Function.prototype.myCall = function(context) {
         if(typeof context != 'object') {
             return;
