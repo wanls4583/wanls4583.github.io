@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ie8-无刷新上传</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function suc(data) {
+			console.log(document.myFrame.document.body.innerHTML);
+		}
+	</script>
+</head>
+<body>
+	<form action="http://localhost:8080/api" target="myFrame" method="post">
+		<input type="file" name="test">
+		<input type="submit" value="提交" onclick="submit()">
+	</form>
+	<iframe name="myFrame" onload="suc()" style="display: none;"></iframe>
+</body>
+</html>
