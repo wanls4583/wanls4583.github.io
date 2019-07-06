@@ -7,9 +7,13 @@ const app = express();
 app.use(bodyParser.json());//数据JSON类型
 app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
 
-app.post('/api',function(req,res){  
+app.post('/api/1',function(req,res){  
     res.send(`<script>document.domain="test.com";window.parent.${req.body.callbackName}('服务器数据')</script>`);
-})
+});
+
+app.post('/api/2',function(req,res){  
+    res.send(`<script>window.parent.postMessage('服务器数据','*')</script>`);
+});
 
 app.get('/*', function(req,res){
     sendFile(req, res);

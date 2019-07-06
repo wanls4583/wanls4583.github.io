@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>post跨越请求</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <button onclick="doPost();">发送请求</button>
+    <script type="text/javascript">
+    function doPost() {
+        var iframe = document.createElement('iframe');
+        var form = document.createElement('form');
+        iframe.name = 'myFrame';
+        iframe.style.display = 'none';
+        form.style.display = 'none';
+        form.target = 'myFrame';
+        form.action = 'http://a.test.com:8080/api/2';
+        form.method = 'post';
+        document.body.appendChild(iframe);
+        document.body.appendChild(form);
+        form.submit();
+        window.onmessage = function(event) {
+            alert(event.data);
+            iframe.parentNode.removeChild(iframe);
+            form.parentNode.removeChild(form);
+        }
+    }
+    </script>
+</body>
+
+</html>
