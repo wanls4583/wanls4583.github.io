@@ -1,0 +1,295 @@
+---
+author: wanls4583
+comments: true
+date: 2019-08-31
+layout: post
+title: 安卓四大组件学习笔记
+categories:
+- 移动端
+
+tags:
+- 移动端
+
+>安卓四大组件包括：Activity、Service、BroadcastReciever、ContentProvider。这四大组件是安卓应用的核心组件，通过这四个组件可以实现复杂的交互，应用之间的数据传输，后台服务等功能。
+
+##Activity
+
+Activity是安卓应用中的活动界面，可以把它理解为Web中的一个窗口，通过这个窗口，我们可以展示不同的组件，从而形成能和用户交互的界面。
+
+其生命周期如下：
+
+![](https://wanls4583.github.io/images/posts/移动端/activity-life.webp)
+
+首次执行app，将会依次执行onCreate、onStart、onResum，用户点击返回键退出程序时，将会依次执行onPause、onStop、onDestroy，当点击home键回到桌面时将会依次触犯onPause、onStop，如果Activity没有销毁，再次回到应用程序时将依次执行onRestart、onStart、onResum。
+
+##Service
+
+Service主要用来运行后台任务。
+
+其生命周期如下：
+
+![](https://wanls4583.github.io/images/posts/移动端/service-life.jpg)
+
+- 一个service服务只有一个实例，服务启动后，应用程序需要绑定服务才可以访问。
+- 即使Activity销毁后，服务依然可以运行，只有将应用程序所占的内存除后，或者显示调用stopService函数才能停止服务。
+- 如果Activity有绑定服务，如果其销毁时没有接触绑定，将会报错。
+- 对于已经被绑定的服务，执行stopService并不能触发onDestroy，这时，再次执行unbindService将会依次执行onUnbind、onDestory。
+
+##BroadCastReciever
+
+BroadCastReciever是广播接受者组件，可以接收本应用，或其他应用，又或者系统发出的广播消息。
+
+广播接受者可以静态注册，也可以动态注册。对于静态注册的广播接受者，Android8.0以上不支持指定action过滤。Android8.0以后版本，官方不推荐使用静态注册，统一使用动态注册更加灵活。
+
+对于静态注册的广播接受者，可以通过setComponent指定接受者来发送广播（Android8.0以上不支持指定action）。
+
+##ContentProvider
+
+ContentProvider的作用是为不同的应用之间数据共享，提供统一的接口。
+
+我们知道安卓系统中应用内部的数据是对外隔离的，要想让其它应用能使用自己的数据（例如通讯录）这个时候就用到了ContentProvider。
+
+最简单的例子，手机里的联系人就是因为提供了ContentProvider接口，我们开发的应用程序才能访问到联系人信息。
+
+##实例代码
+
+MainActivity.java
+
+```java
+package com.example.myapplication;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.IBinder;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity implements ServiceConnection, View.OnClickListener {
+    private Intent serviceIntent;
+    private MyService.MyBinder srvBinder = null;
+    private MyReceiver myBc = new MyReceiver();
+    private boolean hasRegister = false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("acitvity onCreate");
+        setContentView(R.layout.activity_main);
+        serviceIntent = new Intent(this,MyService.class);
+        Button startAtyBtn = findViewById(R.id.startAty1Btn);
+        Button startSrvBtn = findViewById(R.id.startSrvBtn);
+        Button stopSrvBtn = findViewById(R.id.stopSrvBtn);
+        Button bindSrvBtn = findViewById(R.id.bindSrvBtn);
+        Button unbindSrvBtn = findViewById(R.id.unbindSrvBtn);
+        Button getCountBtn = findViewById(R.id.getCountBtn);
+        Button sendBroadCastBtn = findViewById(R.id.sendBroadCastBtn);
+        Button regRecieverBtn = findViewById(R.id.regRecieverBtn);
+        Button unregRecieverBtn = findViewById(R.id.unregRecieverBtn);
+        startAtyBtn.setOnClickListener(this);
+        startSrvBtn.setOnClickListener(this);
+        stopSrvBtn.setOnClickListener(this);
+        bindSrvBtn.setOnClickListener(this);
+        unbindSrvBtn.setOnClickListener(this);
+        getCountBtn.setOnClickListener(this);
+        sendBroadCastBtn.setOnClickListener(this);
+        regRecieverBtn.setOnClickListener(this);
+        unregRecieverBtn.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("acitvity onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("acitvity onRestart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("acitvity onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("acitvity onStop");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("acitvity onResume");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("acitvity onDestroy");
+        if(srvBinder!=null) {
+            unbindService(this);
+        }
+        if(hasRegister) {
+            unregisterReceiver(myBc);
+        }
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        System.out.println("onServiceConnected");
+        srvBinder = (MyService.MyBinder) iBinder;
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+        System.out.println("onServiceDisconnected");
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.startAty1Btn:
+                Intent i = new Intent(MainActivity.this, Activity1.class);
+                i.putExtra("txtName","this char is from main_aty");
+                startActivity(i);
+                break;
+            case R.id.startSrvBtn:
+                startService(serviceIntent);
+                break;
+            case R.id.stopSrvBtn:
+                stopService(serviceIntent);
+                break;
+            case R.id.bindSrvBtn:
+                bindService(serviceIntent,this, Context.BIND_AUTO_CREATE);
+                break;
+            case R.id.unbindSrvBtn:
+                unbindService(this);
+                break;
+            case R.id.getCountBtn:
+                System.out.println(srvBinder.getCurrentCount());
+                break;
+            case R.id.sendBroadCastBtn:
+                //静态注册的广播接收器中指定的action其在android8.0以上无效
+                //Intent tmp = new Intent("com.example.myapplication.intent.action.TestAction");
+                //Intent tmp = new Intent(MainActivity.this,MyReceiver.class);
+                Intent tmp = new Intent();
+                //用来发生给静态注册的广播接收者，这种方式也可以发送个其他应用的静态广播接收者
+                tmp.setComponent(new ComponentName("com.example.myapplication","com.example.myapplication.MyReceiver"));
+                tmp.putExtra("txtName","received broadcast txt");
+                sendBroadcast(tmp);
+                break;
+            case R.id.regRecieverBtn:
+                registerReceiver(myBc, new IntentFilter("com.example.myapplication.intent.action.TestAction"));
+                hasRegister = true;
+                System.out.println("registerReceiver");
+                break;
+            case R.id.unregRecieverBtn:
+                unregisterReceiver(myBc);
+                hasRegister = false;
+                System.out.println("unregisterReceiver");
+                break;
+        }
+    }
+}
+```
+MyService.java
+```java
+package com.example.myapplication;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MyService extends Service {
+    private Integer count = 0;
+    private Timer timer = null;
+    private TimerTask task = null;
+    public MyService() {
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        startTimer();
+        System.out.println("service onCreate");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopTimer();
+        System.out.println("service onDestroy");
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        System.out.println("service onBind");
+        return new MyBinder();
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        System.out.println("service onUnbind");
+        return super.onUnbind(intent);
+    }
+
+    public class MyBinder extends Binder {
+        public Integer getCurrentCount(){
+            return MyService.this.count;
+        }
+    }
+
+    public void startTimer(){
+        if(timer == null){
+            timer = new Timer();
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    count++;
+                }
+            };
+            timer.schedule(task,1000,1000);
+        }
+    }
+    public void stopTimer() {
+        if(timer!=null) {
+            timer.cancel();
+            task.cancel();
+        }
+    }
+}
+```
+MyReceiver.java
+```java
+package com.example.myapplication;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class MyReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // TODO: This method is called when the BroadcastReceiver is receiving
+        System.out.println("onReceive:"+intent.getStringExtra("txtName"));
+    }
+}
+```
+[完整代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/移动端/安卓四大组件)
+
+
