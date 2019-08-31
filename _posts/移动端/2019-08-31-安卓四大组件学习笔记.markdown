@@ -11,7 +11,7 @@ tags:
 ---
 >安卓四大组件包括：Activity、Service、BroadcastReciever、ContentProvider。这四大组件是安卓应用的核心组件，通过这四个组件可以实现复杂的交互，应用之间的数据传输，后台服务等功能。
 
-##Activity
+## Activity
 
 Activity是安卓应用中的活动界面，可以把它理解为Web中的一个窗口，通过这个窗口，我们可以展示不同的组件，从而形成能和用户交互的界面。
 
@@ -21,7 +21,7 @@ Activity是安卓应用中的活动界面，可以把它理解为Web中的一个
 
 首次执行app，将会依次执行onCreate、onStart、onResum，用户点击返回键退出程序时，将会依次执行onPause、onStop、onDestroy，当点击home键回到桌面时将会依次触犯onPause、onStop，如果Activity没有销毁，再次回到应用程序时将依次执行onRestart、onStart、onResum。
 
-##Service
+## Service
 
 Service主要用来运行后台任务。
 
@@ -34,7 +34,7 @@ Service主要用来运行后台任务。
 - 如果Activity有绑定服务，如果其销毁时没有接触绑定，将会报错。
 - 对于已经被绑定的服务，执行stopService并不能触发onDestroy，这时，再次执行unbindService将会依次执行onUnbind、onDestory。
 
-##BroadCastReciever
+## BroadCastReciever
 
 BroadCastReciever是广播接受者组件，可以接收本应用，或其他应用，又或者系统发出的广播消息。
 
@@ -42,7 +42,7 @@ BroadCastReciever是广播接受者组件，可以接收本应用，或其他应
 
 对于静态注册的广播接受者，可以通过setComponent指定接受者来发送广播（Android8.0以上不支持指定action）。
 
-##ContentProvider
+## ContentProvider
 
 ContentProvider的作用是为不同的应用之间数据共享，提供统一的接口。
 
@@ -50,7 +50,7 @@ ContentProvider的作用是为不同的应用之间数据共享，提供统一�
 
 最简单的例子，手机里的联系人就是因为提供了ContentProvider接口，我们开发的应用程序才能访问到联系人信息。
 
-##实例代码
+## 实例代码
 
 MainActivity.java
 
