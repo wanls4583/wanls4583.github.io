@@ -290,6 +290,6 @@ public class MyReceiver extends BroadcastReceiver {
     }
 }
 ```
-[完整代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/移动端/安卓四大组件)
+[完整代码](https://github.com/wanls4583/wanls4583.github.io/tree/master/code/移动端/安卓四大组件/MyApplication)
 
 
