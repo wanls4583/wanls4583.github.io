@@ -47,14 +47,17 @@ console.log('inner js')
 
 </html>
 ```
-outer.js
+outer.js:
 ```
 console.log('outer js')
 ```
 
 结果：
+
 ![](https://wanls4583.github.io/images/posts/其他/DOMContentLoaded-load-1.png)
+
 因为同步代码形成了新的资源请求，load事件需要等待资源请求完成后再触发
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -87,6 +90,9 @@ console.log('inner js')
 <script type="text/javascript" src="outer.js"></script>
 </html>
 ```
+
 结果：
+
 ![](https://wanls4583.github.io/images/posts/其他/DOMContentLoaded-load-2.png)
+
 可以看出，**异步JS代码**形成的资源请求对load触发时机没有影响
