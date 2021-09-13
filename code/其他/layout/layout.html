@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)https://onhavinglayout.fwpf-webdesign.de/hack_management/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+
+
+	<title>Thoughts on IE hack management</title>
+
+	<link rel="stylesheet" href="./layoutBlack.css" type="text/css" media="screen, projection" title="white, black">
+
+	<!--<link rel="alternate stylesheet" href="../layoutGrey.css" type="text/css" media="screen, projection" title="gray, orange" />-->
+
+	<style type="text/css">
+		body {
+			max-width:none;
+			font-size-adjust: 0.53;
+			}
+
+		h2[id]:hover::after,
+		h3[id]:hover::after {
+			line-height:1;
+			}
+
+		.wrap {
+			text-align:left;
+			padding:.75em;
+			}
+
+		div.alpha {
+			max-width:50em;
+			}
+
+		/* tables*/
+
+		table {
+			border-spacing:0;
+			border-collapse:collapse;
+			margin:1em;
+			}
+
+		th, 
+		td {
+			padding:.5em 1em;
+			border:1px solid #ccc;
+			}
+
+		th {
+			font-weight:bold;
+			background-color:#f4f4f4;
+			vertical-align:middle;
+			text-align:center;
+			}
+
+		tbody th {
+			color:#666;
+			background-color:#fff;
+			}
+
+		td {
+			text-align:left;
+			vertical-align:top;
+			}
+
+		tr.display th,
+		td.yes,
+		td.no {
+			font-size:80%;
+			text-align:center;
+			}
+
+		td.yes {
+			background-color:#dfffdf;
+			}
+
+		td.no {
+			background-color:#ffdfdf;
+			}
+
+		td ul,
+		td ol {
+			margin:0;
+			padding:0;
+			list-style-position:inside;
+			}
+
+		/* help */
+		td::after {
+			/*display:block;*/
+			color:#999;
+			font-size:80%;
+			white-space:pre;
+			}
+
+		td.ie5.inline::after {
+			content:"\A IE 5\A inline";
+			}
+
+		td.ie5.block::after {
+			content:"\A IE 5\A block";
+			}
+
+		td.ie55.inline::after {
+			content:"\A IE 5.5\A inline";
+			}
+
+		td.ie55.block::after {
+			content:"\A IE 5.5\A block";
+			}
+
+		td.ie6.inline::after {
+			content:"\A IE 6\A inline";
+			}
+
+		td.ie6.block::after {
+			content:"\A IE 6\A block";
+			}
+
+		td.ie7.inline::after {
+			content:"\A IE 7\A inline";
+			}
+
+		td.ie7.block::after {
+			content:"\A IE 7\A block";
+			}
+
+		/*td.reset:hover:after {
+			content:"reset";
+			}*/
+
+		/* changes to standard styles */
+
+		.wrap h1 {
+			margin-left:0;
+			}
+
+		table p {
+			padding-left:0;
+			}
+
+		table dt {
+			font-weight:bold;
+			}
+
+		table dd {
+			margin-left:0;
+			}
+
+		table dd+dt {
+			margin-top:2em;
+			border-top:1px solid #900;
+			padding-top:1em;
+			}
+
+		table ol.csshtml {
+			margin:.5em 0;
+			border:none;
+			padding:0;
+			}
+	</style>
+
+</head>
+
+<body>
+	<div class="wrap">
+
+		<h1>Thoughts on IE hack management</h1>
+		<div>
+			<h2 id="trigger-comparison">Layout-trigger - comparison</h2>
+			<table>
+				<thead>
+					<tr>
+						<th rowspan="3" class="trigger">layout-trigger</th>
+						<th colspan="8">triggers layout in</th>
+						<th rowspan="3">reset</th>
+						<th rowspan="3" class="issue">issues</th>
+					</tr>
+					<tr class="ieversion">
+						<th colspan="2">IE 5</th>
+						<th colspan="2">IE 5.5</th>
+						<th colspan="2">IE 6 <sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#layout-note1">1</a></sup></th>
+						<th colspan="2">IE 7 <sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#layout-note1">1</a></sup></th>
+					</tr>
+					<tr class="display">
+						<th>inline</th>
+						<th>block</th>
+						<th>inline</th>
+						<th>block</th>
+						<th>inline</th>
+						<th>block</th>
+						<th>inline</th>
+						<th>block</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="trigger"><code>position: absolute</code></td>
+						<td class="ie5 inline yes">yes</td>
+						<td class="ie5 block yes">yes</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline yes">yes</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>static</code> or <code>relative</code></td>
+						<td class="issue">
+							Refers to its containing block, and that's where some problems begin.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>float: left|right</code></td>
+						<td class="ie5 inline yes">yes</td>
+						<td class="ie5 block yes">yes</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline yes">yes</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>none</code></td>
+						<td class="issue">
+							The float model has a lot of quirks due to some aspects of a layout element.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>display: inline-block<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#layout-note2">2</a></sup></code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline yes">yes</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset">no reset with <code>block</code> or <code>inline</code> in any other ruleset</td>
+						<td class="issue">
+							Sometimes a cure when the element is at inline level and needs layout. Applying layout is probably the only real effect of this property. The “inline-block behaviour” itself can be achieved in IE, but quite independently: <a href="http://www.brunildo.org/test/InlineBlockLayout.html" title="see Bruno Fassino&#39;s article">IE/Win: inline-block and hasLayout</a>.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>width</code> any other value than <code>auto</code></td>
+						<td class="ie5 inline yes">yes</td>
+						<td class="ie5 block yes">yes</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>auto</code></td>
+						<td class="issue">
+							This is often an implicit fix, more often the trigger when hasLayout does things wrong.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>height</code> any other value than <code>auto</code></td>
+						<td class="ie5 inline yes">yes</td>
+						<td class="ie5 block yes">yes</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>auto</code></td>
+						<td class="issue">
+							<ul>
+								<li>height:1% is used in the Holly Hack.</li>
+								<li>height:1% causes rare problems; height:0 or 1px is more stable.</li>
+								<li>
+									Is incompatible with overflow: hidden, except in IE6 standards mode (where height: 1% reverts to height: auto, unless the parent has a specified height.)
+								</li>
+								<li>
+									IE 7 doesn't expand boxes with explicit height; this layout-trigger should be hidden
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>zoom:</code> any value other than <code>normal</code> (<a href="http://msdn.microsoft.com/workshop/author/dhtml/reference/properties/zoom.asp" title="See the MSDN property description">MSDN</a>)</td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline yes">yes</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>normal</code></td>
+						<td class="issue">
+							<ul>
+								<li>MS proprietary, not valid</li>
+								<li>can be used for debugging</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>writing-mode: tb-rl</code> (<a href="http://msdn.microsoft.com/workshop/author/dhtml/reference/properties/writingmode.asp" title="See the MSDN property description">MSDN</a>)</td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline yes">yes</td>
+						<td class="ie55 block yes">yes</td>
+						<td class="ie6 inline yes">yes</td>
+						<td class="ie6 block yes">yes</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>lr-tb</code></td>
+						<td class="issue">
+							MS proprietary, not valid
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>overflow: hidden|scroll|auto</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline  no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>visible</code></td>
+						<td class="issue">
+							This property did not apply in IE &lt; 7, unless “layout” was added to the box by other triggers.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>overflow-x|-y: hidden|scroll|auto</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>visible</code></td>
+						<td class="issue">
+							As part of the CSS3 box model module, overflow-x and -y are not widely implemented yet.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>position:fixed</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline yes">yes</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>static</code> or <code>relative</code></td>
+						<td class="issue">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>min-width: any value</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>auto</code> (not valid)</td>
+						<td class="issue">
+							Even the value 0 lets the element gain layout.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>min-height: any value</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>auto</code> (not valid)</td>
+						<td class="issue">
+							Even the value 0 lets the element gain layout.
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>max-width: any value other than 'none'</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>none</code></td>
+						<td class="issue">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="trigger"><code>max-height: any value other than 'none'</code></td>
+						<td class="ie5 inline no">no</td>
+						<td class="ie5 block no">no</td>
+						<td class="ie55 inline no">no</td>
+						<td class="ie55 block no">no</td>
+						<td class="ie6 inline no">no</td>
+						<td class="ie6 block no">no</td>
+						<td class="ie7 inline no">no</td>
+						<td class="ie7 block yes">yes</td>
+						<td class="reset"><code>none</code></td>
+						<td class="issue">
+							
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+			<div class="alpha">
+				<h3>Notes</h3>
+				<ol>
+					<li id="layout-note1">Refers to IE 6/7 in standards mode; IE 6/7 in quirks mode behave like IE 5.5.</li>
+					<li id="layout-note2">
+						Elements having both “layout” and display: inline behave in a similar way as what the standards say about inline-block: they flow horizontally like words in a paragraph, are sensitive to vertical align, and apply a sort of shrink-wrapping to their content. As soon as the inline elements have layout, they act as inline-block, this is an explanation why, in IE/Win, inline elements can contain and hold block-level elements with less problems than in other browsers, where display: inline remains inline.
+					</li>
+				</ol>
+			</div>
+
+		</div>
+
+		<div>
+			<h2 id="method-comparison">Additional styles for IE - comparison</h2>
+
+			<table>
+				<thead>
+					<tr>
+						<th>
+							CSS Filter/Hacks
+						</th>
+						<th>
+							Conditional Comments
+						</th>
+						<th>
+							Mixture of CSS Filter/Hacks and Conditional Comments
+						</th>
+					</tr>
+				</thead>
+				<tbody class="description">
+					<tr>
+						<th colspan="3">
+							Description
+						</th>
+					</tr>
+					<tr>
+						<td class="filter">
+							use of CSS browser bugs to separate styles within style sheet
+						</td>
+						<td class="condcomment">
+							use of MS-proprietary HTML comments: <a href="http://msdn.microsoft.com/workshop/author/dhtml/overview/ccomment_ovw.asp" title="see the MSDN">conditional comments</a>
+						</td>
+						<td class="filter-condcomment">
+							one stylesheet for all IEs via conditional comment; separation with CSS hacks
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="syntax">
+					<tr>
+						<th colspan="3">Syntax</th>
+					</tr>
+					<tr>
+						<td class="filter">
+							<dl>
+								<dt>IE 5 | 5.5 | 6 | 7</dt>
+								<dd>
+									<a href="http://www.sam-i-am.com/work/sandbox/css/mac_ie5_hack.html">commented backslash hack</a>
+									<ol class="csshtml">
+										<li class="t00"><code>/* \*/</code></li>
+										<li class="t00">
+											<code>.gainlayout {height:1%;}</code>
+										</li>
+										<li class="t00"><code>/* */</code></li>
+									</ol>
+									<p>
+										<code>height:1%</code> (or 100% or any other value in %) is safe in all browsers (except IE 5 Mac) unless the parent has an explicit height applied<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#hacks-note3">3</a></sup>.
+										
+										<code>height:100%</code> is either resolved as 'height: auto' or 'height: 100%' and will therefore work in <i>nearly</i> all cases.
+									</p>
+									<p>
+										In <a href="http://www.brunildo.org/test/relayout.html" title="see Bruno Fassino&#39;s test case">rare cases</a> <code>height:1%</code> is not stable.
+									</p>
+								</dd>
+								<dt>IE 5.5 | 6 | 7</dt>
+								<dd>
+									<a href="http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp">A Trip Switch</a>
+									<ol class="csshtml">
+										<li class="t00">
+											<code>.gainlayout {display: inline-block;}</code>
+										</li>
+										<li class="t00">
+											<code>.gainlayout {display: block;}</code>
+										</li>
+									</ol>
+									The first rule triggers haslayout=true, the second makes the element block (or whatever needed, even inline<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#hacks-note2">2</a></sup>) again but <em>does not</em> remove layout.
+								</dd>
+
+								<dt>IE 5 | 5.5 | 6</dt>
+								<dd>
+									<ol>
+										<li>
+											<a href="http://www.sam-i-am.com/work/sandbox/css/mac_ie5_hack.html">commented backslash hack</a> and <a href="http://www.info.com.ph/~etan/w3pantheon/style/starhtmlbug.html">star html hack (Tan hack)</a>:
+											<ol class="csshtml">
+												<li class="t00"><code>/* \*/</code></li>
+
+												<li class="t01"><code>* html .gainlayout { height: 1px; }</code></li>
+
+												<li class="t00"><code>/* */</code></li>
+											</ol>
+											with <code>height:1%</code> known as <a href="http://www.communitymx.com/content/article.cfm?page=2&amp;cid=C37E0" title="see communitymx">Holly hack</a>
+										</li>
+										<li>
+											<a href="http://wellstyled.com/singlelang.php?lang=en&amp;page=css-underscore-hack.html" title="see the WellStyled Workshop">underscore hack</a>
+											<ol class="csshtml">
+												<li class="t01"><code>.gainlayout { _height: 0; }</code></li>
+											</ol>
+										</li>
+									</ol>
+								</dd>
+								<dt>IE 7</dt>
+								<dd>
+									<ol class="csshtml">
+										<li class="t01"><code>.gainlayout { min-height: 0; }</code></li>
+									</ol>
+									This will have no negative side effect in any browser.
+								</dd>
+							</dl>
+						</td>
+						<td class="condcomment">
+							<dl>
+								<dt>IE 5 | 5.5 | 6</dt>
+								<dd>
+									<ol>
+										<li>
+											layout-trigger in style element in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if lte IE 6]&gt;</code></li>
+												<li class="t01"><code>&lt;style type="text/css"&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>.gainlayout { height: 1px; }</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;/style&gt;</code></li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+										</li>
+										<li>
+											link to external stylesheet in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if lte IE 6]&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;link rel="stylesheet" href="ie5-6fix.css" type="text/css" /&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+											The linked stylesheet contains the needed layout-triggers for IE 5 | 5.5 | 6, example shown above.
+										</li>
+									</ol>
+								</dd>
+								<dt>
+									IE7
+								</dt>
+								<dd>
+									<ol>
+										<li>
+											layout-trigger in style element in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if IE 7]&gt;</code></li>
+												<li class="t01"><code>&lt;style type="text/css"&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>.gainlayout {min-height: 0;}</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;/style&gt;</code></li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+										</li>
+										<li>
+											link to external stylesheet in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if IE 7]&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;link rel="stylesheet" href="ie7fix.css" type="text/css" /&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+											The linked stylesheet contains the needed layout-triggers for IE 7, example shown above.
+										</li>
+									</ol>
+								</dd>
+							</dl>
+						</td>
+						<td class="filter-condcomment">
+							<dl>
+								<dt>IE 5 | 5.5 | 6 |7</dt>
+								<dd>
+									<ol>
+										<li>
+											layout-triggers in style element in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if lte IE 7]&gt;</code></li>
+												<li class="t01"><code>&lt;style type="text/css"&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>/* IE 5 | 5.5 | 6 */</code></li>
+												<li class="t02"><code>* html .gainlayout {height:1px;}</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>/* IE 5 | 5.5 | 6 and 7 in quirks mode only */</code></li>
+												<li class="t02"><code>* html .gainlayout {height /**/:1px;}</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>/* IE 5.5 | 6 | 7 */</code></li>
+												<li class="t02"><code>.gainlayout {zoom:1;}</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t02"><code>/* IE 7 */</code></li>
+												<li class="t02"><code>.gainlayout {min-height:0;}</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;/style&gt;</code></li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+										</li>
+										<li>
+											link to external stylesheet in conditional comment
+											<ol class="csshtml">
+												<li class="t00"><code>&lt;!--[if lte IE 7]&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t01"><code>&lt;link rel="stylesheet" href="ie5-7fix.css" type="text/css" /&gt;</code></li>
+												<li class="t00">&nbsp;</li>
+												<li class="t00"><code>&lt;![endif]--&gt;</code></li>
+											</ol>
+											The linked stylesheet contains the needed layout-triggers for IE 5 | 5.5 | 6 | 7, example shown above.
+										</li>
+									</ol>
+								</dd>
+							</dl>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="pros">
+					<tr>
+						<th colspan="3">Pros</th>
+					</tr>
+					<tr>
+						<td class="filter">
+							<ul>
+								<li>
+									everything stored in one css document = easy to maintain
+								</li>
+								<li>
+									markup keeps clean
+								</li>
+								<li>
+									IE6/7 in quirks mode by accident<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#hacks-note1">1</a></sup> will get the needed parts
+								</li>
+							</ul>
+						</td>
+						<td class="condcomment">
+							<ul>
+								<li>
+									doesn't affect any other browser than IE
+								</li>
+								<li>
+									future IE versions don't get any of the hacks
+								</li>
+							</ul>
+						</td>
+						<td class="filter-condcomment">
+							<ul>
+								<li>
+									all hacks stored in one file
+								</li>
+								<li>
+									doesn't affect any other browser than IE
+								</li>
+								<li>
+									IE6/7 in quirks mode by accident<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#hacks-note1">1</a></sup> will get the needed parts
+								</li>
+								<li>
+									future IE versions don't get any of the hacks
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="cons">
+					<tr>
+						<th colspan="3">Cons</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>
+									every browser has to read the hacks, if needed or not
+								</li>
+								<li>
+									you have to be aware of all future browser versions, not only of IE's 
+								</li>
+								<li>
+									special care for IE5 Mac needed
+								</li>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li>
+									IE6/7 in quirks mode (by accident<sup><a href="https://onhavinglayout.fwpf-webdesign.de/hack_management/#hacks-note1">1</a></sup>) will not get the needed parts
+								</li>
+								<li>
+									additional markup needed
+								</li>
+								<li>
+									maybe need to change HTML for future browser version
+								</li>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li>
+									additional markup needed
+								</li>
+								<li>
+									maybe need to change HTML for future browser version
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+
+			<div class="alpha">
+				<h3>Notes</h3>
+				<ol>
+					<li id="hacks-note1">Example for quirks mode by accident: google cache</li>
+					<li id="hacks-note2">Elements having both “layout” and display: inline behave in a similar way as what the standards say about inline-block. See the section “<a href="http://www.satzansatz.de/cssd/onhavinglayout.html#inline">Notes on elements at inline level</a>”</li>
+					<li id="hacks-note3">This applies to browsers in standards mode. Geckos in quirks mode take heights in % serious even if the parent has no explicit height.</li>
+				</ol>
+			</div>
+		
+			<div class="alpha">
+				<h3>Recommendation</h3>
+				<p>Whatever method you choose, whatever hack you use&nbsp;– <a href="http://www.satzansatz.de/cssd/onhavinglayout.html#hack">do it with care…</a></p>
+			</div>
+		</div>
+
+		<div>
+			<p id="update">This “Thoughts on IE hack management” chapter is part of the article <a href="http://www.satzansatz.de/cssd/onhavinglayout.html">On having layout</a>.</p>
+
+			<dl id="editors">
+				<dt>Created, and last updated:</dt>
+				<dd>May 14, 2007</dd>
+				<dd>June 11, 2007</dd>
+				<dt>Author:</dt>
+				<dd><a href="http://corina-rudel.de/">Corina Rudel</a></dd>
+				<dt>Editors:</dt>
+				<dd><a href="http://www.satzansatz.de/css.html" title="Satzansatz — CSS">Ingo Chao</a></dd>
+				<dd><a href="http://www.brunildo.org/" title="Brunildo — CSS">Bruno Fassino</a></dd>
+				<dd><a href="http://www.gunlaug.no/" title="Web-carpenter and farm assistent">Georg Sørtun</a></dd>
+				<dd><a href="http://emps.l-c-n.com/" title="Empty Spaces">Philippe Wittenbergh</a></dd>
+				<!--<dt>Translation:</dt>
+				<dd><a href="http://www.maujor.com/tutorial/apoio_haslayout/quirksmode.html" title="">Brazilian Portuguese</a> by <a href="http://www.maujor.com" title="">Mauricio Samy Silva</a></dd>-->
+
+				<dt>Contact us:</dt>
+
+				<dd class="email">
+					<del>spam.</del>layout@satzansatz.de
+				</dd>
+
+				<dt>Copyright notice:</dt>
+
+				<dd>This work is published under a <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/" rel="license">Creative Commons license</a>.</dd>
+			</dl>
+			<!--<ul>
+				<li title="this document">Rev6 - June 11, 2007</li>
+				<li><a href="rev5-053107.htm">Rev5 - May 31, 2007</a></li>
+				<li><a href="rev4-051707.htm">Rev4 - May 17, 2007</a></li>
+				<li><a href="rev3-051607.htm">Rev3 - May 16, 2007</a></li>
+				<li><a href="rev2-051507.htm">Rev2 - May 15, 2007</a></li>
+				<li><a href="rev1-051407.htm">Rev1 - May 14, 2007</a></li>
+			</ul>-->
+		</div>
+	</div>
+	
+
+</body></html>
