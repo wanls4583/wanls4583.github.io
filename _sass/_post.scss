@@ -83,9 +83,10 @@
     }
     ul > li {
         position: relative;
+        line-height: 26px;
         &:before {
             position: absolute;
-            top: -2px;
+            // top: -2px;
             left: -.8em;
             content: "\e665";
             font-family: iconfont;
