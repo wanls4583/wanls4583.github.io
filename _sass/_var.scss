@@ -3,10 +3,10 @@
 /* 
    Screen sizes
    ========================================================================== */
-$large-width: 900px;
+$large-width: 1200px;
 $small: 'only screen and (max-width: 30em)';
-$medium: 'only screen and (min-width: 30em ) and (max-width: 899px)';
-$large: 'only screen and (min-width: 900px)';
+$medium: 'only screen and (min-width: 30em ) and (max-width: 1199)';
+$large: 'only screen and (min-width: 1200px)';
 $bigger-then-small: 'only screen and (min-width: 30em)';
 
 /* 
