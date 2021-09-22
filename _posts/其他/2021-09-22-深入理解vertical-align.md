@@ -32,29 +32,21 @@ tags:
 
 ### baseline
 
-字母x的下边缘（线）就是基线
+字母x的下边缘（线）就是基线，默认情况下，行内框的`baseline`都与行框的`baseline`对齐。
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/baseline.png)
 
 `baseline`的确定规则：
 
-- inline-table元素的baseline是它的table第一行的baseline。
+- `inline-table`元素的`baseline`是它的`table`第一行的`baseline`。
 
-- 父元素【line box】的baseline是最后一个inline box 的baseline。 
+- 父元素（`line box`）的`baseline`是最后一个行内框（`inline box`）的`baseline`。 
 
-- inline-block元素的baseline确定规则：
+- `inline-block`元素的`baseline`确定规则：
 
   - 规则1：`inline-block`元素，如果内部有`line box`，则`inline-block`元素的`baseline`就是最后一个作为内容存在的元素[inline box]的`baseline`，而这个元素的`baseline`的确定就要根据它自身来定了。
 
-  - 规则2：`inline-block`元素，如果其内部没有`line box`或它的`overflow`属性不是`visible`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如[【示例1】](#test1)。
-
-### ie7及以下浏览器中的baseline
-
-inline-block元素的baseline确定规则：
-- 规则1：`inline-block`元素，如果内部有`line box`，则假设该元素内部存在一个看不见的相对于该元素绝对定位的文本节点，该文本节点的bottom位置为父元素的`margin-bottom`，该文本节点的`baseline`即为父元素的`baseline`。
-- 规则2：`inline-block`元素，如果其内部没有`line box`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如[【示例2】](#test2)。
-
-<a name="test1">示例1：</a>
+  - 规则2：`inline-block`元素，如果其内部没有`line box`或它的`overflow`属性不是`visible`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如下所示：
 
 ```html
 <!DOCTYPE html>
@@ -111,7 +103,11 @@ inline-block元素的baseline确定规则：
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-baseline.png)
 
-<a name="test1">示例2：</a>
+### ie7及以下浏览器中的baseline
+
+inline-block元素的baseline确定规则：
+- 规则1：`inline-block`元素，如果内部有`line box`，则假设该元素内部存在一个看不见的相对于该元素绝对定位的文本节点，该文本节点的bottom位置为父元素的`margin-bottom`，该文本节点的`baseline`即为父元素的`baseline`。
+- 规则2：`inline-block`元素，如果其内部没有`line box`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如下所示：
 
 ```html
 <!DOCTYPE html>
@@ -193,7 +189,7 @@ inline-block元素的baseline确定规则：
 
 ### vertical-align：middle
 
-将元素盒子的垂直中点（不再考虑盒子的baseline）与父盒子的baseline加上父盒子的x-height的一半位置对齐。
+将元素盒子的垂直中点（不再考虑盒子的`baseline`）与父盒子的`baseline`加上父盒子的`x-height`的一半位置对齐。
 
 ```html
 <!DOCTYPE html>
