@@ -48,7 +48,13 @@ tags:
 
   - 规则2：`inline-block`元素，如果其内部没有`line box`或它的`overflow`属性不是`visible`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如[【示例1】](#test1)。
 
-  示例1：
+### ie7及以下浏览器中的baseline
+
+inline-block元素的baseline确定规则：
+- 规则1：`inline-block`元素，如果内部有`line box`，则假设该元素内部存在一个看不见的相对于该元素绝对定位的文本节点，该文本节点的bottom位置为父元素的`margin-bottom`，该文本节点的`baseline`即为父元素的`baseline`。
+- 规则2：`inline-block`元素，如果其内部没有`line box`，那么`baseline`将是这个`inline-block`元素的底`margin`边界。具体情况如[【示例2】](#test2)。
+
+<a name="test1">示例1：</a>
 
 ```html
 <!DOCTYPE html>
@@ -104,6 +110,86 @@ tags:
 结果：
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-baseline.png)
+
+<a name="test1">示例2：</a>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            bottom: 0;
+        }
+
+        .wrap {
+            margin-top: 100px;
+            line-height: 100px;
+            background-color: gold;
+            font-size: 50px;
+            color: #ffffff;
+        }
+
+        .wrap span {
+            background-color: red;
+            zoom: 1;
+        }
+
+        .div1 {
+            position: relative;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            width: 200px;
+            height: 200px;
+            border: 10px solid red;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .line {
+            position: absolute;
+            left: -10px;
+            bottom: -20px;
+            width: 850px;
+            line-height: 0;
+            border-top: 1px solid blue;
+        }
+
+        .anchor {
+            position: absolute;
+            bottom: -20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="div1" style="z-index:1;">
+            <i class="line"></i>
+        </div>
+        <span>x</span>
+        <div class="div1" style="overflow:hidden">
+            <span>x</span>
+            <span class="anchor">x</span>
+        </div>
+        <span>x</span>
+        <div class="div1" style="line-height:150px;">
+            <span>x</span>
+            <span class="anchor">x</span>
+        </div>
+    </div>
+</body>
+
+</html>
+```
+
+结果：
+
+![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-baseline-ie.png)
 
 ### vertical-align：middle
 
