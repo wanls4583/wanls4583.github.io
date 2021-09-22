@@ -333,3 +333,68 @@ inline-block元素的baseline确定规则：
 结果：
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-text-bottom.png)
+
+### vertical-align：sub
+
+将子元素盒子的`baseline`降低，到适当的父盒子的下标位置，类似于`<sub>`标签的效果。
+
+```html
+<div class="wrap">
+    <div class="div1" style="vertical-align:sub">
+        <div class="div2"></div>
+        <i class="line"></i>
+    </div>
+    <span>xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
+</div>
+```
+
+结果：
+
+![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-sub.png)
+
+### vertical-align：super
+
+将子元素盒子的`baseline`升高，到适当的父盒子的上标位置，类似于`<super>`标签的效果。
+
+```html
+<div class="wrap">
+    <div class="div1" style="vertical-align:super">
+        <div class="div2"></div>
+        <i class="line"></i>
+    </div>
+    <span>xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
+</div>
+```
+
+结果：
+
+![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-super.png)
+
+### vertical-align：percentage
+
+升高（正值）或降低（负值）子元素盒子，具体的升高/降低数值由子盒子的`line-height的`乘以百分比计算得出。如果百分比为0%，就和`vertical-align:baseline`一样。
+
+```html
+<div class="wrap">
+    <div class="div1" style="vertical-align:50%">
+        <div class="div2" style="text-align:right;">xhj</div>
+        <i class="line"></i>
+    </div>
+    <div class="div1" style="vertical-align:50px">
+        <div class="div2" style="text-align:right;">xhj</div>
+        <i class="line"></i>
+    </div>
+    <span>xhj</span>
+    <span style="font-size:100px;">xhj</span>
+</div>
+```
+
+结果：
+
+![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-percentage.png)
+
+### vertical-align：length
+
+升高（正值）或降低（负值）子元素盒子，如果百分比为0%，就和`vertical-align:baseline`一样。效果和`percentage`类似，只不过使用国定值。
