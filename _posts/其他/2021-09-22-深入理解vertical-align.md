@@ -193,7 +193,7 @@ tags:
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-top.png)
 
-结果解释：由于`.wrap`的`line-height`为`50px`，而`.child`的默认行高大于`50px`，因此其顶部将被有一部分溢出容器。
+结果解释：由于`.wrap`的`line-height`为`100px`，而`.child`的默认行高大于`100px`，因此其顶部将被有一部分溢出容器。
 
 ### vertical-align：text-top
 
