@@ -63,7 +63,7 @@ tags:
         }
 
         .wrap {
-            line-height: 50px;
+            line-height: 100px;
             background-color: gold;
             font-size: 20px;
             color: #ffffff;
@@ -122,9 +122,10 @@ tags:
         }
 
         .wrap {
-            line-height: 50px;
+            line-height: 100px;
             background-color: gold;
             font-size: 20px;
+            color: #ffffff;
         }
 
         .wrap span {
@@ -162,7 +163,7 @@ tags:
             <i class="line"></i>
         </div>
         <span>xhj</span>
-        <span style="font-size:50px;">xhj</span>
+        <span style="font-size:100px;">xhj</span>
     </div>
 </body>
 
@@ -184,7 +185,7 @@ tags:
         <i class="line"></i>
     </div>
     <span>xhj</span>
-    <span class="child" style="font-size:50px;">xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
 </div>
 ```
 
@@ -205,7 +206,7 @@ tags:
         <i class="line"></i>
     </div>
     <span>xhj</span>
-    <span class="child" style="font-size:50px;">xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
 </div>
 ```
 
@@ -224,7 +225,7 @@ tags:
         <i class="line"></i>
     </div>
     <span>xhj</span>
-    <span class="child" style="font-size:50px;">xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
 </div>
 ```
 
@@ -243,7 +244,7 @@ tags:
         <i class="line"></i>
     </div>
     <span>xhj</span>
-    <span class="child" style="font-size:50px;">xhj</span>
+    <span class="child" style="font-size:100px;">xhj</span>
 </div>
 ```
 
