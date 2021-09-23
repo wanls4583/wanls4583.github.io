@@ -1,12 +1,3 @@
-[submodule "code/example/js-avl-tree"]
-	path = code/example/js-avl-tree
-	url = https://github.com/wanls4583/js-avl-tree.git
-[submodule "code/example/js-rb-tree"]
-	path = code/example/js-rb-tree
-	url = https://github.com/wanls4583/js-rb-tree.git
 [submodule "code/example/subjs-editor"]
 	path = code/example/subjs-editor
 	url = https://github.com/wanls4583/subjs-editor.git
-[submodule "code/example/jy-ui"]
-	path = code/example/jy-ui
-	url = git@github.com:wanls4583/jy-ui.git
