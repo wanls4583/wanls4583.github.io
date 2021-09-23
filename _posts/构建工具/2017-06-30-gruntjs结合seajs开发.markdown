@@ -192,5 +192,3 @@ define("a", [], function(require, exports, module) {
 <img src="https://wanls4583.github.io/images/posts/构建工具/2017-06-30-gruntjs结合seajs开发-6.jpg" alt="" />
 
 可以看到，成功合并了文件。
-
-
