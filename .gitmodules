@@ -7,3 +7,6 @@
 [submodule "code/example/subjs-editor"]
 	path = code/example/subjs-editor
 	url = https://github.com/wanls4583/subjs-editor.git
+[submodule "code/example/jy-ui"]
+	path = code/example/jy-ui
+	url = git@github.com:wanls4583/jy-ui.git
