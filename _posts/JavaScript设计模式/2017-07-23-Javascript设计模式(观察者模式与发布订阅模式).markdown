@@ -17,7 +17,7 @@ tags:
 
 观察者模式实例:
 ```javascript
-//被观察者(主题对象)
+//被观察者(主体对象)
 function Observable(){
     this.obs = [];//存储观察者列表
 }
@@ -31,16 +31,16 @@ Observable.prototype.notify = function(){
     })
 }
 //观察者对象
-function Observer(name){
+function Watcher(name){
     this.name = name
 }
-Observer.prototype.update = function(){
+Watcher.prototype.update = function(){
     console.log(this.name);
 }
 
 var subject = new Observable();
-var ob1 = new Observer('1');
-var ob2 = new Observer('2');
+var ob1 = new Watcher('1');
+var ob2 = new Watcher('2');
 subject.attach(ob1).attach(ob2);
 subject.notify();
 ```
