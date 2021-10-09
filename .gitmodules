@@ -1,3 +1,6 @@
 [submodule "code/example/subjs-editor"]
 	path = code/example/subjs-editor
 	url = https://github.com/wanls4583/subjs-editor.git
+[submodule "jy-ui"]
+	path = jy-ui
+	url = https://github.com/wanls4583/jy-ui.git
