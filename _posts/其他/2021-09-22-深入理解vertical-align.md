@@ -227,6 +227,7 @@ inline-block元素的baseline确定规则：
         .div2 {
             height: 50%;
             background-color: blue;
+            text-align: right;
         }
 
         .line {
@@ -241,7 +242,7 @@ inline-block元素的baseline确定规则：
 <body>
     <div class="wrap">
         <div class="div1" style="vertical-align:middle">
-            <div class="div2">xhj</div>
+            <div class="div2"></div>
             <i class="line"></i>
         </div>
         <span>xhj</span>
@@ -341,7 +342,7 @@ inline-block元素的baseline确定规则：
 ```html
 <div class="wrap">
     <div class="div1" style="vertical-align:sub">
-        <div class="div2"></div>
+        <div class="div2">xhj</div>
         <i class="line"></i>
     </div>
     <span>xhj</span>
@@ -353,6 +354,8 @@ inline-block元素的baseline确定规则：
 
 ![](https://wanls4583.github.io/images/posts/其他/深入理解vertical-align/vertical-align-sub.png)
 
+可以看到 div2 中的 xhj 要略微低于右侧 xhj
+
 ### vertical-align：super
 
 将子元素盒子的`baseline`升高，到适当的父盒子的上标位置，类似于`<super>`标签的效果。
@@ -360,7 +363,7 @@ inline-block元素的baseline确定规则：
 ```html
 <div class="wrap">
     <div class="div1" style="vertical-align:super">
-        <div class="div2"></div>
+        <div class="div2">xhj</div>
         <i class="line"></i>
     </div>
     <span>xhj</span>
