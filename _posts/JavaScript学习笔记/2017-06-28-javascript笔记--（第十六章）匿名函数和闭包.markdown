@@ -14,7 +14,7 @@ tags:
 ---
 
 ## 匿名函数
-```
+```html
 <script type="text/javascript">  
     //function(){}//会报错
     var fun = function(){};//将匿名函数赋值给变量
@@ -30,7 +30,7 @@ tags:
 ```
 ## 闭包
 闭包是指有权访问另一个函数作用域中的变量的函数，创建闭包的常见的方式，就是在一个函数内部创建另一个函数，通过另一个函数访问这个函数的局部变量
-```
+```html
 <script type="text/javascript">
 	//通过闭包可以返回局部变量
 	function box() {
@@ -59,7 +59,7 @@ tags:
 使用闭包有一个优点，也是它的缺点：就是可以把局部变量驻留在内存中，可以避免使用全局变量。(全局变量污染导致应用程序不可预测性，每个模块都可调用必将引来灾难，所以推荐使用私有的，封装的局部变量)。由于闭包里作用域返回的局部变量资源不会被立刻销毁回收，所以可能会占用更多的内存。过度使用闭包会导致性能下降，建议在非常有必要的时候才使用闭包。
 
 ### 循环里的闭包
-```
+```html
 <script type="text/javascript">
 	function box() {
 		var arr = [];
@@ -82,7 +82,7 @@ tags:
 box()已执行完毕，i早已变成5，而返回的函数保存的变量都是i，所以最终的结果就是5个5
 
 ### 循环里的闭包--修改
-```
+```html
 <script type="text/javascript">
 	function box() {
 		var arr = [];
@@ -116,7 +116,7 @@ box()已执行完毕，i早已变成5，而返回的函数保存的变量都是i
 
 ### 闭包中的this对象
 闭包在运行时指向window的，因为闭包并不属于这个对象的属性或方法。
-```
+```html
 <script type="text/javascript">
 	var user = 'The Window';
 
@@ -144,7 +144,7 @@ box()已执行完毕，i早已变成5，而返回的函数保存的变量都是i
 ```
 ## 模仿块级作用域
 JavaScript没有块级语句的作用域，if () {} for () {}等没有作用域
-```
+```html
 <script type="text/javascript">
 	//使用块级作用域(私有作用域)改写
 	function box(count) {
@@ -179,7 +179,7 @@ JavaScript没有私有属性的概念；所有的对象属性都是公有的。�
 
 ### 静态私有变量
 上面的私有变量在每次实例化对象的时候都会重新初始化，通过块级作用域(私有作用域)中定义私有变量或函数，同样可以创建对外公共的特权方法。
-```
+```html
 <script type="text/javascript">
 	(function () {
 		var age = 100;//静态私有变量
@@ -197,7 +197,7 @@ JavaScript没有私有属性的概念；所有的对象属性都是公有的。�
 </script>  
 ```
 ## 模块模式
-```
+```html
 <script type="text/javascript">
 	var box = function () {				//box是一个模块
 		var age = 100;
