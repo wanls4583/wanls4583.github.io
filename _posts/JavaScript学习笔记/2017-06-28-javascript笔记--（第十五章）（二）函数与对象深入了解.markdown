@@ -19,7 +19,7 @@ tags:
 每个普通对象都有一个名为__proto__的内部隐藏属性，指向于它所对应的构造函数的原型对象(chrome、firefox中名称为__proto__，并且可以被访问到)。原型链正是基于__proto__才得以形成（note：不是基于函数对象的属性prototype）。
 
 所有构造器/函数对象（包括自定义的）都是由Function构造的，所以其__proto__都指向Function.prototype，它是一个空函数（Empty function）。
-```
+```html
 <script type="text/javascript">
 	console.log(Number.__proto__   === Function.prototype) // true  
 	console.log(Boolean.__proto__  === Function.prototype) // true  
@@ -43,7 +43,7 @@ tags:
 </script>
 ```
 JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSON），这里列举了可访问的8个构造器。剩下如Global不能直接访问，Arguments仅在函数调用时由JS引擎创建，Math，JSON是以对象形式存在的，无需new。它们的__proto__是Object.prototype。如下：
-```
+```html
 <script type="text/javascript">
 	console.log(Math.__proto__ === Object.prototype);//true  
 	console.log(JSON.__proto__ === Object.prototype);//true   
@@ -54,7 +54,7 @@ JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSO
 </script>
 ```
 由以上测试得出，所有的构造器都来自于Function.prototype，甚至包括根构造器Object及Function自身。所有构造器都继承了Function.prototype的属性及方法。如length、call、apply、bind（ES5）。另，Function.prototype也是唯一一个typeof XXX.prototype为 “function”的prototype。其它的构造器的prototype都是一个普通对象,下面来测试下：
-```
+```html
 <script type="text/javascript">
 	console.log(typeof Function.prototype) // function  
 	console.log(typeof Object.prototype)   // object  
@@ -69,7 +69,7 @@ JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSO
 </script>
 ```
 所有普通对象的__proto__都指向其构造器的prototype
-```
+```html
 <script type="text/javascript">
 	function Foo(){  
 	  
@@ -83,7 +83,7 @@ JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSO
 ```
 ## constuctor
 每个函数对象都有名为“prototype”的属性(上面提到过Function.prototype函数对象是个例外，没有prototype属性)，用于引用原型对象。此原型对象又有名为“constructor”的属性，它反过来引用函数本身。这是一种循环引用。
-```
+```html
 <script type="text/javascript">
 	var   arr = ["aaa", "bbb"],  
 	console.log(arr.constructor === Array);//true  
@@ -123,14 +123,14 @@ Function.prototype函数对象图内部表示prototype属性的红色虚框，�
 - (5)客户端使用本地构造器构造js中的一切本地对象，也可以用Function对象（隐式function）构造自定义构造器；
 
 通过上面的一些推理，我们可以理解为，js原型链的源头其实是Object.prototype。
-```
+```html
 <script type="text/javascript">
     var a = new Number(1);
     console.log(a instanceof Object);//true
 <script type="text/javascript">
 ```
 （注意：对象只是js中的一种概念，不要和Object构造器混肴，instanceof操作符只是按照ECMASCript标准返回布尔值，这里并不能说明a对象和Object.prototype有直接关系，只不过其原型链最终指向了Object.portotype）
-```
+```html
 <script type="text/javascript">
 	console.log(Function.prototype);//function(){},空函数
 	console.log(Function.prototype.constructor);//function Function(){ [native code] }，Function构造器
@@ -142,7 +142,7 @@ Function.prototype函数对象图内部表示prototype属性的红色虚框，�
 </script>
 ```
 ## 普通对象的创建过程
-```
+```html
 <script type="text/javascript">  
 	function Foo(num){};
 	var foo = new Foo(1);
@@ -154,7 +154,7 @@ Function.prototype函数对象图内部表示prototype属性的红色虚框，�
 - (2)构造函数 Foo 被执行。执行的时候，相应的传参会被传入，同时上下文(this)会被指定为这个新实例。new Foo 等同于 new Foo(), 只能用在不传递任何参数的情况;
 - (3)如果构造函数返回了一个“对象”，那么这个对象会取代整个new出来的结果。如果构造函数没有返回对象，那么new出来的结果为步骤1创建的对象。
 
-```
+```html
 <script type="text/javascript">  
 	function Foo1(num){
 		return 1;
@@ -178,7 +178,7 @@ object instanceof constructor
 *描述*
 
 instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上,constructor必须是一个构造器，否则将报错。
-```
+```html
 <script type="text/javascript">
 	console.log(Function.__proto__);//function(){}
 	console.log(Function.prototype);//function(){}
@@ -202,7 +202,7 @@ instanceof 运算符用来检测 constructor.prototype 是否存在于参数 obj
 ```
 
 instanceof操作符和对象的isPrototypeOf方法功能一样，只不过isPrototypeOf的调用者可以是一个对象也可以是一个构造器。
-```
+```html
 <script type="text/javascript">
 	var a = new Object();
 	function B(){};
