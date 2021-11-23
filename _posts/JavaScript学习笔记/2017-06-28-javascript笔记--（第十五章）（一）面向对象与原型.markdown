@@ -18,7 +18,7 @@ ECMAScript有两种开发模式：1.函数式(过程化)，2.面向对象(OOP)�
 
 ## 工厂方法
 解决实例化对象产生大量重复的问题
-```
+```html
 <script type="text/javascript">
 	function createObject(name, age) {		//集中实例化的函数
 		var obj = new Object();
@@ -37,7 +37,7 @@ ECMAScript有两种开发模式：1.函数式(过程化)，2.面向对象(OOP)�
 ```
 ## 构造函数
 解决了重复实例化的问题，又解决了对象识别的问题
-```
+```html
 <script type="text/javascript">
 	function Box(name, age) {				//构造函数模式
 		this.name = name;
@@ -98,7 +98,7 @@ function run() {				//通过外面调用，保证引用地址一致
 
 ## 原型
 我们创建的每个函数都有一个prototype(原型)属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法，逻辑上可以这么理解：prototype是通过调用构造函数而创建的原型对象。简单的说就是静态属性和方法。
-```
+```html
 <script type="text/javascript">
 	function Box() {};//声明一个构造函数
 	Box.prototype.name = 'Lee';//在原型里添加属性
@@ -131,7 +131,7 @@ function run() {				//通过外面调用，保证引用地址一致
 <img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-3.jpg" alt="" />
 
 在原型模式声明中，多了两个属性，这两个属性都是创建对象时自动生成的。__proto__属性是实例指向原型对象的一个指针。
-```
+```html
 <script type="text/javascript">
 	function Box() {}					//声明一个构造函数
 	Box.prototype.name = 'Lee';				//在原型里添加属性
@@ -149,7 +149,7 @@ function run() {				//通过外面调用，保证引用地址一致
 <img src="https://wanls4583.github.io/images/posts/JavaScript学习笔记/2017-06-28-javascript笔记--（第十五章）（一）面向对象与原型-4.jpg" alt="" />
 
 可以看到，Box实例对象的__proto__属性指向的Box构造函数的原型对象，原型对象里的constructor是原型本身，Box构造函数的原型对象默认是继承自Object。
-```
+```html
 <script type="text/javascript">
 	function Box() {}			//声明一个构造函数
 	Box.prototype = new Number(2);
@@ -175,7 +175,7 @@ alert(Box.prototype.isPrototypeOf(box));
 1. 先查找构造函数实例里的属性或方法，如果有，立刻返回；
 2. 如果构造函数实例里没有，则去它的原型对象里找，如果有，就返回；
 
-```
+```html
 <script type="text/javascript">
 	function Box() {};//声明一个构造函数
 	Box.prototype.name = 'Lee';//在原型里添加属性
@@ -190,7 +190,7 @@ alert(Box.prototype.isPrototypeOf(box));
 hasOwnProperty()：判断对象实例中是否有某个属性(不包括原型链)。
 
 in操作符：属性是否存在于实例或者原型中。
-```
+```html
 <script type="text/javascript">
 	function Box(){
 		this.name = "lisong";
@@ -205,7 +205,7 @@ in操作符：属性是否存在于实例或者原型中。
 </script>
 ```
 使用字面量创建原型对象：
-```
+```html
 <script type="text/javascript">
 	function Box(){}
 	console.log(Box.prototype);
@@ -285,7 +285,7 @@ alert(box.addstring());
 ```
 ## 原型链继承
 
-```
+```html
 <script type="text/javascript">
 	function Box() {					//Box构造
 		this.name = 'Lee';
@@ -313,7 +313,7 @@ alert(box.addstring());
 ```
 ## 对象冒充继承（借用构造函数）
 对象冒充继承主要解决超类型无法传参的问题
-```
+```html
 <script type="text/javascript">
 	function Box(age) {
 		this.name = ['Lee', 'Jack', 'Hello']
@@ -330,7 +330,7 @@ alert(box.addstring());
 ```
 ## 组合继承（原型链+对象冒充）
 借用构造函数虽然解决了刚才两种问题，但没有原型，复用则无从谈起。所以，我们需要原型链+借用构造函数的模式，这种模式成为组合继承。
-```
+```html
 <script type="text/javascript">
 	function Box(age) {
 		this.name = ['Lee', 'Jack', 'Hello']
@@ -358,7 +358,7 @@ alert(box.addstring());
 
 ## 原型式继承
 借助原型并基于已有的对象创建新对象，同时还不必因此创建自定义类型。
-```
+```html
 <script type="text/javascript">
 	function obj(o) {					//传递一个字面量函数
 		function F() {}					//创建一个构造函数
@@ -374,7 +374,7 @@ alert(box.addstring());
 ```
 ## 寄生式继承（原型式+工厂模式）
 原型式+工厂模式结合而来，目的是为了在原型式的基础上封装创建对象的过程。
-```
+```html
 <script type="text/javascript">
 	function obj(o) {					//传递一个字面量函数
 		function F() {}					//创建一个构造函数
@@ -400,7 +400,7 @@ alert(box.addstring());
 
 ## 寄生组合继承（寄生+组合）
 解决组合继承超类调用两次的问题
-```
+```html
 <script type="text/javascript">  
     function Box(name) {  
         this.name = name;  
@@ -444,7 +444,7 @@ Object.prototype.sayHi = function () {
 o.sayHi();//hi
 ```
 需要注意的是，这种情况下对原型链是有影响的。
-```
+```javascript
 function F(){};
 var a = new F();
 F.prototype = {a:1};
