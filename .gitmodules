@@ -4,3 +4,6 @@
 [submodule "jy-ui"]
 	path = jy-ui
 	url = https://github.com/wanls4583/jy-ui.git
+[submodule "code/example/my-editor"]
+	path = code/example/my-editor
+	url = https://github.com/wanls4583/my-editor.git
