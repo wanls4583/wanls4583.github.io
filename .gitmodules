@@ -7,3 +7,6 @@
 [submodule "code/example/my-editor"]
 	path = code/example/my-editor
 	url = https://github.com/wanls4583/my-editor.git
+[submodule "listen-doc"]
+	path = listen-doc
+	url = git@github.com:wanls4583/listen-doc.git
